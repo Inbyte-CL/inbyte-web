@@ -6,15 +6,16 @@ import mdx from "@astrojs/mdx";
 import AutoImport from "astro-auto-import";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
-import netlify from "@astrojs/netlify";
+import vercel from "@astrojs/vercel";
 import compress from "@playform/compress";
 import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://zenith.cosmicthemes.com",
-	adapter: netlify({
-		imageCDN: false,
+	output: "server",
+	adapter: vercel({
+		imageService: true,
 	}),
 	redirects: {
 		"/admin": "/keystatic",
