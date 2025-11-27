@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+type Props = HTMLAttributes<"input"> & { size?: "sm" | "md" | "lg" };
+
+const input = tv({
+	base: [
+		"border-input text-foreground w-full rounded-3xl border bg-transparent",
+		"focus-within:border-foreground outline-none focus-within:ring-0",
+		"file:text-foreground file:my-auto file:mr-4 file:h-full file:border-0 file:bg-transparent file:text-sm file:font-medium",
+		"disabled:cursor-not-allowed disabled:opacity-50",
+		"peer placeholder:text-muted-foreground",
+	],
+	variants: {
+		size: { sm: "h-9 px-2 text-sm", md: "px-6 py-4 text-base", lg: "h-18 px-8 text-lg" },
+	},
+	defaultVariants: { size: "md" },
+});
+
+const { size = "md", class: className, ...rest } = Astro.props;
+---
+
+<input class={input({ size, class: className })} {...rest} />

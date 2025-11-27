@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+type Props = HTMLAttributes<"textarea"> & { size?: "sm" | "md" | "lg" };
+
+const textarea = tv({
+	base: [
+		"border-input text-foreground ring-offset-background min-h-10 w-full rounded-3xl border bg-transparent",
+		"focus-within:border-foreground outline-none focus-within:ring-0",
+		"file:text-foreground file:border-0 file:bg-transparent file:text-sm file:font-medium",
+		"disabled:cursor-not-allowed disabled:opacity-50",
+		"peer placeholder:text-muted-foreground",
+	],
+	variants: {
+		size: {
+			sm: "min-h-9 px-2 py-1 text-sm",
+			md: "min-h-10 px-6 py-4 text-base",
+			lg: "min-h-12 px-4 py-3 text-lg",
+		},
+	},
+	defaultVariants: { size: "md" },
+});
+
+const { size = "md", class: className, ...rest } = Astro.props;
+---
+
+<textarea class={textarea({ size, class: className })} {...rest}></textarea>
