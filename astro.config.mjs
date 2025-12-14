@@ -6,21 +6,22 @@ import mdx from "@astrojs/mdx";
 import AutoImport from "astro-auto-import";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
-import vercel from "@astrojs/vercel";
+import vercel from "@astrojs/vercel/serverless";   // 🔥 ADAPTADOR CORRECTO
 import compress from "@playform/compress";
 import icon from "astro-icon";
 
-// https://astro.build/config
 export default defineConfig({
 	site: "https://zenith.cosmicthemes.com",
-	output: "static",
+
+	output: "server",                    // ⭐ IMPORTANTE: habilita API Routes
 	adapter: vercel({
-		imageService: true,
+		imageService: true,              // mantiene tu config original
 	}),
+
 	redirects: {
 		"/admin": "/keystatic",
 	},
-	// i18n configuration must match src/config/translations.json.ts
+
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "fr"],
@@ -28,20 +29,17 @@ export default defineConfig({
 			prefixDefaultLocale: false,
 		},
 	},
+
 	markdown: {
 		shikiConfig: {
-			// Shiki Themes: https://shiki.style/themes
 			theme: "css-variables",
 			wrap: true,
 		},
 	},
+
 	integrations: [
-		// example auto import component into blog post mdx files
 		AutoImport({
-			imports: [
-				// https://github.com/delucis/astro-auto-import
-				"@/components/admonition/Admonition.astro",
-			],
+			imports: ["@/components/admonition/Admonition.astro"],
 		}),
 		mdx(),
 		react(),
@@ -51,20 +49,19 @@ export default defineConfig({
 		compress({
 			HTML: true,
 			JavaScript: true,
-			CSS: false, // enabling this can cause issues
-			Image: false, // astro:assets handles this. Enabling this can dramatically increase build times
+			CSS: false,
+			Image: false,
 			SVG: false,
 		}),
 	],
 
 	vite: {
 		plugins: [tailwindcss()],
-		// fix for client router script duplication issues on 404 page
 		build: {
 			assetsInlineLimit: 0,
 		},
 		server: {
-			host: true, // permite acceso desde la red local
+			host: true,
 			port: 4321,
 		},
 	},
