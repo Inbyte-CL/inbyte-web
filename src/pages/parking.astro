@@ -1,0 +1,383 @@
+---
+// layout
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// components
+import { Image } from "astro:assets";
+import Button from "@/components/button/Button.astro";
+import { Icon } from "astro-icon/components";
+import CircleCheck from "@tabler/icons/filled/circle-check.svg";
+
+// images
+import Dashboard from "@images/headers/Dashboard.gif";
+import POSImage from "@images/headers/POS.png";
+import DashboardMin from "@images/features/dashboard-min.png";
+import Dashboard3 from "@images/features/dashboard3.png";
+import Parking1 from "@/data/Parking/parking1.png";
+import Parking2 from "@/data/Parking/parking2.png";
+import DashPark from "@/data/Parking/dashpark.png";
+import DashboardParking from "@/data/Parking/Dashboard.png";
+---
+
+<BaseLayout
+	title="Soluciones de Pago para Estacionamientos - Inbyte"
+	description="Digitalizamos y mejoramos la experiencia de pago en estacionamientos con tecnología moderna, integración total y las tarifas más competitivas del mercado."
+>
+	<!-- Hero Section -->
+	<section id="parking-hero" class="-mt-23 overflow-hidden pt-23">
+		<div class="relative pt-20 pb-4">
+			<div class="site-container relative mx-auto px-4 sm:px-6">
+				<div class="flex flex-col items-center">
+					<div class="relative z-10 mb-4 text-center w-full">
+						<div data-aos="fade-up" data-aos-trigger="#parking-hero">
+							<h1
+								class="font-heading xl:text-10xl mx-auto mb-6 sm:mb-8 max-w-5xl text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter px-2 sm:px-0"
+							>
+								Soluciones de Pago para Estacionamientos
+							</h1>
+						</div>
+						<p
+							class="mx-auto mb-8 sm:mb-10 max-w-3xl text-base sm:text-lg opacity-80 px-2 sm:px-0"
+							data-aos="fade-up"
+							data-aos-trigger="#parking-hero"
+							data-aos-delay=".15"
+						>
+							Digitalizamos y mejoramos la experiencia de pago en estacionamientos con tecnología moderna, integración total y las tarifas más competitivas del mercado.
+						</p>
+						<div
+							class="mx-auto flex items-center justify-center w-full px-2 sm:px-0"
+							data-aos="fade-up"
+							data-aos-trigger="#parking-hero"
+							data-aos-delay=".3"
+						>
+							<Button href="/contact" class="w-full sm:w-auto sm:min-w-[200px]">Contacto</Button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 1: Pago Autoservicio Moderno -->
+	<section id="pago-autoservicio" class="overflow-hidden pt-2 pb-16 md:pt-4 md:pb-24">
+		<div class="site-container">
+			<div class="mx-auto max-w-5xl">
+				<div class="flex flex-wrap lg:items-center">
+					<div class="w-full p-8 md:w-1/2 lg:p-12" data-aos="fade-right" data-aos-delay="0.3">
+						<h2 class="h2 mb-6">Nueva tecnología de pagos</h2>
+						<p class="text-muted-foreground mb-6">
+							La industria del parking está migrando rápidamente hacia sistemas más eficientes, seguros y centrados en el usuario.
+						</p>
+						<p class="text-muted-foreground mb-8">
+							En Inbyte implementamos soluciones de pago autoservicio que modernizan cualquier operación de estacionamiento, reducen costos y mejoran la experiencia del cliente desde el primer día.
+						</p>
+						<p class="text-muted-foreground mb-8">
+							Nuestra tecnología permite realizar pagos electrónicos rápidos y sin fricción en tótems, cajas de autoservicio y máquinas de cobro de cualquier marca o antigüedad.
+						</p>
+					</div>
+					<div class="w-full md:w-1/2 mt-8 md:mt-0 flex justify-end" data-aos="fade-left" data-aos-delay="0.3">
+						<div class="max-w-max relative z-0">
+							<Image
+								class="tilt-card rounded-3xl w-full max-w-md"
+								src={Parking1}
+								alt="Sistema de pago autoservicio para parking"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 2: Integración Directa -->
+	<section id="integracion-directa" class="overflow-hidden py-16 md:py-24 bg-base-200/30 dark:bg-base-900/30">
+		<div class="site-container">
+			<div class="mx-auto max-w-5xl">
+				<div class="flex flex-wrap lg:items-stretch">
+					<div class="w-full md:w-1/2 flex items-center" data-aos="fade-right" data-aos-delay="0.3">
+						<div class="mx-auto max-w-max w-full">
+							<Image
+								class="tilt-card rounded-3xl w-full"
+								src={Parking2}
+								alt="Integración con Scharftein"
+							/>
+						</div>
+					</div>
+					<div class="w-full p-8 md:w-1/2 lg:p-12 flex flex-col justify-center" data-aos="fade-left" data-aos-delay="0.3">
+						<h2 class="h2 mb-2.5">Integración con Scharftein</h2>
+						<p class="text-muted-foreground mb-2.5">
+							Somos especialistas en integrar POS de última generación con máquinas de cobro automáticas.
+						</p>
+						
+						<div class="mb-2.5 rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6">
+							<h3 class="mb-2 font-semibold text-lg">✔ Integración certificada con equipos Scharfstein</h3>
+							<p class="text-muted-foreground mb-0">
+								Estamos 100% integrados con los tótems de Scharfstein utilizados en gran parte de los estacionamientos del país. Nuestra integración es estable, segura y ha sido validada en producción.
+							</p>
+						</div>
+
+						<div class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6">
+							<h3 class="mb-2 font-semibold text-lg">✔ Podemos integrar cualquier marca o modelo</h3>
+							<p class="text-muted-foreground mb-2">
+								No importa el fabricante: tótems antiguos, cajeros automáticos, barreras, validadores, equipos propietarios, sistemas híbridos.
+							</p>
+							<p class="text-muted-foreground mb-0">
+								Diseñamos módulos y APIs personalizadas para que la integración funcione de manera nativa dentro del flujo del estacionamiento.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 3: Tarifa Competitiva -->
+	<section id="tarifa-competitiva" class="overflow-hidden py-16 md:py-24">
+		<div class="site-container">
+			<div class="mx-auto max-w-5xl">
+				<div class="text-center mb-12" data-aos="fade-up">
+					<h2 class="h2 mb-6">La tarifa más competitiva del mercado gracias a nuestra alianza con Klap</h2>
+					<p class="text-muted-foreground mx-auto max-w-3xl">
+						Uno de los mayores costos para un operador de estacionamientos es la comisión por transacción. Gracias a nuestra alianza estratégica con Klap, ofrecemos la tarifa más competitiva del mercado en pagos electrónicos para estacionamientos.
+					</p>
+				</div>
+				<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" id="beneficios-tarifa-trigger">
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-6 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#beneficios-tarifa-trigger"
+						data-aos-delay="0.1"
+					>
+						<div class="relative z-10">
+							<h3 class="mb-3 text-xl font-semibold">🔥 Menores costos</h3>
+							<p class="text-muted-foreground text-sm">Por transacción</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-6 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#beneficios-tarifa-trigger"
+						data-aos-delay="0.2"
+					>
+						<div class="relative z-10">
+							<h3 class="mb-3 text-xl font-semibold">📈 Mayor margen</h3>
+							<p class="text-muted-foreground text-sm">Operativo</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-6 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#beneficios-tarifa-trigger"
+						data-aos-delay="0.3"
+					>
+						<div class="relative z-10">
+							<h3 class="mb-3 text-xl font-semibold">💰 Rentabilidad</h3>
+							<p class="text-muted-foreground text-sm">Inmediata</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-6 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#beneficios-tarifa-trigger"
+						data-aos-delay="0.4"
+					>
+						<div class="relative z-10">
+							<h3 class="mb-3 text-xl font-semibold">🚀 Escalable</h3>
+							<p class="text-muted-foreground text-sm">Para grandes volúmenes</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+				</div>
+				<div class="mt-8 text-center">
+					<p class="text-muted-foreground">
+						Esta tarifa es exclusiva para integraciones realizadas a través de Inbyte.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 4: Soporte Remoto -->
+	<section id="soporte-remoto" class="overflow-hidden py-16 md:py-24 bg-base-200/30 dark:bg-base-900/30">
+		<div class="site-container">
+			<div class="mx-auto max-w-5xl">
+				<div class="flex flex-wrap lg:items-center">
+					<div class="w-full p-8 md:w-1/2 lg:p-12" data-aos="fade-right" data-aos-delay="0.3">
+						<h2 class="h2 mb-6">Soporte Remoto en Tiempo Real</h2>
+						<p class="text-muted-foreground mb-6">
+							Sabemos que el estacionamiento no se detiene y que una máquina fuera de servicio significa pérdidas.
+						</p>
+						<p class="text-muted-foreground mb-8">
+							Por eso ofrecemos soporte remoto en tiempo real para que tu operación siga funcionando sin interrupciones.
+						</p>
+						<ul class="mb-8 flex flex-col gap-3.5">
+							<li class="inline-flex">
+								<CircleCheck class="mt-0.5 mr-3.5 size-5 text-primary" />
+								<span>Diagnóstico inmediato</span>
+							</li>
+							<li class="inline-flex">
+								<CircleCheck class="mt-0.5 mr-3.5 size-5 text-primary" />
+								<span>Validación de transacciones</span>
+							</li>
+							<li class="inline-flex">
+								<CircleCheck class="mt-0.5 mr-3.5 size-5 text-primary" />
+								<span>Monitoreo del estado de los POS</span>
+							</li>
+							<li class="inline-flex">
+								<CircleCheck class="mt-0.5 mr-3.5 size-5 text-primary" />
+								<span>Revisión de logs y flujos de cobro</span>
+							</li>
+							<li class="inline-flex">
+								<CircleCheck class="mt-0.5 mr-3.5 size-5 text-primary" />
+								<span>Actualizaciones remotas sin detener la operación</span>
+							</li>
+						</ul>
+					</div>
+					<div class="w-full md:w-1/2" data-aos="fade-left" data-aos-delay="0.3">
+						<div class="mx-auto max-w-max">
+							<Image
+								class="tilt-card rounded-3xl"
+								src={DashPark}
+								alt="Soporte remoto en tiempo real"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 5: Dashboard de Control -->
+	<section id="dashboard-control" class="overflow-hidden py-16 md:py-24">
+		<div class="site-container">
+			<div class="mx-auto max-w-6xl">
+				<div class="text-center mb-12" data-aos="fade-up">
+					<h2 class="h2 mb-6">Dashboard de Control y Telemetría para Parking</h2>
+					<p class="text-muted-foreground mx-auto max-w-3xl">
+						Integramos los datos de tus máquinas en un panel inteligente para visualizar toda tu operación en tiempo real.
+					</p>
+				</div>
+				<div class="mb-12" data-aos="fade-up" data-aos-delay="0.2">
+					<div class="mx-auto max-w-max">
+						<Image
+							class="tilt-card rounded-3xl"
+							src={DashboardParking}
+							alt="Dashboard de control para parking"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 6: Adaptamos la solución -->
+	<section id="adaptamos-solucion" class="overflow-hidden py-16 md:py-24 bg-base-200/30 dark:bg-base-900/30">
+		<div class="site-container">
+			<div class="mx-auto max-w-5xl">
+				<div class="text-center mb-12" data-aos="fade-up">
+					<h2 class="h2 mb-6">Adaptamos la solución a tu infraestructura</h2>
+					<p class="text-muted-foreground mx-auto max-w-3xl mb-8">
+						No importa el tipo ni el tamaño de tu operación. Podemos integrarnos con cualquier arquitectura existente.
+					</p>
+				</div>
+				<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4" id="tipos-operacion-trigger">
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.1"
+					>
+						<p class="font-medium">Centros comerciales</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.2"
+					>
+						<p class="font-medium">Edificios corporativos</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.3"
+					>
+						<p class="font-medium">Clínicas y hospitales</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.4"
+					>
+						<p class="font-medium">Universidades</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.5"
+					>
+						<p class="font-medium">Aeropuertos</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.6"
+					>
+						<p class="font-medium">Estacionamientos privados</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.7"
+					>
+						<p class="font-medium">Estacionamientos públicos</p>
+					</div>
+					<div
+						class="rounded-3xl bg-primary-200/30 dark:bg-primary-900/40 p-6 text-center"
+						data-aos="fade-up"
+						data-aos-trigger="#tipos-operacion-trigger"
+						data-aos-delay="0.8"
+					>
+						<p class="font-medium">Garajes automatizados</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Final -->
+	<section id="cta-parking" class="overflow-hidden py-24">
+		<div class="site-container">
+			<div class="bg-gradient-radial-dark rounded-6xl py-14" data-aos="fade-up" data-aos-delay="0.5">
+				<div class="mx-auto px-4 text-center md:max-w-3xl">
+					<h2 class="h2 mb-6">Moderniza tu estacionamiento</h2>
+					<p class="text-muted-foreground mx-auto mb-12 max-w-2xl text-lg">
+						Con pagos electrónicos, integración total y las tarifas más competitivas del mercado.
+					</p>
+					<div class="flex flex-wrap items-center justify-center gap-4">
+						<Button href="/contact" class="min-w-[200px]">Contacto</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<script>
+	import initTiltCards from "@/js/tiltCard";
+
+	// Initialize on page load
+	initTiltCards();
+
+	// Re-initialize after Astro view transitions
+	document.addEventListener("astro:after-swap", initTiltCards);
+</script>
+

@@ -7,19 +7,19 @@ import Button from "@/components/button/Button.astro";
 // utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
 
-import AboutImage from "@images/abouts/about.png";
+import POSImage from "@images/headers/POS.png";
 
 // Define feature items array
 const featureItems = [
-	"Real-time transaction tracking with instant balance updates",
-	"Advanced security features with biometric authentication",
-	"Smart expense categorization with personalized insights",
+	"Pagos más rápidos y sin fricción",
+	"Tecnología compatible con cualquier máquina",
+	"Experiencia de usuario mejorada",
 ];
 
 const currLocale = getLocaleFromUrl(Astro.url);
 ---
 
-<section id="feature-side-image" class="overflow-hidden pt-20 pb-24 md:pb-32">
+<section id="feature-side-image" class="overflow-hidden pt-8 pb-8">
 	<div class="site-container">
 		<div class="mx-auto max-w-5xl">
 			<div class="flex flex-wrap lg:items-center">
@@ -27,18 +27,15 @@ const currLocale = getLocaleFromUrl(Astro.url);
 					<div class="mx-auto max-w-max">
 						<Image
 							class="tilt-card rounded-3xl"
-							src={AboutImage}
-							alt="Zenith Card in use on mobile device"
+							src={POSImage}
+							alt="POS System"
 						/>
 					</div>
 				</div>
 				<div class="w-full p-8 md:w-1/2 lg:p-12" data-aos="fade-left" data-aos-delay="0.3">
-					<span class="badge">Zenith Card</span>
-					<h2 class="h3 mb-6">Redefining Financial Freedom</h2>
+					<h2 class="h3 mb-6">Inbyte + Klap: innovación en pagos de autoservicio.</h2>
 					<p class="text-muted-foreground mb-8">
-						Experience a new era of personal finance with the Zenith Card. Our innovative platform
-						combines cutting-edge technology with user-friendly design to give you unprecedented
-						control over your financial life.
+						La alianza entre Inbyte y Klap impulsa la transformación digital de los pagos de autoservicio en Chile. Integramos la tecnología innovadora de Inbyte con la sólida infraestructura de pagos de Klap para ofrecer una solución integral, confiable y escalable para vending, retail, transporte, estacionamientos y cualquier operación que necesite pagos rápidos y sin fricción.
 					</p>
 					<ul class="mb-8 flex flex-col gap-3.5">
 						{
@@ -52,12 +49,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 					</ul>
 					<div class="-m-2 flex flex-wrap">
 						<div class="w-auto p-2">
-							<Button href={getLocalizedRoute(currLocale, "/sign-up")}>Get Your Card Today</Button>
-						</div>
-						<div class="w-auto p-2">
-							<Button variant="outline" href={getLocalizedRoute(currLocale, "/sign-in")}
-								>Access Your Account</Button
-							>
+							<Button href={getLocalizedRoute(currLocale, "/sign-up")}>Leer más</Button>
 						</div>
 					</div>
 				</div>

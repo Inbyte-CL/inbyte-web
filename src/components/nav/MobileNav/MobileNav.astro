@@ -6,8 +6,6 @@ import MenuIcon from "@tabler/icons/outline/menu.svg";
 import NavLink from "@/components/nav/NavLink.astro";
 import MobileNavDropdown from "@/components/nav/MobileNav/MobileNavDropdown.astro";
 import Button from "@/components/button/Button.astro";
-import MobileLanguageSelect from "@/components/language-select/MobileLanguageSelect.astro";
-import ThemeToggle from "@/components/theme-toggle/ThemeToggle.astro";
 
 // utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
@@ -16,7 +14,6 @@ import { getTranslatedData } from "@/js/translationUtils";
 // data
 const currLocale = getLocaleFromUrl(Astro.url);
 const navData = getTranslatedData("navData", currLocale);
-import { locales } from "@/config/siteSettings.json";
 ---
 
 <div id="mobile-nav__container">
@@ -70,27 +67,6 @@ import { locales } from "@/config/siteSettings.json";
 					}
 				</ul>
 			</nav>
-			<div class="mx-1 mt-3 flex flex-col gap-3 px-4">
-				<Button
-					variant="primary"
-					class="w-full py-3 shadow-none"
-					href="https://cosmicthemes.com/themes/zenith/"
-				>
-					Get Zenith
-				</Button>
-			</div>
-
-			<div class="mt-4 flex items-start justify-between pr-2 pl-4">
-				<ThemeToggle />
-
-				{
-					locales.length > 1 && (
-						<div class="flex justify-end">
-							<MobileLanguageSelect />
-						</div>
-					)
-				}
-			</div>
 		</div>
 	</div>
 

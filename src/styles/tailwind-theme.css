@@ -6,17 +6,18 @@
 @theme {
 	/* cosmic themes theme config */
 	/* primary colors. Can generate with https://uicolors.app/create, then convert to oklch with https://oklch.com/ */
-	--color-primary-50: oklch(99.14% 0.0352 110.48);
-	--color-primary-100: oklch(98.12% 0.0758 112.52);
-	--color-primary-200: oklch(96.63% 0.1362 114.89);
-	--color-primary-300: oklch(94.86% 0.1941 118.46);
-	--color-primary-400: oklch(93.07% 0.228585 123.0902);
-	--color-primary-500: oklch(85.71% 0.214 124.48);
-	--color-primary-600: oklch(72.27% 0.18295 130);
-	--color-primary-700: oklch(58.84% 0.148573 134);
-	--color-primary-800: oklch(49.52% 0.1216 136);
-	--color-primary-900: oklch(44.02% 0.1051 138);
-	--color-primary-950: oklch(34% 0.05 140);
+	/* Base color: #05cd84 - Green emerald/teal */
+	--color-primary-50: oklch(97.5% 0.025 160);
+	--color-primary-100: oklch(95% 0.05 160);
+	--color-primary-200: oklch(90% 0.08 160);
+	--color-primary-300: oklch(82% 0.12 160);
+	--color-primary-400: oklch(75% 0.15 160);
+	--color-primary-500: oklch(70.2% 0.168 160);
+	--color-primary-600: oklch(62% 0.155 160);
+	--color-primary-700: oklch(54% 0.14 160);
+	--color-primary-800: oklch(46% 0.12 160);
+	--color-primary-900: oklch(38% 0.10 160);
+	--color-primary-950: oklch(28% 0.06 160);
 
 	/* base colors */
 	--color-base-50: oklch(97.31% 0 0);

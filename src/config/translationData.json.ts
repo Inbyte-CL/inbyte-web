@@ -56,8 +56,8 @@ export const dataTranslations = {
  */
 export const textTranslations = {
 	en: {
-		hero_text: "Making credit history",
-		hero_description: `The finance and SaaS template with 100+ components, i18n features, Keystatic CMS integration, and more.`,
+		hero_text: "Tecnología que impulsa decisiones",
+		hero_description: `Integración con POS de última generación, automatización, y dashboards BI que transforman cada venta en una decisión estratégica.`,
 
 		// blog
 		back_to_all_posts: "Back to all posts",
@@ -88,9 +88,9 @@ export const textTranslations = {
 		signin_link: "Sign in",
 	},
 	fr: {
-		hero_text: "établir un historique de crédit",
+		hero_text: "Tecnología que impulsa decisiones",
 		hero_description:
-			"Je ne parle pas vraiment français donc j'utilise Google Translate pour quelques parties de cette démo.",
+			"Integración con POS de última generación, automatización, y dashboards BI que transforman cada venta en una decisión estratégica.",
 
 		// blog
 		back_to_all_posts: "Retour à tous les articles",

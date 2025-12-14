@@ -1,0 +1,208 @@
+---
+/**
+ * Compact contact form for footer
+ */
+// components
+import Button from "@/components/button/Button.astro";
+import { Input } from "@/components/starwind/input";
+import { Textarea } from "@/components/starwind/textarea";
+import {
+	Select,
+	SelectTrigger,
+	SelectValue,
+	SelectContent,
+	SelectItem,
+	SelectGroup,
+} from "@/components/starwind/select";
+---
+
+<form id="footer-contact-form" class="w-full space-y-3">
+	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+		<Input
+			name="nombre"
+			type="text"
+			placeholder="Nombre *"
+			class="w-full text-sm"
+			required
+		/>
+
+		<Input
+			name="email"
+			type="email"
+			placeholder="Correo electrónico *"
+			class="w-full text-sm"
+			required
+		/>
+	</div>
+
+	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+		<Input
+			name="telefono"
+			type="tel"
+			placeholder="Teléfono *"
+			class="w-full text-sm"
+			required
+		/>
+
+		<Input
+			name="compania"
+			type="text"
+			placeholder="Compañía *"
+			class="w-full text-sm"
+			required
+		/>
+	</div>
+
+	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+		<Select name="cantidad_maquinas" required>
+			<SelectTrigger class="w-full text-sm">
+				<SelectValue placeholder="Cantidad de máquinas *" />
+			</SelectTrigger>
+			<SelectContent>
+				<SelectGroup>
+					<SelectItem value="1">1</SelectItem>
+					<SelectItem value="2-10">2-10</SelectItem>
+					<SelectItem value="10-25">10-25</SelectItem>
+					<SelectItem value="25-50">25-50</SelectItem>
+					<SelectItem value="+50">+50</SelectItem>
+				</SelectGroup>
+			</SelectContent>
+		</Select>
+
+		<Select name="tipo_maquinas" required>
+			<SelectTrigger class="w-full text-sm">
+				<SelectValue placeholder="Tipo de máquinas *" />
+			</SelectTrigger>
+			<SelectContent>
+				<SelectGroup>
+					<SelectItem value="parking">Parking</SelectItem>
+					<SelectItem value="snacks">Máquina expendedora Snacks</SelectItem>
+					<SelectItem value="bebidas">Máquina expendedora Bebidas</SelectItem>
+					<SelectItem value="algodones">Máquina expendedora Algodones</SelectItem>
+					<SelectItem value="otro">Otro</SelectItem>
+				</SelectGroup>
+			</SelectContent>
+		</Select>
+	</div>
+
+	<Textarea
+		name="mensaje"
+		placeholder="Mensaje *"
+		rows={3}
+		class="w-full resize-none text-sm"
+		required
+	/>
+
+	<div class="flex justify-start pt-2">
+		<Button type="submit" variant="primary" class="font-medium text-sm px-6 py-2">
+			Enviar
+		</Button>
+	</div>
+</form>
+
+<script>
+	// Wait for the DOM to be fully loaded
+	function handleFormSubmit() {
+		// Get the form element
+		const form = document.querySelector("#footer-contact-form") as HTMLFormElement;
+		const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+		// Check if form exists before adding the event listener
+		if (form) {
+			// Add event listener for form submission
+			form.addEventListener("submit", async (e) => {
+				// Prevent the default form submission
+				e.preventDefault();
+
+				// Disable submit button
+				if (submitButton) {
+					submitButton.disabled = true;
+					submitButton.textContent = "Enviando...";
+				}
+
+				try {
+					// Crear objeto con los valores del formulario
+					const formValues: Record<string, string> = {};
+					
+					// Capturar inputs y textarea normales
+					const inputs = form.querySelectorAll('input, textarea');
+					inputs.forEach((input) => {
+						const element = input as HTMLInputElement | HTMLTextAreaElement;
+						if (element.name && element.value) {
+							formValues[element.name] = element.value;
+						}
+					});
+
+					// Capturar los selects ocultos creados por Starwind
+					const cantidadSelect = form.querySelector('select[name="cantidad_maquinas"]') as HTMLSelectElement;
+					const tipoSelect = form.querySelector('select[name="tipo_maquinas"]') as HTMLSelectElement;
+					
+					if (cantidadSelect && cantidadSelect.value) {
+						formValues.cantidad_maquinas = cantidadSelect.value;
+					}
+					
+					if (tipoSelect && tipoSelect.value) {
+						formValues.tipo_maquinas = tipoSelect.value;
+					}
+
+					// Validar que todos los campos requeridos estén presentes
+					const requiredFields = ['nombre', 'email', 'telefono', 'compania', 'cantidad_maquinas', 'tipo_maquinas', 'mensaje'];
+					const missingFields = requiredFields.filter(field => !formValues[field] || formValues[field].trim() === '');
+					
+					if (missingFields.length > 0) {
+						alert(`Por favor completa todos los campos requeridos. Faltan: ${missingFields.join(', ')}`);
+						if (submitButton) {
+							submitButton.disabled = false;
+							submitButton.textContent = "Enviar";
+						}
+						return;
+					}
+
+					// Send to API endpoint
+					const response = await fetch("/api/contact", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(formValues),
+					});
+
+					// Verificar que la respuesta sea válida
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+
+					const responseText = await response.text();
+					let result;
+					try {
+						result = JSON.parse(responseText);
+					} catch (parseError) {
+						console.error("Error parseando respuesta:", parseError, responseText);
+						throw new Error("Respuesta inválida del servidor");
+					}
+
+					if (result.success) {
+						alert("¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.");
+						form.reset();
+					} else {
+						alert(`Error: ${result.error || "No se pudo enviar el mensaje. Por favor intenta nuevamente."}`);
+					}
+				} catch (error) {
+					console.error("Error:", error);
+					alert("Error al enviar el mensaje. Por favor intenta nuevamente.");
+				} finally {
+					// Re-enable submit button
+					if (submitButton) {
+						submitButton.disabled = false;
+						submitButton.textContent = "Enviar";
+					}
+				}
+			});
+		}
+	}
+
+	handleFormSubmit();
+
+	document.addEventListener("astro:after-swap", handleFormSubmit);
+</script>
+

@@ -44,7 +44,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 <!doctype html>
 <html
 	lang={currLocale}
-	class:list={["dark", siteSettings.useAnimations && "use-animations"]}
+	class:list={[siteSettings.useAnimations && "use-animations"]}
 	transition:animate="fade"
 >
 	<head>
@@ -66,15 +66,6 @@ const currLocale = getLocaleFromUrl(Astro.url);
 			<main class="relative overflow-x-clip">
 				<slot />
 			</main>
-			<!-- glow effect at the top of each page -->
-			<aside aria-hidden="true" class="absolute inset-x-0 top-0">
-				<div class="site-container relative flex">
-					<div
-						class="bg-primary-400/40 dark:bg-base-600/80 pointer-events-none absolute -top-[130px] left-20 aspect-square w-[min(220px,60vw)] overflow-hidden rounded-full blur-[80px] md:left-50 xl:left-60"
-					>
-					</div>
-				</div>
-			</aside>
 			<Footer />
 		</div>
 

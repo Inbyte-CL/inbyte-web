@@ -1,0 +1,39 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import FaqAccordions from "@/components/faq/FaqAccordions.astro";
+---
+
+<BaseLayout
+	title="Preguntas frecuentes"
+	description="Encuentra respuestas a las preguntas más comunes sobre nuestros sistemas de pago para máquinas expendedoras."
+>
+	<!-- Hero Section -->
+	<section id="faq-hero" class="-mt-23 overflow-hidden pt-23">
+		<div class="relative pt-20 pb-4">
+			<div class="site-container relative mx-auto px-4">
+				<div class="flex flex-col items-center">
+					<div class="relative z-10 mb-4 text-center">
+						<div data-aos="fade-up" data-aos-trigger="#faq-hero">
+							<h1
+								class="font-heading xl:text-10xl mx-auto mb-8 max-w-4xl text-7xl tracking-tighter lg:text-8xl"
+							>
+								Preguntas Frecuentes
+							</h1>
+						</div>
+						<p
+							class="mx-auto mb-4 max-w-2xl text-lg opacity-80"
+							data-aos="fade-up"
+							data-aos-trigger="#faq-hero"
+							data-aos-delay=".15"
+						>
+							Encuentra respuestas a las preguntas más comunes sobre nuestros sistemas de pago, integraciones y plataforma de telemetría para máquinas expendedoras.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Accordions -->
+	<FaqAccordions showHeader={false} />
+</BaseLayout>

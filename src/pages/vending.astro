@@ -1,0 +1,338 @@
+---
+// layout
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// components
+import { Image } from "astro:assets";
+import Button from "@/components/button/Button.astro";
+import { Icon } from "astro-icon/components";
+import CircleCheck from "@tabler/icons/filled/circle-check.svg";
+
+// images
+import POSImage from "@images/headers/POS.png";
+import Dashboard3 from "@images/features/dashboard3.png";
+import VendingImage from "@/data/Parking/vending.png";
+import DashVend from "@/data/Parking/dashvend.png";
+---
+
+<BaseLayout
+	title="Vending Inteligente - Inbyte"
+	description="Transformamos máquinas expendedoras tradicionales en puntos de venta modernos, rápidos y 100% digitales. Integración MDB universal con la tarifa más competitiva del mercado."
+>
+	<!-- Hero Section -->
+	<section id="vending-hero" class="-mt-23 overflow-hidden pt-23">
+		<div class="relative pt-20 pb-4">
+			<div class="site-container relative mx-auto px-4 sm:px-6">
+				<div class="flex flex-col items-center">
+					<div class="relative z-10 mb-4 text-center w-full">
+						<div data-aos="fade-up" data-aos-trigger="#vending-hero">
+							<h1
+								class="font-heading xl:text-10xl mx-auto mb-6 sm:mb-8 max-w-5xl text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter px-2 sm:px-0"
+							>
+								Vending Inteligente
+							</h1>
+						</div>
+						<div class="mx-auto mb-8 sm:mb-10 max-w-4xl px-2 sm:px-0" data-aos="fade-up" data-aos-trigger="#vending-hero" data-aos-delay=".1">
+							<Image
+								class="tilt-card rounded-3xl w-full"
+								src={VendingImage}
+								alt="Vending Inteligente"
+							/>
+						</div>
+						<p
+							class="mx-auto mb-6 sm:mb-8 max-w-3xl text-base sm:text-lg opacity-80 px-2 sm:px-0"
+							data-aos="fade-up"
+							data-aos-trigger="#vending-hero"
+							data-aos-delay=".15"
+						>
+							En Inbyte transformamos máquinas expendedoras tradicionales en puntos de venta modernos, rápidos y 100% digitales.
+						</p>
+						<p
+							class="mx-auto mb-8 sm:mb-10 max-w-3xl text-base sm:text-lg opacity-80 px-2 sm:px-0"
+							data-aos="fade-up"
+							data-aos-trigger="#vending-hero"
+							data-aos-delay=".2"
+						>
+							Nos integramos con cualquier máquina MDB y habilitamos pagos sin contacto, tarjetas y billeteras digitales utilizando la tarifa más competitiva del mercado gracias a nuestra alianza con Klap.
+						</p>
+						<div
+							class="mx-auto flex items-center justify-center w-full px-2 sm:px-0"
+							data-aos="fade-up"
+							data-aos-trigger="#vending-hero"
+							data-aos-delay=".3"
+						>
+							<Button href="/contact" class="w-full sm:w-auto sm:min-w-[200px]">Contacto</Button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 1: Lo que hacemos por tu operación Vending -->
+	<section id="lo-que-hacemos" class="overflow-hidden pt-2 pb-16 md:pt-4 md:pb-24">
+		<div class="site-container">
+			<div class="mx-auto max-w-6xl">
+				<div class="text-center mb-12" data-aos="fade-up">
+					<h2 class="h2 mb-6">Lo que hacemos por tu operación Vending</h2>
+				</div>
+				<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="lo-que-hacemos-trigger">
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#lo-que-hacemos-trigger"
+						data-aos-delay="0.1"
+					>
+						<div class="relative z-10">
+							<div class="mb-4 flex items-center gap-3">
+								<CircleCheck class="size-6 text-primary flex-shrink-0" />
+								<h3 class="text-xl font-semibold">Integración MDB universal</h3>
+							</div>
+							<p class="text-muted-foreground mb-4 text-sm">
+								Compatible con TCN, FAS, SandenVendo, Necta, Jofemar y cualquier equipo MDB.
+							</p>
+							<p class="text-muted-foreground text-sm">
+								Lectura correcta de precios, despacho seguro y confirmación de venta en tiempo real.
+							</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#lo-que-hacemos-trigger"
+						data-aos-delay="0.2"
+					>
+						<div class="relative z-10">
+							<div class="mb-4 flex items-center gap-3">
+								<CircleCheck class="size-6 text-primary flex-shrink-0" />
+								<h3 class="text-xl font-semibold">Pagos rápidos y sin fricción</h3>
+							</div>
+							<p class="text-muted-foreground mb-4 text-sm">
+								Acepta tarjeta, Apple Pay, Google Pay y NFC.
+							</p>
+							<p class="text-muted-foreground text-sm font-semibold text-primary">
+								Tus ventas suben entre 20% y 50%.
+							</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#lo-que-hacemos-trigger"
+						data-aos-delay="0.3"
+					>
+						<div class="relative z-10">
+							<div class="mb-4 flex items-center gap-3">
+								<CircleCheck class="size-6 text-primary flex-shrink-0" />
+								<h3 class="text-xl font-semibold">Dashboards BI personalizados</h3>
+							</div>
+							<p class="text-muted-foreground mb-4 text-sm">
+								Somos los únicos que adaptamos indicadores a tu negocio:
+							</p>
+							<ul class="text-muted-foreground space-y-1.5 text-sm">
+								<li>• Ventas por máquina</li>
+								<li>• Productos más vendidos</li>
+								<li>• Stock, fallas y proyecciones</li>
+							</ul>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#lo-que-hacemos-trigger"
+						data-aos-delay="0.4"
+					>
+						<div class="relative z-10">
+							<div class="mb-4 flex items-center gap-3">
+								<CircleCheck class="size-6 text-primary flex-shrink-0" />
+								<h3 class="text-xl font-semibold">Control total desde un solo lugar</h3>
+							</div>
+							<ul class="text-muted-foreground space-y-1.5 text-sm">
+								<li>• Monitoreo de máquinas</li>
+								<li>• Alertas de stock y fallas</li>
+								<li>• Desconexión y rendimiento</li>
+							</ul>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform md:col-span-2 lg:col-span-1"
+						data-aos="fade-up"
+						data-aos-trigger="#lo-que-hacemos-trigger"
+						data-aos-delay="0.5"
+					>
+						<div class="relative z-10">
+							<div class="mb-4 flex items-center gap-3">
+								<CircleCheck class="size-6 text-primary flex-shrink-0" />
+								<h3 class="text-xl font-semibold">Soporte remoto en tiempo real</h3>
+							</div>
+							<p class="text-muted-foreground text-sm">
+								Configuraciones, diagnósticos y soluciones inmediatas para que tus máquinas nunca paren.
+							</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 2: Dashboard Visual -->
+	<section id="dashboard-vending" class="overflow-hidden py-16 md:py-24 bg-base-200/30 dark:bg-base-900/30">
+		<div class="site-container">
+			<div class="mx-auto max-w-6xl">
+				<div class="text-center mb-12" data-aos="fade-up">
+					<h2 class="h2 mb-6">Dashboards BI personalizados</h2>
+					<p class="text-muted-foreground mx-auto max-w-3xl">
+						Visualiza toda tu operación en tiempo real con indicadores adaptados específicamente a tu negocio de vending.
+					</p>
+				</div>
+				<div class="mb-12" data-aos="fade-up" data-aos-delay="0.2">
+					<div class="mx-auto max-w-max">
+						<Image
+							class="tilt-card rounded-3xl"
+							src={DashVend}
+							alt="Dashboard de control para vending"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 3: Por qué elegir Inbyte -->
+	<section id="por-que-inbyte" class="overflow-hidden py-16 md:py-24">
+		<div class="site-container">
+			<div class="mx-auto max-w-6xl">
+				<div class="text-center mb-12" data-aos="fade-up">
+					<h2 class="h2 mb-6">Por qué elegir Inbyte</h2>
+				</div>
+				<div class="grid gap-6 md:grid-cols-3" id="por-que-inbyte-trigger">
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#por-que-inbyte-trigger"
+						data-aos-delay="0.1"
+					>
+						<div class="relative z-10">
+							<div class="mb-4">
+								<h3 class="text-3xl mb-3">🚀</h3>
+								<h3 class="text-xl font-semibold mb-3">Más ventas</h3>
+							</div>
+							<p class="text-muted-foreground text-sm">
+								Pagos modernos = más usuarios + más tickets vendidos.
+							</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#por-que-inbyte-trigger"
+						data-aos-delay="0.2"
+					>
+						<div class="relative z-10">
+							<div class="mb-4">
+								<h3 class="text-3xl mb-3">💳</h3>
+								<h3 class="text-xl font-semibold mb-3">Menores costos</h3>
+							</div>
+							<p class="text-muted-foreground text-sm">
+								Tarifa exclusiva Klap especialmente diseñada para vending.
+							</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+					<div
+						class="tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform"
+						data-aos="fade-up"
+						data-aos-trigger="#por-que-inbyte-trigger"
+						data-aos-delay="0.3"
+					>
+						<div class="relative z-10">
+							<div class="mb-4">
+								<h3 class="text-3xl mb-3">⚙️</h3>
+								<h3 class="text-xl font-semibold mb-3">Operación más eficiente</h3>
+							</div>
+							<p class="text-muted-foreground text-sm">
+								Menos visitas en terreno, menos fallas, más control.
+							</p>
+						</div>
+						<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 4: Integración Visual -->
+	<section id="integracion-visual" class="overflow-hidden py-16 md:py-24 bg-base-200/30 dark:bg-base-900/30">
+		<div class="site-container">
+			<div class="mx-auto max-w-5xl">
+				<div class="flex flex-wrap lg:items-center">
+					<div class="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center" data-aos="fade-right" data-aos-delay="0.3">
+						<div class="max-w-max relative z-0">
+							<Image
+								class="tilt-card rounded-3xl w-full max-w-md"
+								src={POSImage}
+								alt="Sistema de pago para máquinas vending"
+							/>
+						</div>
+					</div>
+					<div class="w-full p-8 md:w-1/2 lg:p-12" data-aos="fade-left" data-aos-delay="0.3">
+						<h2 class="h2 mb-6">Integración MDB universal</h2>
+						<p class="text-muted-foreground mb-6">
+							Compatible con cualquier máquina MDB del mercado: TCN, FAS, SandenVendo, Necta, Jofemar y más.
+						</p>
+						<p class="text-muted-foreground mb-8">
+							Nos conectamos directamente al protocolo MDB para garantizar lectura correcta de precios, despacho seguro y confirmación de venta en tiempo real.
+						</p>
+						<ul class="text-muted-foreground space-y-3">
+							<li class="flex items-center gap-3">
+								<CircleCheck class="size-5 text-primary flex-shrink-0" />
+								<span>Compatible con versiones antiguas y nuevas</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<CircleCheck class="size-5 text-primary flex-shrink-0" />
+								<span>Instalación profesional en terreno</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<CircleCheck class="size-5 text-primary flex-shrink-0" />
+								<span>Soporte técnico continuo</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Final -->
+	<section id="cta-vending" class="overflow-hidden py-24">
+		<div class="site-container">
+			<div class="bg-gradient-radial-dark rounded-6xl py-14" data-aos="fade-up" data-aos-delay="0.5">
+				<div class="mx-auto px-4 text-center md:max-w-3xl">
+					<h2 class="h2 mb-6">Lleva tu operación vending al siguiente nivel</h2>
+					<p class="text-muted-foreground mx-auto mb-12 max-w-2xl text-lg">
+						Moderniza tus máquinas, escala tu operación y analiza tus ventas como nunca antes.
+					</p>
+					<div class="flex flex-wrap items-center justify-center gap-4">
+						<Button href="/contact" class="w-full sm:w-auto sm:min-w-[200px]">Habla con un especialista Inbyte</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<script>
+	import initTiltCards from "@/js/tiltCard";
+
+	// Initialize on page load
+	initTiltCards();
+
+	// Re-initialize after Astro view transitions
+	document.addEventListener("astro:after-swap", initTiltCards);
+</script>

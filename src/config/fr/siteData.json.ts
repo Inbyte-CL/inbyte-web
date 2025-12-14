@@ -2,11 +2,11 @@ import { type SiteDataProps } from "../types/configDataTypes";
 
 // Update this file with your site specific information
 const siteData: SiteDataProps = {
-	name: "Zenith",
+	name: "INBYTE",
 	// Your website's title and description (meta fields)
-	title: "Zenith - a finance focused SaaS theme built with Astro and Tailwind CSS",
+	title: "Inbyte - Lider en autoatencion",
 	description:
-		"Get your new startup website up and running quickly with our beautiful website theme designed using Astro v5 and Tailwind CSS v4. Perfect for freelancers, developers, startups, and personal use.",
+		"Soluciones de pago electrónico para máquinas expendedoras, estacionamientos y sistemas de autoservicio. Tecnología de última generación con integración MDB universal.",
 
 	// Your information for blog post purposes
 	author: {
@@ -16,9 +16,9 @@ const siteData: SiteDataProps = {
 	},
 
 	// default image for meta tags if the page doesn't have an image already
-	defaultImage: {
+		defaultImage: {
 		src: "/images/theme.png",
-		alt: "Zenith - a finance focused SaaS theme built with Astro and Tailwind CSS",
+		alt: "Inbyte - Lider en autoatencion",
 	},
 };
 

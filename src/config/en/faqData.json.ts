@@ -1,47 +1,96 @@
 import { type FaqItem } from "../types/configDataTypes";
 
-// replace this data with whatever you want in your FAQ section
+// FAQ data for Inbyte
 export const faqData: FaqItem[] = [
 	{
-		question: "Who are the themes for?",
-		answer: `These themes are for developers who want to have pre-created templates to use in their projects,
-    and have the hard stuff taken care of. Whether that is personal projects, a new SaaS business, a website for a client, etc.
-    They offer speed, customizability with swappable 
-    components, built-in SEO, and image optimization. Instead of spending hours figuring out 
-    how to do this yourself, you can leverage the themes to save weeks of time and effort. You can easily 
-    mix and match sections, update the copy, and change site colors with CSS variables, and more.`,
+		question: "¿Qué es un POS MDB y por qué es importante para las máquinas expendedoras?",
+		answer: `Un POS MDB es un dispositivo compatible con el protocolo estándar MDB utilizado por las máquinas expendedoras para aceptar pagos electrónicos. Permite integrar tarjetas bancarias, NFC, billeteras digitales y pagos sin contacto en cualquier máquina.
+
+En Inbyte utilizamos POS de última generación, integrados y certificados para funcionar con vending en Chile, asegurando transacciones rápidas y confiables.`,
 	},
 	{
-		question: "What all components are included?",
-		answer: `100+ unique components. Including 3 hero sections, 6 feature sections, 4 pricing sections, 2 logo clouds,
-    2 testimonial sections, 2 faq sections, 2 contact sections.
-    Plus layouts for blog posts, careers postings, additional pages like legal and 404, and forms for contact, sign-up, and login. And a cookie banner for good measure.`,
+		question: "¿Qué máquinas expendedoras son compatibles con Inbyte?",
+		answer: `Prácticamente todas: máquinas de bebidas, snacks, café, productos no alimenticios, vending industrial, máquinas automáticas especializadas, kioscos de autoservicio y más.`,
 	},
 	{
-		question: 'What do you mean by "free updates"?',
-		answer: `When you purchase any of our themes, you get lifetime updates for free. 
-      We regularly update our themes to ensure compatibility with the latest version of Astro, 
-      and to add new features or bug fixes.`,
+		question: "¿Puedo instalar un POS de autoservicio en cualquier máquina expendedora?",
+		answer: `Sí. La mayoría de las máquinas modernas son compatibles con MDB, y las más antiguas pueden adaptarse mediante módulos adicionales.
+
+Inbyte realiza evaluaciones técnicas para determinar la mejor forma de integrar un POS en cada tipo de máquina.`,
 	},
 	{
-		question: "Why Astro?",
-		answer: `Astro is an excellent framework for content-focused websites, with a great developer
-      experience. It also allows you to use any UI framework you want within it, such as React, Vue,
-      and Svelte. This means you can use any of your existing components, or any of the thousands of 
-      components available online. `,
+		question: "¿Cuánto cuesta instalar un sistema de pago en una máquina expendedora?",
+		answer: `El costo depende del tipo de máquina, el POS requerido y la integración. Inbyte ofrece planes escalables para redes pequeñas y grandes operadores. Contáctanos para una cotización ajustada a tu operación.`,
 	},
 	{
-		question: "Can I use a theme for multiple projects?",
-		answer: `Yes, you can use any of our themes for as many projects as you like.
-      You can even sell websites you create with them to your clients. As long as you
-      don't resell the theme itself, you're likely to go! See our
-      <a href="https://cosmicthemes.com/license/" target="_blank" rel="noopener noreferrer">License</a> 
-      page for more details.`,
+		question: "¿Cuánto demora integrar un POS en una máquina expendedora?",
+		answer: `El proceso es rápido. En la mayoría de los casos, la instalación puede realizarse en menos de una hora, siempre que la máquina sea compatible con MDB.
+
+La configuración de telemetría y dashboards de Inbyte se realiza en paralelo para que puedas ver tus datos desde el primer día.`,
 	},
 	{
-		question: "How do I get new versions of the themes?",
-		answer: `You can get the newest version of themes from the Cosmic Themes github organization, 
-    as well as from Polar.sh, for all themes you have access to.`,
+		question: "¿Qué métodos de pago pueden aceptar las máquinas expendedoras?",
+		answer: `Los POS que integramos permiten:
+
+- Tarjetas de débito y crédito
+- NFC
+- Apple Pay y Google Pay
+- Tarjetas prepago
+- Pagos sin contacto (contactless)
+
+La integración se adapta según el caso de negocio y el flujo de clientes.`,
+	},
+	{
+		question: "¿Cómo puedo monitorear las ventas y el estado de mis máquinas?",
+		answer: `Con nuestra plataforma de telemetría y dashboards BI, puedes ver:
+
+- Ventas totales y por producto
+- Máquinas activas y fuera de servicio
+- Stock en tiempo real
+- Ranking de ubicaciones
+
+Inbyte es la única empresa en Chile que diseña dashboards personalizados por cliente, adaptados a la operación real de cada negocio.`,
+	},
+	{
+		question: "¿Puedo ver las ventas de todas mis máquinas de forma centralizada?",
+		answer: `Absolutamente.
+
+Nuestra plataforma permite visualizar todas tus máquinas en un solo panel, filtrando por:
+
+- Ubicación
+- Fecha
+- Producto
+- Tipo de máquina
+- Métricas operativas
+
+Es una herramienta clave para operadores con redes grandes.`,
+	},
+	{
+		question: "¿Es posible integrar mis máquinas con mi ERP, CRM u otros sistemas internos?",
+		answer: `Sí. Inbyte desarrolla integraciones a medida mediante APIs, conectores y módulos personalizados.
+
+Nuestros clientes integran sus máquinas con sistemas de inventario, contabilidad, abastecimiento, BI corporativo y mucho más.`,
+	},
+	{
+		question: "¿Cómo mejora Inbyte la eficiencia operativa de mi negocio de vending?",
+		answer: `Mediante:
+
+- Alertas tempranas de fallas
+- Reducción de máquinas sin stock
+- Identificación de productos de alto y bajo rendimiento
+- Rutas más eficientes
+- Métricas de disponibilidad y uptime
+- Dashboards personalizados
+
+Esto permite tomar decisiones basadas en datos reales en tiempo real.`,
+	},
+	{
+		question: "¿Necesito conocimientos técnicos para utilizar la plataforma?",
+		answer: `No.
+
+Nuestros dashboards están diseñados para ser claros, intuitivos y fáciles de usar.
+
+Además, contamos con soporte para acompañarte en cada etapa del proceso.`,
 	},
 ];
 

@@ -13,7 +13,7 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://zenith.cosmicthemes.com",
-	output: "server",
+	output: "static",
 	adapter: vercel({
 		imageService: true,
 	}),
@@ -62,6 +62,10 @@ export default defineConfig({
 		// fix for client router script duplication issues on 404 page
 		build: {
 			assetsInlineLimit: 0,
+		},
+		server: {
+			host: true, // permite acceso desde la red local
+			port: 4321,
 		},
 	},
 });

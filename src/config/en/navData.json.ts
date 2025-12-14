@@ -12,142 +12,34 @@ import { type navItem } from "../types/configDataTypes";
 
 const navConfig: navItem[] = [
 	{
-		text: "Overview",
-		link: "/overview/",
+		text: "Inicio",
+		link: "/",
 	},
-
-	// mega menu
 	{
-		text: "Pages",
-		megaMenuColumns: [
+		text: "Servicios",
+		dropdown: [
 			{
-				title: "Landing Pages",
-				items: [
-					{
-						text: "Landing 1",
-						link: "/",
-						icon: "tabler/star",
-					},
-					{
-						text: "Landing 2",
-						link: "/examples/landing2",
-						icon: "tabler/diamonds",
-					},
-					{
-						text: "Landing 3",
-						link: "/examples/landing3",
-						icon: "tabler/circle",
-					},
-				],
+				text: "Parking",
+				link: "/parking",
 			},
 			{
-				title: "Blog",
-				items: [
-					{
-						text: "Post Layout 1",
-						link: "/blog/tsconfig-paths-setup",
-						icon: "tabler/edit-circle",
-					},
-					{
-						text: "Post Layout 2",
-						link: "/examples/blog-post-2",
-						icon: "tabler/edit-circle",
-					},
-					{
-						text: "Blog Index",
-						link: "/blog",
-						icon: "tabler/pencil",
-					},
-					{
-						text: "Category Page",
-						link: "/categories/development",
-						icon: "tabler/category",
-					},
-					{
-						text: "Categories Index",
-						link: "/categories",
-						icon: "tabler/category",
-					},
-				],
-			},
-			{
-				title: "Careers and Forms",
-				items: [
-					{
-						text: "Career Layout",
-						link: "/careers/ux-designer",
-						icon: "tabler/briefcase",
-					},
-					{
-						text: "Careers Index",
-						link: "/careers",
-						icon: "tabler/briefcase",
-					},
-
-					{
-						text: "Contact",
-						link: "/contact",
-						icon: "tabler/address-book",
-					},
-					{
-						text: "Sign Up",
-						link: "/sign-up",
-						icon: "tabler/user",
-					},
-					{
-						text: "Login",
-						link: "/sign-in",
-						icon: "tabler/login",
-					},
-				],
-			},
-			{
-				title: "Other",
-				items: [
-					{
-						text: "MDX Page Elements",
-						link: "/elements",
-						icon: "tabler/wand",
-					},
-
-					{
-						text: "Legal Pages",
-						link: "/privacy-policy",
-						icon: "tabler/lock-square",
-					},
-					{
-						text: "Page not found",
-						link: "/not-a-link",
-						icon: "tabler/error-404",
-					},
-					{
-						text: "RSS Feed",
-						link: "/rss.xml",
-						newTab: true,
-						icon: "tabler/rss",
-					},
-				],
+				text: "Vending",
+				link: "/vending",
 			},
 		],
 	},
 	{
 		text: "Blog",
-		link: "/blog/",
+		link: "/blog",
 	},
-	// uncomment below to add a dropdown example
-	// {
-	// 	text: "Dropdown",
-	// 	dropdown: [
-	// 		{
-	// 			text: "Elements",
-	// 			link: "/elements/",
-	// 		},
-	// 		{
-	// 			text: "Password Reset",
-	// 			link: "/password-reset/",
-	// 		},
-	// 	],
-	// },
+	{
+		text: "Preguntas frecuentes",
+		link: "/faq",
+	},
+	{
+		text: "Contacto",
+		link: "/contact",
+	},
 ];
 
 export default navConfig;

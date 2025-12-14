@@ -29,6 +29,18 @@ const {
 } = Astro.props as Props;
 ---
 
+<!-- Theme setup - MUST be first to prevent flash of wrong theme -->
+<!-- Always force light theme -->
+<script is:inline>
+	(function() {
+		// Always remove dark class and force light theme
+		if (document.documentElement) {
+			document.documentElement.classList.remove("dark");
+		}
+		localStorage.setItem("colorTheme", "light");
+	})();
+</script>
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" initial-scale="1.0" />
 
@@ -41,38 +53,19 @@ const {
 <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
 <link rel="shortcut icon" href="/favicons/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Zenith" />
+<meta name="apple-mobile-web-app-title" content="INBYTE" />
 <link rel="manifest" href="/favicons/site.webmanifest" />
 
 <!-- other -->
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Theme change setup. Run early to eliminate Flash of inAccurate coloR Theme (FART) -->
+<!-- Theme change setup. Always force light theme -->
 <script is:inline>
 	function initTheme() {
-		const colorTheme = localStorage.getItem("colorTheme");
-		if (!colorTheme) {
-			// set dark theme initially
-			document.documentElement.classList.add("dark");
-			localStorage.setItem("colorTheme", "dark");
-
-			// if no color theme yet, use the users preferences (uncomment the below code, and comment out the above code to use this instead)
-			// if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-			// 	document.documentElement.classList.add("dark");
-			// 	localStorage.setItem("colorTheme", "dark");
-			// } else {
-			// 	document.documentElement.classList.remove("dark");
-			// 	localStorage.setItem("colorTheme", "light");
-			// }
-		} else {
-			// If there is, assign the theme based on the value in local storage
-			if (colorTheme === "dark") {
-				document.documentElement.classList.add("dark");
-			} else if (colorTheme === "light") {
-				document.documentElement.classList.remove("dark");
-			}
-		}
+		// Always force light theme
+		document.documentElement.classList.remove("dark");
+		localStorage.setItem("colorTheme", "light");
 	}
 
 	// runs on initial page load

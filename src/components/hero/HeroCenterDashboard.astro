@@ -1,8 +1,5 @@
 ---
 import { getLocalizedRoute } from "@/js/translationUtils";
-import { Image } from "astro:assets";
-
-import Dashboard from "@images/headers/dashboard-min.png";
 
 // components
 import Button from "@/components/button/Button.astro";
@@ -16,15 +13,12 @@ const t = useTranslations(currLocale);
 ---
 
 <section id="hero-center-dashboard" class="-mt-23 overflow-hidden pt-23">
-	<div class="relative pt-20 pb-24 lg:pb-32">
+	<div class="relative pt-20 pb-8">
 		<div class="site-container relative mx-auto px-4">
 			<div class="flex flex-col items-center">
 				<!-- Text Content - Centered -->
-				<div class="relative z-10 mb-12 text-center md:mb-20">
+				<div class="relative z-10 mb-4 text-center">
 					<div data-aos="fade-up" data-aos-trigger="#hero-center-dashboard">
-						<span class="text-primary-text mb-2.5 inline-block text-sm font-medium tracking-tighter"
-							>Zenith Card</span
-						>
 						<h1
 							class="font-heading xl:text-10xl mx-auto mb-8 max-w-4xl text-7xl tracking-tighter lg:text-8xl"
 						>
@@ -45,27 +39,11 @@ const t = useTranslations(currLocale);
 						data-aos-trigger="#hero-center-dashboard"
 						data-aos-delay=".3"
 					>
-						<Button href={getLocalizedRoute(currLocale, "/sign-up")}>Start now for free</Button>
-						<Button variant="outline" href={getLocalizedRoute(currLocale, "/sign-in")}
-							>Log in</Button
+						<Button href={getLocalizedRoute(currLocale, "/vending")} class="w-32">Vending</Button>
+						<Button variant="outline" href={getLocalizedRoute(currLocale, "/parking")} class="w-32"
+							>Parking</Button
 						>
 					</div>
-				</div>
-
-				<!-- Image Below -->
-				<div class="w-full max-w-6xl">
-					<Image
-						class="tilt-card mx-auto"
-						src={Dashboard}
-						alt="Zenith Dashboard"
-						quality={100}
-						densities={[1.5, 2]}
-						loading="eager"
-						data-aos="fade-in"
-						data-aos-trigger="#hero-center-dashboard"
-						data-aos-delay="1"
-						data-aos-duration="1.2"
-					/>
 				</div>
 			</div>
 		</div>

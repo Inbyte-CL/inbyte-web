@@ -1,41 +1,53 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import ContactForm from "@/components/forms/ContactForm.astro";
+import InbyteContactForm from "@/components/forms/InbyteContactForm.astro";
 ---
 
 <BaseLayout
-	title="Contact Us"
-	description="Contact us and we will help you find the right plan or answer any questions."
+	title="Contact"
+	description="Contactez-nous pour toute question sur nos systèmes de paiement pour distributeurs automatiques."
 >
-	<section class="overflow-hidden py-20">
-		<div class="site-container">
-			<div class="-m-8 flex flex-wrap">
-				<div class="w-full p-8 md:w-1/2">
-					<div class="md:max-w-md">
-						<span
-							class="text-primary-600 dark:text-primary-400 mb-4 inline-block text-sm font-medium tracking-tighter"
-							>Zenith Card</span
+	<!-- Hero Section -->
+	<section id="contact-hero" class="-mt-23 overflow-hidden pt-23">
+		<div class="relative pt-20 pb-4">
+			<div class="site-container relative mx-auto px-4">
+				<div class="flex flex-col items-center">
+					<div class="relative z-10 mb-4 text-center">
+						<div data-aos="fade-up" data-aos-trigger="#contact-hero">
+							<h1
+								class="font-heading xl:text-10xl mx-auto mb-4 max-w-4xl text-7xl tracking-tighter lg:text-8xl"
+							>
+								Contact
+							</h1>
+						</div>
+						<p
+							class="mx-auto mb-4 max-w-2xl text-lg opacity-80"
+							data-aos="fade-up"
+							data-aos-trigger="#contact-hero"
+							data-aos-delay=".15"
 						>
-						<h2 class="font-heading tracking-7xl lg:tracking-8xl mb-8 text-7xl lg:text-8xl">
-							Let`s talk
-						</h2>
-						<p class="text-muted-foreground mb-8">
-							Have questions about our financial services? Our team is ready to help you find the
-							perfect solution for your needs. Contact us today for personalized assistance.
+							Remplissez le formulaire et nous vous contacterons pour vous aider à moderniser votre opération de vending et libre-service.
 						</p>
-						<a class="mb-6 inline-block text-xl font-medium" href="mailto:someone@example.com"
-							>contact@Zenithstudio.co</a
-						>
-						<p class="text-xl font-medium">(684) 555-0102</p>
 					</div>
 				</div>
-				<div class="w-full p-8 md:w-1/2">
-					<div
-						class="bg-base-100/30 dark:bg-base-900/40 rounded-5xl relative mx-auto max-w-lg px-9 py-10"
-					>
-						<h3 class="mb-6 text-2xl font-medium">Contact us</h3>
-						<ContactForm />
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Form Section -->
+	<section id="contact-form-section" class="py-16 md:py-24">
+		<div class="site-container">
+			<div class="mx-auto max-w-3xl">
+				<div
+					class="bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 md:p-12"
+					data-aos="fade-up"
+					data-aos-trigger="#contact-form-section"
+				>
+					<div class="relative z-10">
+						<InbyteContactForm />
 					</div>
+					{/* corner glow */}
+					<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-44 bg-gradient-to-br from-transparent via-transparent blur-lg opacity-50" />
 				</div>
 			</div>
 		</div>

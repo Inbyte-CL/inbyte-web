@@ -6,6 +6,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import HeroSideImage from "@/components/hero/HeroSideImage.astro";
 import HeroCenterImage from "@/components/hero/HeroCenterImage.astro";
 import HeroCenterDashboard from "@/components/hero/HeroCenterDashboard.astro";
+import Dashboard from "@images/headers/Dashboard.gif";
 
 import LogoCloudMarquee from "@/components/logo-cloud/LogoCloudMarquee.astro";
 import LogoCloudStatic from "@/components/logo-cloud/LogoCloudStatic.astro";
@@ -17,6 +18,7 @@ import FeatureNumbers from "@/components/feature/FeatureNumbers.astro";
 import FeatureExpand from "@/components/feature/FeatureExpand.astro";
 import FeatureToggle from "@/components/feature/FeatureToggle.astro";
 import FeatureTiltCards from "@/components/feature/FeatureTiltCards.astro";
+import QueHacemos from "@/components/feature/QueHacemos.astro";
 
 import PricingThreeCards from "@/components/pricing/PricingThreeCards.astro";
 import PricingTable from "@/components/pricing/PricingTable.astro";
@@ -44,33 +46,33 @@ const siteData = getTranslatedData("siteData", currLocale);
 
 <BaseLayout title={siteData.title} description={siteData.description}>
 	<!-- <HeroSideImage /> -->
-	<HeroCenterImage />
-	<!-- <HeroCenterDashboard /> -->
+	<!-- <HeroCenterImage /> -->
+	<HeroCenterDashboard />
 
-	<!-- <LogoCloudStatic /> -->
-	<!-- <LogoCloudStaticSimple /> -->
-	<LogoCloudMarquee />
-
-	<FeatureSideImageWide />
+	<!-- <FeatureSideImageWide /> -->
 	<!-- <FeatureNumbers /> -->
-	<!-- <FeatureSideImage /> -->
-	<!-- <FeatureExpand /> -->
-	<FeatureTiltCards />
-	<FeatureToggle />
+	<FeatureSideImage />
 
-	<TestimonialSwiper />
-	<!-- <TestimonialsExpand /> -->
+	<!-- Dashboard Image Section -->
+	<section class="overflow-hidden pt-8 pb-12">
+		<div class="site-container">
+			<div class="w-full max-w-6xl mx-auto">
+				<div class="mb-12 text-center">
+					<h2 class="h2 mb-6">Somos Diferentes</h2>
+					<p class="mx-auto max-w-2xl text-lg opacity-80">
+						Inbyte es la única empresa en Chile que entrega dashboards y análisis de datos 100% personalizados para cada cliente, optimizando la gestión de máquinas expendedoras, sistemas de autoservicio y operaciones de vending con información en tiempo real.
+					</p>
+				</div>
+				<img
+					class="tilt-card mx-auto"
+					src={Dashboard.src}
+					alt="INBYTE Dashboard"
+					loading="lazy"
+				/>
+			</div>
+		</div>
+	</section>
 
-	<!-- <PricingThreeCards /> -->
-	<PricingTable />
-	<!-- <PricingTwoCards /> -->
-	<!-- <PricingTwoCardsSimple /> -->
-
-	<FaqAccordionsPlain />
-	<!-- <FaqAccordions /> -->
-	<!-- <FaqCards /> -->
-
-	<CtaCentered />
-	<!-- <CtaNewsletter /> -->
-	<!-- <CtaCenteredNewsletter /> -->
+	<!-- Qué hacemos Section -->
+	<QueHacemos />
 </BaseLayout>

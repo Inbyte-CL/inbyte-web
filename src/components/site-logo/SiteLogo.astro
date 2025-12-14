@@ -11,21 +11,20 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 
 // images
-import logo from "@images/zenith-logo.png";
+import logo from "@images/Inbyte-Logo.png";
 ---
 
 <a
-	class="primary-focus text-foreground flex h-10 items-center text-2xl font-light tracking-tight"
+	class="primary-focus text-foreground flex items-center"
 	href={getLocalizedRoute(currLocale, "/")}
 >
 	<Image
 		src={logo}
-		alt="Zenith logo"
+		alt="INBYTE logo"
 		loading="eager"
-		width={100}
-		height={100}
-		class="size-10"
+		width={200}
+		height={60}
+		class="h-14 w-auto md:h-16"
 		aria-hidden="true"
 	/>
-	<div class="mt-px">{siteData.name}</div>
 </a>

@@ -13,16 +13,24 @@ import { getTranslatedData } from "@/js/translationUtils";
 // data
 const currLocale = getLocaleFromUrl(Astro.url);
 const faqData = getTranslatedData("faqData", currLocale);
+
+interface Props {
+	showHeader?: boolean;
+}
+
+const { showHeader = true } = Astro.props;
 ---
 
-<section id="faq-accordions" class="py-16 md:py-28">
+<section id="faq-accordions" class="pt-0 pb-8 md:pb-12">
 	<div class="site-container">
-		<div class="mx-auto mb-16 text-center md:max-w-2xl" data-aos="fade-up">
-			<span class="badge">Zenith Card</span>
-			<h2 class="h1">FAQ</h2>
-		</div>
+		{showHeader && (
+			<div class="mx-auto mb-16 text-center md:max-w-2xl" data-aos="fade-up">
+				<span class="badge">Inbyte</span>
+				<h2 class="h1">FAQ</h2>
+			</div>
+		)}
 		<div
-			class="mx-auto mt-10 flex max-w-4xl flex-col gap-3"
+			class="mx-auto mt-0 flex max-w-4xl flex-col gap-3"
 			data-aos="fade-up"
 			data-aos-delay="0.4"
 		>
@@ -31,7 +39,7 @@ const faqData = getTranslatedData("faqData", currLocale);
 					faqData.map((faqItem, idx) => (
 						<AccordionItem
 							value={`item-${idx}`}
-							class="rounded-5xl bg-gradient-radial-dark px-4 md:px-7"
+							class="rounded-5xl bg-primary-200/50 dark:bg-primary-900/40 px-4 md:px-7"
 						>
 							<AccordionTrigger class="py-8">{faqItem.question}</AccordionTrigger>
 							<AccordionContent class="markdown-content" details={faqItem.answer} />
