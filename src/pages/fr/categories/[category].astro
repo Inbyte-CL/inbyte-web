@@ -62,7 +62,7 @@ const filteredPosts = posts.filter((post) => {
 				<CategoryCloud showCount={true} />
 			</div>
 			<div class="-m-10 mb-10 flex flex-wrap">
-				<PostCardLarge post={filteredPosts[0]} />
+				{filteredPosts.length > 0 && <PostCardLarge post={filteredPosts[0]} />}
 				<div class="w-full p-10 md:w-1/2">
 					<div class="-m-4 flex flex-wrap">
 						{filteredPosts.slice(1).map((post) => <PostCardSmall post={post} />)}

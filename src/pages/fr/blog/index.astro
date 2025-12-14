@@ -29,7 +29,7 @@ const posts = await getAllPosts(currLocale);
 				<CategoryCloud showCount={false} />
 			</div>
 			<div class="-m-10 mb-10 flex flex-wrap">
-				<PostCardLarge post={posts[0]} />
+				{posts.length > 0 && <PostCardLarge post={posts[0]} />}
 				<div class="w-full p-10 md:w-1/2">
 					<div class="-m-4 flex flex-wrap">
 						{posts.slice(1, 5).map((post) => <PostCardSmall post={post} />)}

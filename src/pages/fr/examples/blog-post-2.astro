@@ -26,6 +26,10 @@ const posts = await getAllPosts(currLocale);
 
 const post = posts[0];
 
+if (!post) {
+	return Astro.redirect("/fr/blog");
+}
+
 const { Content, headings } = await render(post);
 ---
 
