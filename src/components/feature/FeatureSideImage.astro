@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { getLocalizedRoute } from "@/js/translationUtils";
 import CircleCheck from "@tabler/icons/filled/circle-check.svg";
-import Button from "@/components/button/Button.astro";
 
 // utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
@@ -47,11 +45,6 @@ const currLocale = getLocaleFromUrl(Astro.url);
 							))
 						}
 					</ul>
-					<div class="-m-2 flex flex-wrap">
-						<div class="w-auto p-2">
-							<Button href={getLocalizedRoute(currLocale, "/sign-up")}>Leer más</Button>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
