@@ -6,7 +6,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import HeroSideImage from "@/components/hero/HeroSideImage.astro";
 import HeroCenterImage from "@/components/hero/HeroCenterImage.astro";
 import HeroCenterDashboard from "@/components/hero/HeroCenterDashboard.astro";
-import Dashboard from "@images/headers/Dashboard.gif";
+import { Image } from "astro:assets";
+import DashVend from "@/data/Parking/dashvend.png";
 
 import LogoCloudMarquee from "@/components/logo-cloud/LogoCloudMarquee.astro";
 import LogoCloudStatic from "@/components/logo-cloud/LogoCloudStatic.astro";
@@ -63,12 +64,13 @@ const siteData = getTranslatedData("siteData", currLocale);
 						Inbyte es la única empresa en Chile que entrega dashboards y análisis de datos 100% personalizados para cada cliente, optimizando la gestión de máquinas expendedoras, sistemas de autoservicio y operaciones de vending con información en tiempo real.
 					</p>
 				</div>
-				<img
-					class="tilt-card mx-auto"
-					src={Dashboard.src}
-					alt="INBYTE Dashboard"
-					loading="lazy"
-				/>
+				<div class="mx-auto max-w-max">
+					<Image
+						class="tilt-card rounded-3xl"
+						src={DashVend}
+						alt="INBYTE Dashboard"
+					/>
+				</div>
 			</div>
 		</div>
 	</section>
