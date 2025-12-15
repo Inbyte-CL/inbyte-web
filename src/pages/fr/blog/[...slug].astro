@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { type InferGetStaticPropsType } from "astro";
 import { render } from "astro:content";
 
@@ -22,16 +24,35 @@ import { siteSettings } from "@/config/siteSettings.json";
 import { getAllPosts } from "@/js/blogUtils";
 
 export async function getStaticPaths() {
-	const posts = await getAllPosts("fr");
+	try {
+		const posts = await getAllPosts("fr");
 
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+		return posts
+			.filter((post) => {
+				// Validate post structure
+				if (!post || !post.data || !post.id) {
+					console.warn("Invalid post found, skipping:", post);
+					return false;
+				}
+				return true;
+			})
+			.map((post) => ({
+				params: { slug: post.id },
+				props: post,
+			}));
+	} catch (error) {
+		console.error("Error generating static paths for blog posts:", error);
+		return [];
+	}
 }
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const post = Astro.props as Props;
+
+if (!post || !post.data) {
+	return Astro.redirect("/fr/blog");
+}
+
 const { Content, headings } = await render(post);
 ---
 
