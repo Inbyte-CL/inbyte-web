@@ -11,7 +11,7 @@ import compress from "@playform/compress";
 import icon from "astro-icon";
 
 export default defineConfig({
-	site: "https://zenith.cosmicthemes.com",
+	site: "https://www.inbyte.cl",
 
 	output: "server",                    // ⭐ IMPORTANTE: habilita API Routes
 	adapter: vercel({

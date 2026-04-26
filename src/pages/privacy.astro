@@ -1,0 +1,180 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const lastUpdated = "26 de abril de 2026";
+
+const collectedItems = [
+	"Información del dispositivo, como modelo y sistema operativo.",
+	"Datos de uso de la aplicación.",
+	"Dirección IP, tratada de forma anonimizada cuando corresponda.",
+];
+
+const usageItems = [
+	"Mejorar la funcionalidad de la aplicación.",
+	"Analizar el uso de nuestras aplicaciones.",
+	"Mostrar anuncios personalizados o no personalizados cuando la aplicación lo permita.",
+];
+
+const policySections = [
+	{
+		title: "1. Información recopilada",
+		body: [
+			"No solicitamos datos personales como nombre, correo electrónico o dirección.",
+			"Podemos recopilar automáticamente cierta información técnica y de uso:",
+		],
+		items: collectedItems,
+	},
+	{
+		title: "2. Publicidad",
+		body: [
+			"Algunas de nuestras aplicaciones utilizan Google AdMob para mostrar anuncios.",
+			"AdMob puede recopilar información para mostrar anuncios personalizados o no personalizados.",
+		],
+		link: {
+			label: "Más información sobre las tecnologías publicitarias de Google",
+			href: "https://policies.google.com/technologies/ads",
+		},
+	},
+	{
+		title: "3. Compras dentro de la aplicación",
+		body: [
+			"Algunas aplicaciones pueden ofrecer compras dentro de la app, como suscripciones o eliminación de anuncios.",
+			"Las transacciones son gestionadas por Google Play. No almacenamos información de pago.",
+		],
+	},
+	{
+		title: "4. Uso de la información",
+		body: ["La información recopilada se utiliza para:"],
+		items: usageItems,
+	},
+	{
+		title: "5. Seguridad",
+		body: ["Tomamos medidas razonables para proteger la información."],
+	},
+	{
+		title: "6. Cambios",
+		body: ["Podemos actualizar esta política en cualquier momento."],
+	},
+	{
+		title: "7. Contacto",
+		body: ["Para consultas, puedes escribirnos a:"],
+		email: "contacto@inbyte.cl",
+	},
+];
+---
+
+<BaseLayout
+	title="Política de Privacidad - Inbyte"
+	description="Política de privacidad de Inbyte para sus aplicaciones y servicios digitales."
+>
+	<section id="privacy-hero" class="-mt-23 overflow-hidden pt-23">
+		<div class="relative pt-20 pb-10 md:pt-28 md:pb-16">
+			<div class="site-container relative mx-auto px-4">
+				<div class="mx-auto max-w-4xl text-center">
+					<p
+						class="text-primary mb-5 text-sm font-semibold tracking-[0.28em] uppercase"
+						data-aos="fade-up"
+						data-aos-trigger="#privacy-hero"
+					>
+						Inbyte
+					</p>
+					<h1
+						class="font-heading xl:text-10xl mx-auto mb-6 text-5xl tracking-tighter md:text-7xl lg:text-8xl"
+						data-aos="fade-up"
+						data-aos-trigger="#privacy-hero"
+						data-aos-delay=".1"
+					>
+						Política de Privacidad
+					</h1>
+					<p
+						class="text-muted-foreground mx-auto max-w-2xl text-base leading-relaxed md:text-lg"
+						data-aos="fade-up"
+						data-aos-trigger="#privacy-hero"
+						data-aos-delay=".2"
+					>
+						Esta política aplica a esta aplicación y a otras aplicaciones desarrolladas por nosotros.
+					</p>
+					<p
+						class="mt-6 text-sm opacity-70"
+						data-aos="fade-up"
+						data-aos-trigger="#privacy-hero"
+						data-aos-delay=".3"
+					>
+						Última actualización: {lastUpdated}
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="privacy-content" class="pb-20 md:pb-28">
+		<div class="site-container">
+			<div
+				class="bg-gradient-radial-dark border-border/30 rounded-5xl relative mx-auto max-w-4xl overflow-hidden border p-6 md:p-10 lg:p-12"
+				data-aos="fade-up"
+				data-aos-trigger="#privacy-content"
+			>
+				<div class="relative z-10">
+					<div class="border-border/30 mb-10 rounded-4xl border bg-white/70 p-6 shadow-sm">
+						<p class="text-muted-foreground mb-4 leading-relaxed">
+							Respetamos tu privacidad y no recopilamos información personal identificable directamente.
+						</p>
+						<p class="text-muted-foreground leading-relaxed">
+							Sin embargo, utilizamos servicios de terceros que pueden recopilar datos de forma automática.
+						</p>
+					</div>
+
+					<div class="flex flex-col gap-6">
+						{
+							policySections.map((section) => (
+								<article class="border-border/30 rounded-4xl border bg-white/80 p-6 shadow-sm md:p-8">
+									<h2 class="mb-4 text-2xl font-semibold tracking-tight md:text-3xl">
+										{section.title}
+									</h2>
+									<div class="text-muted-foreground flex flex-col gap-3 leading-relaxed">
+										{section.body.map((paragraph) => <p>{paragraph}</p>)}
+										{section.items && (
+											<ul class="mt-1 flex flex-col gap-2">
+												{section.items.map((item) => (
+													<li class="flex gap-3">
+														<span class="bg-primary mt-2 size-1.5 shrink-0 rounded-full" />
+														<span>{item}</span>
+													</li>
+												))}
+											</ul>
+										)}
+										{section.link && (
+											<p>
+												<a
+													class="text-primary font-medium underline decoration-current/30 underline-offset-4 transition hover:decoration-current"
+													href={section.link.href}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													{section.link.label}
+												</a>
+											</p>
+										)}
+										{section.email && (
+											<p>
+												<a
+													class="text-primary font-medium underline decoration-current/30 underline-offset-4 transition hover:decoration-current"
+													href={`mailto:${section.email}`}
+												>
+													{section.email}
+												</a>
+											</p>
+										)}
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+
+				<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-56 bg-gradient-to-br from-transparent via-transparent opacity-50 blur-lg" />
+				<div class="from-primary/20 absolute top-0 left-0 size-40 bg-gradient-to-br to-transparent opacity-40 blur-2xl" />
+			</div>
+		</div>
+	</section>
+</BaseLayout>
