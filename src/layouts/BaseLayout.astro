@@ -39,6 +39,22 @@ const {
 } = Astro.props as Props;
 
 const currLocale = getLocaleFromUrl(Astro.url);
+
+const noindexPathPrefixes = [
+	"/fr/",
+	"/examples/",
+	"/sign-in",
+	"/sign-up",
+	"/overview",
+	"/careers",
+	"/categories",
+	"/about",
+];
+
+const pathname = Astro.url.pathname;
+const shouldNoindex =
+	noindex ||
+	noindexPathPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(prefix));
 ---
 
 <!doctype html>
@@ -55,7 +71,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 			image={heroImage ? heroImage : undefined}
 			authors={authorsData ? authorsData : undefined}
 			postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
-			noindex={noindex}
+			noindex={shouldNoindex}
 		/>
 	</head>
 	<body id="body">

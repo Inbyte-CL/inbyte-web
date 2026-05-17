@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 import AutoImport from "astro-auto-import";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
-import vercel from "@astrojs/vercel/serverless";   // 🔥 ADAPTADOR CORRECTO
+import vercel from "@astrojs/vercel";
 import compress from "@playform/compress";
 import icon from "astro-icon";
 
@@ -45,7 +45,26 @@ export default defineConfig({
 		react(),
 		icon(),
 		keystatic(),
-		sitemap(),
+		sitemap({
+			filter: (page) => {
+				const pathname = new URL(page).pathname;
+
+				if (
+					pathname.startsWith("/fr/") ||
+					pathname.startsWith("/examples/") ||
+					pathname.startsWith("/sign-in") ||
+					pathname.startsWith("/sign-up") ||
+					pathname.startsWith("/overview") ||
+					pathname.startsWith("/careers") ||
+					pathname.startsWith("/categories") ||
+					pathname.startsWith("/about")
+				) {
+					return false;
+				}
+
+				return true;
+			},
+		}),
 		compress({
 			HTML: true,
 			JavaScript: true,
