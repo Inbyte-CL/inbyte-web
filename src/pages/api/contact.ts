@@ -4,25 +4,38 @@ import nodemailer from "nodemailer";
 // Hacer que este endpoint se renderice bajo demanda (serverless)
 export const prerender = false;
 
-// Credenciales de Gmail desde el proyecto Python
-const GMAIL_USER = "notificaciones.inbyte@gmail.com";
-const GMAIL_APP_PASSWORD = "jqwz sawi iohi trcp";
-const LOGO_URL = "https://drive.google.com/uc?export=download&id=1XmXUx6v78W-D1pJsKuLrFHe3Ndn-6shK";
-const DESTINATARIO = "carlosm@inbyte.cl";
+const CONTACT_EMAIL_FROM = process.env.CONTACT_EMAIL_FROM;
+const CONTACT_EMAIL_PASSWORD = process.env.CONTACT_EMAIL_PASSWORD;
+const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO;
+const CONTACT_EMAIL_LOGO_URL = process.env.CONTACT_EMAIL_LOGO_URL;
 
-// Configurar transporter de Nodemailer
-const transporter = nodemailer.createTransport({
-	host: "smtp.gmail.com",
-	port: 587,
-	secure: false, // true para 465, false para otros puertos
-	auth: {
-		user: GMAIL_USER,
-		pass: GMAIL_APP_PASSWORD,
-	},
-});
+function getContactEmailConfig() {
+	if (!CONTACT_EMAIL_FROM || !CONTACT_EMAIL_PASSWORD || !CONTACT_EMAIL_TO || !CONTACT_EMAIL_LOGO_URL) {
+		throw new Error("Configuracion de correo incompleta");
+	}
+
+	return {
+		from: CONTACT_EMAIL_FROM,
+		password: CONTACT_EMAIL_PASSWORD,
+		logoUrl: CONTACT_EMAIL_LOGO_URL,
+		to: CONTACT_EMAIL_TO,
+	};
+}
 
 export const POST: APIRoute = async ({ request }) => {
 	try {
+		const emailConfig = getContactEmailConfig();
+
+		const transporter = nodemailer.createTransport({
+			host: "smtp.gmail.com",
+			port: 587,
+			secure: false,
+			auth: {
+				user: emailConfig.from,
+				pass: emailConfig.password,
+			},
+		});
+
 		// Debug: ver todos los headers
 		const allHeaders = Object.fromEntries(request.headers.entries());
 		console.log("Headers recibidos:", allHeaders);
@@ -126,7 +139,7 @@ Este mensaje fue enviado desde el formulario de contacto de Inbyte.
                 <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; margin-top: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                     <tr>
                         <td align="center" style="padding: 0; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                            <img src="${LOGO_URL}" alt="Inbyte" style="display: block; width: 100%; max-width: 600px; height: auto; border: 0; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                            <img src="${emailConfig.logoUrl}" alt="Inbyte" style="display: block; width: 100%; max-width: 600px; height: auto; border: 0; border-top-left-radius: 8px; border-top-right-radius: 8px;">
                         </td>
                     </tr>
                     <tr>
@@ -184,8 +197,8 @@ Este mensaje fue enviado desde el formulario de contacto de Inbyte.
 
 		// Configurar el email
 		const mailOptions = {
-			from: GMAIL_USER,
-			to: DESTINATARIO,
+			from: emailConfig.from,
+			to: emailConfig.to,
 			replyTo: email, // Permitir responder directamente al cliente
 			subject: `Nuevo contacto: ${nombre} - ${compania}`,
 			text: emailBody,
