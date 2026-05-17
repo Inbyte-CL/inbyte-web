@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.inbyte.cl/sitemap-index.xml
+Sitemap: https://www.inbyte.cl/sitemap-0.xml
