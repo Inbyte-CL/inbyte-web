@@ -47,6 +47,46 @@
       "permanent": true
     },
     {
+      "source": "/fr/blog",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/blog/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/contact",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/contact/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/faq",
+      "destination": "/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/faq/",
+      "destination": "/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/vending",
+      "destination": "/vending/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/vending/",
+      "destination": "/vending/",
+      "permanent": true
+    },
+    {
       "source": "/fr",
       "destination": "/",
       "permanent": true
