@@ -4,21 +4,21 @@ import { type SiteDataProps } from "../types/configDataTypes";
 const siteData: SiteDataProps = {
 	name: "INBYTE",
 	// Your website's title and description (meta fields)
-	title: "Inbyte - Lider en autoatencion",
+	title: "Inbyte | Pagos electrónicos para vending y parking en Chile",
 	description:
-		"Soluciones de pago electrónico para máquinas expendedoras, estacionamientos y sistemas de autoservicio. Tecnología de última generación con integración MDB universal.",
+		"Soluciones de pago electrónico, telemetría y dashboards BI para máquinas vending, estacionamientos y autoservicio en Chile.",
 
 	// Your information for blog post purposes
 	author: {
-		name: "Cosmic Themes",
-		email: "creator@cosmicthemes.com",
-		twitter: "Cosmic_Themes",
+		name: "INBYTE",
+		email: "contacto@inbyte.cl",
+		twitter: "inbyte_cl",
 	},
 
 	// default image for meta tags if the page doesn't have an image already
-		defaultImage: {
+	defaultImage: {
 		src: "/images/theme.png",
-		alt: "Inbyte - Lider en autoatencion",
+		alt: "INBYTE: pagos electrónicos para vending y parking en Chile",
 	},
 };
 

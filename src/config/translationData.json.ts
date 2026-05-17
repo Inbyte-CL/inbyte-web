@@ -56,14 +56,14 @@ export const dataTranslations = {
  */
 export const textTranslations = {
 	en: {
-		hero_text: "Tecnología que impulsa decisiones",
-		hero_description: `Integración con POS de última generación, automatización, y dashboards BI que transforman cada venta en una decisión estratégica.`,
+		hero_text: "Pagos electrónicos para vending y parking en Chile",
+		hero_description: `Integramos POS, telemetría, dashboards BI y automatización para modernizar máquinas expendedoras, estacionamientos y operaciones de autoservicio.`,
 
 		// blog
-		back_to_all_posts: "Back to all posts",
-		updated: "Updated",
-		share_this_article: "Share this article",
-		table_of_contents: "Table of Contents",
+		back_to_all_posts: "Volver al blog",
+		updated: "Actualizado",
+		share_this_article: "Compartir este artículo",
+		table_of_contents: "Tabla de contenidos",
 
 		// Authentication - Sign In
 		signin_title: "Log in to your account",
@@ -88,9 +88,9 @@ export const textTranslations = {
 		signin_link: "Sign in",
 	},
 	fr: {
-		hero_text: "Tecnología que impulsa decisiones",
+		hero_text: "Pagos electrónicos para vending y parking en Chile",
 		hero_description:
-			"Integración con POS de última generación, automatización, y dashboards BI que transforman cada venta en una decisión estratégica.",
+			"Integramos POS, telemetría, dashboards BI y automatización para modernizar máquinas expendedoras, estacionamientos y operaciones de autoservicio.",
 
 		// blog
 		back_to_all_posts: "Retour à tous les articles",

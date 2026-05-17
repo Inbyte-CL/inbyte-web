@@ -1,11 +1,25 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import FaqAccordions from "@/components/faq/FaqAccordions.astro";
+import faqData from "@/config/en/faqData.json";
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqData.map((item) => ({
+		"@type": "Question",
+		name: item.question,
+		acceptedAnswer: {
+			"@type": "Answer",
+			text: item.answer.replace(/\s+/g, " ").trim(),
+		},
+	})),
+};
 ---
 
 <BaseLayout
-	title="Preguntas frecuentes"
-	description="Encuentra respuestas a las preguntas más comunes sobre nuestros sistemas de pago para máquinas expendedoras."
+	title="Preguntas frecuentes sobre pagos vending y parking | Inbyte"
+	description="Respuestas sobre POS MDB, pagos contactless, telemetría, dashboards BI e integraciones para vending y estacionamientos en Chile."
 >
 	<!-- Hero Section -->
 	<section id="faq-hero" class="-mt-23 overflow-hidden pt-23">
@@ -36,4 +50,5 @@ import FaqAccordions from "@/components/faq/FaqAccordions.astro";
 
 	<!-- FAQ Accordions -->
 	<FaqAccordions showHeader={false} />
+	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

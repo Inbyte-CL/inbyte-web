@@ -61,6 +61,9 @@ export default defineConfig([
 	{
 		ignores: [
 			"dist/**",
+			".astro/**",
+			".vercel/**",
+			"node_modules/**",
 			"**/*.d.ts",
 			".tours/",
 			"scripts/",

@@ -7,6 +7,36 @@
   "regions": ["iad1"],
   "redirects": [
     {
+      "source": "/blog",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/parking",
+      "destination": "/parking/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/vending",
+      "destination": "/vending/",
+      "permanent": true
+    },
+    {
       "source": "/fr/parking",
       "destination": "/parking/",
       "permanent": true
@@ -14,6 +44,16 @@
     {
       "source": "/fr/parking/",
       "destination": "/parking/",
+      "permanent": true
+    },
+    {
+      "source": "/fr",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/:path*",
+      "destination": "/:path*",
       "permanent": true
     },
     {
