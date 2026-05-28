@@ -43,11 +43,6 @@ if (!link.includes(domain) && !link.startsWith("/") && !link.startsWith("#")) {
 	// internal link, so we need to add the locale to the link
 	actualLink = getLocalizedRoute(currLocale, link);
 }
-// remove trailing slash so IDs will work
-if (actualLink.endsWith("/") && actualLink !== "/") {
-	actualLink = actualLink.slice(0, -1);
-}
-
 const navLink = tv({
 	base: "nav__link--base primary-focus relative flex h-16 items-center gap-1.5 px-4 whitespace-nowrap",
 	variants: {
