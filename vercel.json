@@ -8,102 +8,107 @@
   "redirects": [
     {
       "source": "/blog",
-      "destination": "/blog/",
+      "destination": "https://www.inbyte.cl/blog/",
       "permanent": true
     },
     {
       "source": "/contact",
-      "destination": "/contact/",
+      "destination": "https://www.inbyte.cl/contact/",
       "permanent": true
     },
     {
       "source": "/faq",
-      "destination": "/faq/",
+      "destination": "https://www.inbyte.cl/faq/",
       "permanent": true
     },
     {
       "source": "/parking",
-      "destination": "/parking/",
+      "destination": "https://www.inbyte.cl/parking/",
       "permanent": true
     },
     {
       "source": "/privacy",
-      "destination": "/privacy/",
+      "destination": "https://www.inbyte.cl/privacy/",
       "permanent": true
     },
     {
       "source": "/vending",
-      "destination": "/vending/",
+      "destination": "https://www.inbyte.cl/vending/",
       "permanent": true
     },
     {
       "source": "/fr/parking",
-      "destination": "/parking/",
+      "destination": "https://www.inbyte.cl/parking/",
       "permanent": true
     },
     {
       "source": "/fr/parking/",
-      "destination": "/parking/",
+      "destination": "https://www.inbyte.cl/parking/",
       "permanent": true
     },
     {
       "source": "/fr/blog",
-      "destination": "/blog/",
+      "destination": "https://www.inbyte.cl/blog/",
       "permanent": true
     },
     {
       "source": "/fr/blog/",
-      "destination": "/blog/",
+      "destination": "https://www.inbyte.cl/blog/",
       "permanent": true
     },
     {
       "source": "/fr/contact",
-      "destination": "/contact/",
+      "destination": "https://www.inbyte.cl/contact/",
       "permanent": true
     },
     {
       "source": "/fr/contact/",
-      "destination": "/contact/",
+      "destination": "https://www.inbyte.cl/contact/",
       "permanent": true
     },
     {
       "source": "/fr/faq",
-      "destination": "/faq/",
+      "destination": "https://www.inbyte.cl/faq/",
       "permanent": true
     },
     {
       "source": "/fr/faq/",
-      "destination": "/faq/",
+      "destination": "https://www.inbyte.cl/faq/",
       "permanent": true
     },
     {
       "source": "/fr/vending",
-      "destination": "/vending/",
+      "destination": "https://www.inbyte.cl/vending/",
       "permanent": true
     },
     {
       "source": "/fr/vending/",
-      "destination": "/vending/",
+      "destination": "https://www.inbyte.cl/vending/",
       "permanent": true
     },
     {
       "source": "/fr",
-      "destination": "/",
+      "destination": "https://www.inbyte.cl/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/",
+      "destination": "https://www.inbyte.cl/",
       "permanent": true
     },
     {
       "source": "/fr/:path*",
-      "destination": "/:path*",
+      "destination": "https://www.inbyte.cl/:path*",
       "permanent": true
     },
     {
       "source": "/privacy-policy",
-      "destination": "/privacy/",
+      "destination": "https://www.inbyte.cl/privacy/",
       "permanent": true
     },
     {
       "source": "/privacy-policy/",
-      "destination": "/privacy/",
+      "destination": "https://www.inbyte.cl/privacy/",
       "permanent": true
     },
     {
