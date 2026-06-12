@@ -103,33 +103,6 @@ const slides = [
 				-webkit-tap-highlight-color: rgba(0, 200, 130, 0.25);
 			}
 
-			.controls {
-				pointer-events: none;
-				position: fixed;
-				right: 0;
-				bottom: calc(16px + env(safe-area-inset-bottom));
-				left: 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 10px;
-			}
-
-			.dot {
-				pointer-events: auto;
-				width: 8px;
-				height: 8px;
-				padding: 0;
-				border: 0;
-				border-radius: 999px;
-				background: rgba(255, 255, 255, 0.45);
-			}
-
-			.dot[aria-current="true"] {
-				width: 22px;
-				background: #00c681;
-			}
-
 			.nav-button {
 				position: fixed;
 				top: 50%;
@@ -155,8 +128,7 @@ const slides = [
 			}
 
 			@media (hover: hover) and (pointer: fine) {
-				.nav-button:hover,
-				.dot:hover {
+				.nav-button:hover {
 					background: #00c681;
 				}
 			}
@@ -168,10 +140,7 @@ const slides = [
 				{
 					slides.map((slide, index) => (
 						<section class="slide" aria-label={`Lamina ${index + 1} de ${slides.length}`}>
-							<div
-								class="frame"
-								style={`--ratio: ${slide.width / slide.height}`}
-							>
+							<div class="frame" style={`--ratio: ${slide.width / slide.height}`}>
 								<img
 									src={slide.src}
 									alt={slide.alt}
@@ -194,77 +163,40 @@ const slides = [
 				}
 			</div>
 
-			<button class="nav-button prev" type="button" aria-label="Lamina anterior">‹</button>
-			<button class="nav-button next" type="button" aria-label="Lamina siguiente">›</button>
-
-			<div class="controls" aria-label="Navegacion del carrusel">
-				{slides.map((_, index) => <button class="dot" type="button" aria-label={`Ir a lamina ${index + 1}`} aria-current={index === 0 ? "true" : "false"} />)}
-			</div>
+			<button class="nav-button prev" type="button" aria-label="Lamina anterior">&lsaquo;</button>
+			<button class="nav-button next" type="button" aria-label="Lamina siguiente">&rsaquo;</button>
 		</main>
 
 		<script>
 			const track = document.querySelector("#carouselTrack");
 			const slides = Array.from(document.querySelectorAll(".slide"));
-			const dots = Array.from(document.querySelectorAll(".dot"));
 			const previous = document.querySelector(".prev");
 			const next = document.querySelector(".next");
 
 			let activeIndex = 0;
-			let autoAdvance;
 
 			const setActive = (index) => {
 				activeIndex = Math.max(0, Math.min(index, slides.length - 1));
 				slides[activeIndex].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-				dots.forEach((dot, dotIndex) => {
-					dot.setAttribute("aria-current", dotIndex === activeIndex ? "true" : "false");
-				});
 			};
 
 			const syncActiveFromScroll = () => {
-				const index = Math.round(track.scrollLeft / track.clientWidth);
-				if (index !== activeIndex) {
-					activeIndex = index;
-					dots.forEach((dot, dotIndex) => {
-						dot.setAttribute("aria-current", dotIndex === activeIndex ? "true" : "false");
-					});
-				}
-			};
-
-			const startAutoAdvance = () => {
-				window.clearInterval(autoAdvance);
-				autoAdvance = window.setInterval(() => {
-					setActive((activeIndex + 1) % slides.length);
-				}, 5200);
+				activeIndex = Math.round(track.scrollLeft / track.clientWidth);
 			};
 
 			previous.addEventListener("click", () => {
 				setActive(activeIndex - 1);
-				startAutoAdvance();
 			});
 
 			next.addEventListener("click", () => {
 				setActive(activeIndex + 1);
-				startAutoAdvance();
-			});
-
-			dots.forEach((dot, index) => {
-				dot.addEventListener("click", () => {
-					setActive(index);
-					startAutoAdvance();
-				});
 			});
 
 			track.addEventListener("scroll", () => {
 				window.requestAnimationFrame(syncActiveFromScroll);
 			});
 
-			track.addEventListener("pointerdown", () => {
-				window.clearInterval(autoAdvance);
-			});
-
-			track.addEventListener("pointerup", startAutoAdvance);
 			window.addEventListener("resize", () => setActive(activeIndex));
-			startAutoAdvance();
 		</script>
 	</body>
 </html>
