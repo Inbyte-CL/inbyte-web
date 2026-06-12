@@ -57,7 +57,8 @@ export default defineConfig({
 					pathname.startsWith("/overview") ||
 					pathname.startsWith("/careers") ||
 					pathname.startsWith("/categories") ||
-					pathname.startsWith("/about")
+					pathname.startsWith("/about") ||
+					pathname.startsWith("/asia-vending")
 				) {
 					return false;
 				}

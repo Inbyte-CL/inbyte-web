@@ -1,0 +1,270 @@
+---
+const slides = [
+	{ src: "/asia-vending/1.png", alt: "Brochure Asia Vending, pagina 1", width: 887, height: 1774 },
+	{ src: "/asia-vending/2.png", alt: "Brochure Asia Vending, pagina 2", width: 862, height: 1824 },
+	{ src: "/asia-vending/3.png", alt: "Brochure Asia Vending, pagina 3", width: 941, height: 1672 },
+	{ src: "/asia-vending/4.png", alt: "Brochure Asia Vending, pagina 4", width: 941, height: 1672 },
+];
+---
+
+<!doctype html>
+<html lang="es-CL">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>Asia Vending | INBYTE</title>
+		<meta name="description" content="Brochure privado Asia Vending." />
+		<link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				min-height: 100%;
+				background: #020807;
+				color: #fff;
+				overflow: hidden;
+				touch-action: pan-x;
+			}
+
+			body {
+				font-family:
+					Inter,
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe UI",
+					sans-serif;
+			}
+
+			.carousel {
+				position: relative;
+				width: 100vw;
+				height: 100svh;
+				background: #020807;
+			}
+
+			.track {
+				display: flex;
+				width: 100%;
+				height: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				scroll-behavior: smooth;
+				scroll-snap-type: x mandatory;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+			}
+
+			.track::-webkit-scrollbar {
+				display: none;
+			}
+
+			.slide {
+				display: grid;
+				flex: 0 0 100vw;
+				width: 100vw;
+				height: 100svh;
+				place-items: center;
+				scroll-snap-align: start;
+				scroll-snap-stop: always;
+				padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+			}
+
+			.frame {
+				position: relative;
+				display: block;
+				max-width: 100vw;
+				max-height: 100%;
+				width: min(100vw, calc(100svh * var(--ratio)));
+				aspect-ratio: var(--ratio);
+			}
+
+			.frame img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				user-select: none;
+				-webkit-user-drag: none;
+			}
+
+			.demo-link {
+				position: absolute;
+				left: 25.3%;
+				top: 58.35%;
+				width: 47.8%;
+				height: 5.3%;
+				border-radius: 999px;
+				-webkit-tap-highlight-color: rgba(0, 200, 130, 0.25);
+			}
+
+			.controls {
+				pointer-events: none;
+				position: fixed;
+				right: 0;
+				bottom: calc(16px + env(safe-area-inset-bottom));
+				left: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+			}
+
+			.dot {
+				pointer-events: auto;
+				width: 8px;
+				height: 8px;
+				padding: 0;
+				border: 0;
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.45);
+			}
+
+			.dot[aria-current="true"] {
+				width: 22px;
+				background: #00c681;
+			}
+
+			.nav-button {
+				position: fixed;
+				top: 50%;
+				display: grid;
+				width: 42px;
+				height: 52px;
+				place-items: center;
+				border: 0;
+				border-radius: 999px;
+				background: rgba(0, 0, 0, 0.22);
+				color: #fff;
+				font-size: 30px;
+				line-height: 1;
+				transform: translateY(-50%);
+			}
+
+			.nav-button.prev {
+				left: max(8px, env(safe-area-inset-left));
+			}
+
+			.nav-button.next {
+				right: max(8px, env(safe-area-inset-right));
+			}
+
+			@media (hover: hover) and (pointer: fine) {
+				.nav-button:hover,
+				.dot:hover {
+					background: #00c681;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="carousel" aria-label="Brochure Asia Vending">
+			<div class="track" id="carouselTrack">
+				{
+					slides.map((slide, index) => (
+						<section class="slide" aria-label={`Lamina ${index + 1} de ${slides.length}`}>
+							<div
+								class="frame"
+								style={`--ratio: ${slide.width / slide.height}`}
+							>
+								<img
+									src={slide.src}
+									alt={slide.alt}
+									width={slide.width}
+									height={slide.height}
+									loading={index === 0 ? "eager" : "lazy"}
+								/>
+								{
+									index === 3 && (
+										<a
+											class="demo-link"
+											href="https://vendingontest.vercel.app/"
+											aria-label="Ver demo de Vending On"
+										/>
+									)
+								}
+							</div>
+						</section>
+					))
+				}
+			</div>
+
+			<button class="nav-button prev" type="button" aria-label="Lamina anterior">‹</button>
+			<button class="nav-button next" type="button" aria-label="Lamina siguiente">›</button>
+
+			<div class="controls" aria-label="Navegacion del carrusel">
+				{slides.map((_, index) => <button class="dot" type="button" aria-label={`Ir a lamina ${index + 1}`} aria-current={index === 0 ? "true" : "false"} />)}
+			</div>
+		</main>
+
+		<script>
+			const track = document.querySelector("#carouselTrack");
+			const slides = Array.from(document.querySelectorAll(".slide"));
+			const dots = Array.from(document.querySelectorAll(".dot"));
+			const previous = document.querySelector(".prev");
+			const next = document.querySelector(".next");
+
+			let activeIndex = 0;
+			let autoAdvance;
+
+			const setActive = (index) => {
+				activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+				slides[activeIndex].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+				dots.forEach((dot, dotIndex) => {
+					dot.setAttribute("aria-current", dotIndex === activeIndex ? "true" : "false");
+				});
+			};
+
+			const syncActiveFromScroll = () => {
+				const index = Math.round(track.scrollLeft / track.clientWidth);
+				if (index !== activeIndex) {
+					activeIndex = index;
+					dots.forEach((dot, dotIndex) => {
+						dot.setAttribute("aria-current", dotIndex === activeIndex ? "true" : "false");
+					});
+				}
+			};
+
+			const startAutoAdvance = () => {
+				window.clearInterval(autoAdvance);
+				autoAdvance = window.setInterval(() => {
+					setActive((activeIndex + 1) % slides.length);
+				}, 5200);
+			};
+
+			previous.addEventListener("click", () => {
+				setActive(activeIndex - 1);
+				startAutoAdvance();
+			});
+
+			next.addEventListener("click", () => {
+				setActive(activeIndex + 1);
+				startAutoAdvance();
+			});
+
+			dots.forEach((dot, index) => {
+				dot.addEventListener("click", () => {
+					setActive(index);
+					startAutoAdvance();
+				});
+			});
+
+			track.addEventListener("scroll", () => {
+				window.requestAnimationFrame(syncActiveFromScroll);
+			});
+
+			track.addEventListener("pointerdown", () => {
+				window.clearInterval(autoAdvance);
+			});
+
+			track.addEventListener("pointerup", startAutoAdvance);
+			window.addEventListener("resize", () => setActive(activeIndex));
+			startAutoAdvance();
+		</script>
+	</body>
+</html>
