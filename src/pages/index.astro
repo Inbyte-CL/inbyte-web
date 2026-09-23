@@ -1,80 +1,359 @@
 ---
-// layout
-import BaseLayout from "@/layouts/BaseLayout.astro";
-
-// components
-import HeroSideImage from "@/components/hero/HeroSideImage.astro";
-import HeroCenterImage from "@/components/hero/HeroCenterImage.astro";
-import HeroCenterDashboard from "@/components/hero/HeroCenterDashboard.astro";
 import { Image } from "astro:assets";
-import DashVend from "@/data/Parking/dashvend.png";
-
-import LogoCloudMarquee from "@/components/logo-cloud/LogoCloudMarquee.astro";
-import LogoCloudStatic from "@/components/logo-cloud/LogoCloudStatic.astro";
-import LogoCloudStaticSimple from "@/components/logo-cloud/LogoCloudStaticSimple.astro";
-
-import FeatureSideImage from "@/components/feature/FeatureSideImage.astro";
-import FeatureSideImageWide from "@/components/feature/FeatureSideImageWide.astro";
-import FeatureNumbers from "@/components/feature/FeatureNumbers.astro";
-import FeatureExpand from "@/components/feature/FeatureExpand.astro";
-import FeatureToggle from "@/components/feature/FeatureToggle.astro";
-import FeatureTiltCards from "@/components/feature/FeatureTiltCards.astro";
-import QueHacemos from "@/components/feature/QueHacemos.astro";
-
-import PricingThreeCards from "@/components/pricing/PricingThreeCards.astro";
-import PricingTable from "@/components/pricing/PricingTable.astro";
-import PricingTwoCards from "@/components/pricing/PricingTwoCards.astro";
-import PricingTwoCardsSimple from "@/components/pricing/PricingTwoCardsSimple.astro";
-
-import TestimonialSwiper from "@/components/testimonials/TestimonialSwiper.astro";
-import TestimonialsExpand from "@/components/testimonials/TestimonialsExpand.astro";
-
-import FaqAccordions from "@/components/faq/FaqAccordions.astro";
-import FaqAccordionsPlain from "@/components/faq/FaqAccordionsPlain.astro";
-
-import CtaCentered from "@/components/cta/CtaCentered.astro";
-import CtaNewsletter from "@/components/cta/CtaNewsletter.astro";
-import CtaCenteredNewsletter from "@/components/cta/CtaCenteredNewsletter.astro";
-
-// utils
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import Nav from "@/components/v5/Nav.astro";
+import Footer from "@/components/v5/Footer.astro";
+import V5HeroThreads from "@/components/v5/V5HeroThreads";
+import V5Button from "@/components/v5/V5Button";
+import TrueFocus from "@/components/v5/TrueFocus";
+import DashVend from "@/data/Parking/dashvend-devices.png";
+import DashStock from "@/data/Parking/dash-stock.png";
+import DashRutas from "@/data/Parking/dash-rutas.png";
+import PosMdb from "@/data/Parking/pos-mdb-cutout.png";
+import { getAllPosts } from "@/js/blogUtils";
 import { getLocaleFromUrl } from "@/js/localeUtils";
-import { getTranslatedData } from "@/js/translationUtils";
 
-// data
 const currLocale = getLocaleFromUrl(Astro.url);
-const siteData = getTranslatedData("siteData", currLocale);
+const latestPosts = (await getAllPosts(currLocale)).slice(0, 4);
+
+const telemetrySlides = [
+	{
+		src: DashRutas,
+		name: "Organiza tus rutas",
+		des: "Reposición con paradas, horarios y stock bajo en cada máquina.",
+		alt: "Dashboard Inbyte de rutas de reposición en laptop y celular",
+		index: 2,
+	},
+	{
+		src: DashVend,
+		name: "Controla tus ventas",
+		des: "Ingresos, tickets y productos por máquina, al minuto.",
+		alt: "Dashboard de telemetría Inbyte en laptop y celular: ventas, stock y estado de máquinas",
+		index: 0,
+	},
+	{
+		src: DashStock,
+		name: "Maneja tu stock en tiempo real",
+		des: "Inventario por máquina y producto, sin esperar la visita a terreno.",
+		alt: "Dashboard Inbyte de control de stock en laptop y celular",
+		index: 1,
+	},
+];
+
 ---
 
-<BaseLayout title={siteData.title} description={siteData.description}>
-	<!-- <HeroSideImage /> -->
-	<!-- <HeroCenterImage /> -->
-	<HeroCenterDashboard />
+<V5Layout
+	title="INBYTE | POS MDB y pagos electrónicos para vending y parking"
+	description="POS MDB, pagos contactless y telemetría para máquinas expendedoras y parking en Chile. Cobra, mide y opera en tiempo real."
+>
+	<Nav />
 
-	<!-- <FeatureSideImageWide /> -->
-	<!-- <FeatureNumbers /> -->
-	<FeatureSideImage />
-
-	<!-- Dashboard Image Section -->
-	<section class="overflow-hidden pt-8 pb-12">
-		<div class="site-container">
-			<div class="w-full max-w-6xl mx-auto">
-				<div class="mb-12 text-center">
-					<h2 class="h2 mb-6">Somos Diferentes</h2>
-					<p class="mx-auto max-w-2xl text-lg opacity-80">
-						Inbyte es la única empresa en Chile que entrega dashboards y análisis de datos 100% personalizados para cada cliente, optimizando la gestión de máquinas expendedoras, sistemas de autoservicio y operaciones de vending con información en tiempo real.
-					</p>
-				</div>
-				<div class="mx-auto max-w-max">
-					<Image
-						class="tilt-card rounded-3xl"
-						src={DashVend}
-						alt="Dashboard BI de INBYTE para ventas y telemetría de vending"
-					/>
+	<main id="contenido">
+		<section class="v5-hero v5-band v5-band--dark">
+			<div class="v5-hero__canvas" aria-hidden="true">
+				<V5HeroThreads client:load />
+			</div>
+			<div class="v5-hero__veil" aria-hidden="true"></div>
+			<div class="v5-hero__content">
+				<div class="v5-container">
+					<p class="v5-kicker">POS MDB · Telemetría · Chile</p>
+					<h1 class="v5-display">La telemetría más avanzada de Chile.</h1>
+					<p class="v5-lead">Pagos electrónicos para vending y parking</p>
+					<div class="v5-hero__actions">
+						<div class="v5-hero__ctas">
+							<V5Button client:visible href="/contact/">Hablar con Inbyte</V5Button>
+							<V5Button client:visible variant="outline" href="/vending/">Ver vending</V5Button>
+						</div>
+						<div class="v5-chips" aria-label="Capacidades">
+							<span class="v5-chip">NFC y contactless</span>
+							<span class="v5-chip">Dashboard BI</span>
+							<span class="v5-chip">Inbyte + Klap</span>
+							<span class="v5-chip">Parking autoservicio</span>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Qué hacemos Section -->
-	<QueHacemos />
-</BaseLayout>
+		<section class="v5-section v5-section--tight v5-band v5-band--light" aria-labelledby="telemetria">
+			<div class="v5-container">
+				<div class="v5-head v5-head--wide">
+					<p class="v5-eyebrow">Telemetría</p>
+					<h2 class="v5-h2" id="telemetria">Toda tu operación, en tiempo real.</h2>
+					<p class="v5-sub">Ventas, stock y rutas de reposición en un dashboard BI.</p>
+				</div>
+				<div class="v5-carousel" data-v5-carousel>
+					<div class="v5-carousel__copy">
+						<div class="v5-carousel__text" data-v5-carousel-text>
+							<div class="v5-carousel__name">Controla tus ventas</div>
+							<div class="v5-carousel__des">
+								Ingresos, tickets y productos por máquina, al minuto.
+							</div>
+						</div>
+						<V5Button client:visible className="v5-carousel__more" href="/contact/">Ver más</V5Button>
+					</div>
+					<div class="v5-carousel__stage">
+						<div class="v5-carousel__slide">
+							{
+								telemetrySlides.map((slide) => (
+									<div
+										class:list={["v5-carousel__item", slide.index === 0 && "is-current"]}
+										data-name={slide.name}
+										data-des={slide.des}
+										data-index={slide.index}
+									>
+										<Image src={slide.src} alt={slide.alt} loading="eager" />
+									</div>
+								))
+							}
+						</div>
+						<div class="v5-carousel__nav">
+							<button class="v5-carousel__btn v5-carousel__btn--prev" type="button" aria-label="Slide anterior">
+								◁
+							</button>
+							<button class="v5-carousel__btn v5-carousel__btn--next" type="button" aria-label="Slide siguiente">
+								▷
+							</button>
+						</div>
+					</div>
+					<div class="v5-carousel__dots" role="tablist" aria-label="Slides del dashboard">
+						{
+							[0, 1, 2].map((i) => (
+								<button
+									class:list={["v5-carousel__dot", i === 0 && "is-active"]}
+									type="button"
+									data-dot={i}
+									aria-label={`Ir al slide ${i + 1}`}
+								/>
+							))
+						}
+					</div>
+					<V5Button client:visible className="v5-carousel__note" href="/contact/">
+						Lleva el control en la palma de tu mano, con nuestra aplicación móvil.
+					</V5Button>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--dark" aria-labelledby="pos">
+			<div class="v5-container">
+				<div class="v5-head v5-head--wide">
+					<p class="v5-eyebrow">POS MDB</p>
+					<h2 class="v5-h2" id="pos">Cobra en cada máquina.</h2>
+					<p class="v5-sub">
+						Tarjeta, NFC y billeteras digitales. Compatible MDB, sin cambiar la expendedora.
+					</p>
+				</div>
+				<figure class="v5-pos">
+					<div class="v5-pos__lights" aria-hidden="true">
+						<V5HeroThreads client:visible compact />
+					</div>
+					<Image src={PosMdb} alt="POS MDB Inbyte para pagos con tarjeta, NFC y billeteras en vending" />
+				</figure>
+				<div class="v5-stats" aria-label="Capacidades del POS">
+					<article class="v5-stat">
+						<h3>Tarjeta y NFC</h3>
+						<p>Contactless, Apple Pay, Google Pay y Visa en la máquina.</p>
+					</article>
+					<article class="v5-stat">
+						<h3>Compatible MDB</h3>
+						<p>Se integra a tus máquinas sin necesidad de hacer cambios.</p>
+					</article>
+					<article class="v5-stat">
+						<h3>Inbyte + Klap</h3>
+						<p>Pagos rápidos y seguros. Gracias a las distintas alianzas de Inbyte.</p>
+					</article>
+				</div>
+				<div class="v5-pos__actions">
+					<V5Button client:visible href="/pos-mdb-vending/">Ver POS MDB</V5Button>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--light" aria-labelledby="flujo">
+			<div class="v5-container">
+				<div class="v5-head">
+					<p class="v5-eyebrow">Cómo funciona</p>
+					<h2 class="v5-h2" id="flujo">Del desorden al control. En tres pasos.</h2>
+				</div>
+				<div class="v5-flow" data-v5-flow>
+					<ol class="v5-flow__list">
+						<li class="v5-flow__step">
+							<div class="v5-flow__rail">
+								<div class="v5-flow__node"><span>01</span></div>
+								<div class="v5-flow__wire" aria-hidden="true"></div>
+							</div>
+							<div class="v5-flow__body">
+								<h3>Integra el POS</h3>
+								<p>MDB, tarjeta y NFC en la expendedora o el tótem de parking.</p>
+							</div>
+						</li>
+						<li class="v5-flow__step">
+							<div class="v5-flow__rail">
+								<div class="v5-flow__node"><span>02</span></div>
+								<div class="v5-flow__wire" aria-hidden="true"></div>
+							</div>
+							<div class="v5-flow__body">
+								<h3>Conecta telemetría</h3>
+								<p>Ventas, stock y estado operativo, en tiempo real.</p>
+							</div>
+						</li>
+						<li class="v5-flow__step">
+							<div class="v5-flow__rail">
+								<div class="v5-flow__node"><span>03</span></div>
+							</div>
+							<div class="v5-flow__body">
+								<h3>Opera con Inbyte</h3>
+								<p>Dashboards a medida para reponer, cobrar y crecer.</p>
+							</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--dark">
+			<div class="v5-container">
+				<div class="v5-cta">
+					<h2>
+						<TrueFocus
+							client:visible
+							className="v5-true-focus"
+							sentence="Digitaliza|Tu operación"
+							separator="|"
+							manualMode={false}
+							blurAmount={5}
+							borderColor="#05cd84"
+							glowColor="rgba(5, 205, 132, 0.65)"
+							animationDuration={0.6}
+							pauseBetweenAnimations={1.1}
+						/>
+					</h2>
+					<p>Cuéntanos cómo operas. Te proponemos la integración POS + datos.</p>
+					<V5Button client:visible href="/contact/">Agendar conversación</V5Button>
+				</div>
+			</div>
+		</section>
+
+		{
+			latestPosts.length > 0 && (
+				<section class="v5-section v5-band v5-band--light" aria-labelledby="blog">
+					<div class="v5-container">
+						<div class="v5-section__row">
+							<div class="v5-head" style="margin-bottom: 0">
+								<p class="v5-eyebrow">Blog</p>
+								<h2 class="v5-h2" id="blog">Tendencias del mercado</h2>
+							</div>
+							<V5Button client:visible variant="outline" href="/blog/">Ver artículos</V5Button>
+						</div>
+						<div class="v5-posts">
+							{latestPosts.map((post) => (
+								<a class="v5-post" href={`/blog/${post.id}/`}>
+									<span class="v5-post__title">{post.data.title}</span>
+									<span class="v5-post__meta">Leer</span>
+								</a>
+							))}
+						</div>
+					</div>
+				</section>
+			)
+		}
+	</main>
+
+	<Footer />
+
+	<script>
+		document.querySelectorAll("[data-v5-carousel]").forEach((root) => {
+			const slide = root.querySelector(".v5-carousel__slide");
+			const textBox = root.querySelector("[data-v5-carousel-text]");
+			if (!slide || !(textBox instanceof HTMLElement)) return;
+
+			const items = [...slide.querySelectorAll(":scope > .v5-carousel__item")].filter(
+				(el) => el instanceof HTMLElement,
+			);
+			if (!items.length) return;
+
+			const current = () => items.find((el) => el.classList.contains("is-current")) ?? items[0];
+
+			const writeText = (item) => {
+				const nameEl = document.createElement("div");
+				nameEl.className = "v5-carousel__name is-in";
+				nameEl.textContent = item.getAttribute("data-name") ?? "";
+				const desEl = document.createElement("div");
+				desEl.className = "v5-carousel__des is-in";
+				desEl.textContent = item.getAttribute("data-des") ?? "";
+				textBox.replaceChildren(nameEl, desEl);
+			};
+
+			const syncDots = (item) => {
+				const idx = item.getAttribute("data-index") ?? "0";
+				root.querySelectorAll("[data-dot]").forEach((dot) => {
+					const on = dot instanceof HTMLElement && dot.dataset.dot === idx;
+					dot.classList.toggle("is-active", on);
+					if (dot instanceof HTMLElement) {
+						if (on) dot.setAttribute("aria-current", "true");
+						else dot.removeAttribute("aria-current");
+					}
+				});
+			};
+
+			const show = (item) => {
+				items.forEach((el) => {
+					el.classList.toggle("is-current", el === item);
+					el.classList.remove("is-entering");
+				});
+				void item.offsetWidth;
+				item.classList.add("is-entering");
+				writeText(item);
+				syncDots(item);
+			};
+
+			const offset = (dir) => {
+				const i = items.indexOf(current());
+				show(items[(i + dir + items.length) % items.length]);
+			};
+
+			root.addEventListener("click", (event) => {
+				const t = event.target;
+				if (!(t instanceof Element)) return;
+				if (t.closest(".v5-carousel__btn--next")) {
+					event.preventDefault();
+					offset(1);
+					return;
+				}
+				if (t.closest(".v5-carousel__btn--prev")) {
+					event.preventDefault();
+					offset(-1);
+					return;
+				}
+				const dot = t.closest("[data-dot]");
+				if (!(dot instanceof HTMLElement)) return;
+				const target = items.find((el) => el.getAttribute("data-index") === dot.dataset.dot);
+				if (target) show(target);
+			});
+
+			show(current());
+		});
+
+		const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		document.querySelectorAll("[data-v5-flow]").forEach((flow) => {
+			if (!(flow instanceof HTMLElement)) return;
+			if (!motionOk || !("IntersectionObserver" in window)) {
+				flow.classList.add("is-on");
+				return;
+			}
+			flow.classList.add("is-ready");
+			const io = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (!entry.isIntersecting) return;
+						flow.classList.add("is-on");
+						io.disconnect();
+					});
+				},
+				{ threshold: 0.35 },
+			);
+			io.observe(flow);
+		});
+	</script>
+</V5Layout>

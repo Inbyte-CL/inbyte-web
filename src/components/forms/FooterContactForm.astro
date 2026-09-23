@@ -54,6 +54,30 @@ import {
 	</div>
 
 	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+		<Input
+			name="rut_empresa"
+			type="text"
+			placeholder="RUT empresa"
+			class="w-full text-sm"
+		/>
+
+		<Input
+			name="proveedor_actual"
+			type="text"
+			placeholder="Proveedor actual"
+			class="w-full text-sm"
+		/>
+	</div>
+
+	<Input
+		name="venta_mensual_aproximada"
+		type="text"
+		inputmode="numeric"
+		placeholder="Venta mensual aproximada por máquina"
+		class="w-full text-sm"
+	/>
+
+	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 		<Select name="cantidad_maquinas" required>
 			<SelectTrigger class="w-full text-sm">
 				<SelectValue placeholder="Cantidad de máquinas *" />
@@ -205,4 +229,3 @@ import {
 
 	document.addEventListener("astro:after-swap", handleFormSubmit);
 </script>
-

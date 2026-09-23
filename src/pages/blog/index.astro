@@ -1,83 +1,49 @@
 ---
-// layout
-import BaseLayout from "@/layouts/BaseLayout.astro";
-
-// components
-import CategoryCloud from "@/components/category-cloud/CategoryCloud.astro";
-import Button from "@/components/button/Button.astro";
-import PostCardSmall from "@/components/post-card/PostCardSmall.astro";
-import PostCardLarge from "@/components/post-card/PostCardLarge.astro";
-
-// utils
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import Nav from "@/components/v5/Nav.astro";
+import Footer from "@/components/v5/Footer.astro";
 import { getAllPosts } from "@/js/blogUtils";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
 const posts = await getAllPosts(currLocale);
+const featured = posts[0];
+const rest = posts.slice(1);
 ---
 
-<BaseLayout
+<V5Layout
 	title="Blog Inbyte | Pagos electrónicos, vending y autoservicio"
 	description="Artículos sobre pagos electrónicos, vending inteligente, telemetría, dashboards BI, autoservicio y estacionamientos en Chile."
 >
-	<div class="site-container">
-		<section class="overflow-hidden pt-10 pb-20">
-			<div class="mx-auto mb-10 text-center md:max-w-4xl">
-				<h1 class="h2">Blog sobre pagos electrónicos y autoservicio</h1>
+	<Nav />
+	<main id="contenido">
+		<section class="v5-page-hero v5-page-hero--center v5-band v5-band--dark">
+			<div class="v5-container">
+				<h1 class="v5-display v5-display--page">Blog sobre pagos electrónicos y autoservicio</h1>
 			</div>
-			<div class="mb-10 flex items-center justify-center">
-				<CategoryCloud showCount={false} />
-			</div>
-			<div class="-m-10 mb-10 flex flex-wrap">
-				{posts.length > 0 && <PostCardLarge post={posts[0]} />}
-				<div class="w-full p-10 md:w-1/2">
-					<div class="-m-4 flex flex-wrap">
-						{posts.slice(1, 5).map((post) => <PostCardSmall post={post} />)}
-
-						{
-							posts.length > 5 && (
-								<div id="hidden-posts" class="hidden w-full">
-									{posts.slice(5).map((post) => (
-										<PostCardSmall post={post} />
-									))}
-								</div>
-							)
-						}
-					</div>
+		</section>
+		<section class="v5-section v5-band v5-band--light">
+			<div class="v5-container">
+				{
+					featured && (
+						<a class="v5-post v5-post--featured" href={`/blog/${featured.id}/`}>
+							<span class="v5-post__title">{featured.data.title}</span>
+							<span class="v5-post__meta">Leer</span>
+						</a>
+					)
+				}
+				<div class="v5-posts">
+					{
+						rest.map((post) => (
+							<a class="v5-post" href={`/blog/${post.id}/`}>
+								<span class="v5-post__title">{post.data.title}</span>
+								<span class="v5-post__meta">Leer</span>
+							</a>
+						))
+					}
 				</div>
 			</div>
-
-			{
-				posts.length > 5 && (
-					<Button id="see-more-button" class="mx-auto">
-						See more articles
-					</Button>
-				)
-			}
 		</section>
-	</div>
-</BaseLayout>
-
-<script>
-	function initSeeMoreButton() {
-		// Get the button and hidden posts elements
-		const seeMoreButton = document.getElementById("see-more-button");
-		const hiddenPosts = document.getElementById("hidden-posts");
-
-		// Add click event listener to the button
-		if (seeMoreButton && hiddenPosts) {
-			seeMoreButton.addEventListener("click", () => {
-				// Show the hidden posts
-				hiddenPosts.classList.remove("hidden");
-				hiddenPosts.classList.add("block");
-
-				// Hide the button
-				seeMoreButton.classList.add("hidden");
-			});
-		}
-	}
-
-	initSeeMoreButton();
-
-	document.addEventListener("astro:after-swap", initSeeMoreButton);
-</script>
+	</main>
+	<Footer />
+</V5Layout>

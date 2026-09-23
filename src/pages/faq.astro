@@ -1,7 +1,8 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import FaqAccordions from "@/components/faq/FaqAccordions.astro";
-import faqData from "@/config/en/faqData.json";
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import Nav from "@/components/v5/Nav.astro";
+import Footer from "@/components/v5/Footer.astro";
+import faqData from "@/config/es/faqData.json";
 
 const faqSchema = {
 	"@context": "https://schema.org",
@@ -17,38 +18,35 @@ const faqSchema = {
 };
 ---
 
-<BaseLayout
+<V5Layout
 	title="Preguntas frecuentes sobre pagos vending y parking | Inbyte"
 	description="Respuestas sobre POS MDB, pagos contactless, telemetría, dashboards BI e integraciones para vending y estacionamientos en Chile."
 >
-	<!-- Hero Section -->
-	<section id="faq-hero" class="-mt-23 overflow-hidden pt-23">
-		<div class="relative pt-20 pb-4">
-			<div class="site-container relative mx-auto px-4">
-				<div class="flex flex-col items-center">
-					<div class="relative z-10 mb-4 text-center">
-						<div data-aos="fade-up" data-aos-trigger="#faq-hero">
-							<h1
-								class="font-heading xl:text-10xl mx-auto mb-8 max-w-4xl text-7xl tracking-tighter lg:text-8xl"
-							>
-								Preguntas Frecuentes
-							</h1>
-						</div>
-						<p
-							class="mx-auto mb-4 max-w-2xl text-lg opacity-80"
-							data-aos="fade-up"
-							data-aos-trigger="#faq-hero"
-							data-aos-delay=".15"
-						>
-							Encuentra respuestas a las preguntas más comunes sobre nuestros sistemas de pago, integraciones y plataforma de telemetría para máquinas expendedoras.
-						</p>
-					</div>
+	<Nav />
+	<main id="contenido">
+		<section class="v5-page-hero v5-page-hero--center v5-band v5-band--dark">
+			<div class="v5-container">
+				<h1 class="v5-display v5-display--page">Preguntas Frecuentes</h1>
+				<p class="v5-lead v5-lead--wide">
+					Encuentra respuestas a las preguntas más comunes sobre nuestros sistemas de pago, integraciones y plataforma de telemetría para máquinas expendedoras.
+				</p>
+			</div>
+		</section>
+		<section class="v5-section v5-band v5-band--light">
+			<div class="v5-container">
+				<div class="v5-faq">
+					{
+						faqData.map((faq) => (
+							<details>
+								<summary>{faq.question}</summary>
+								<p set:html={faq.answer.replace(/\n/g, "<br />")} />
+							</details>
+						))
+					}
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<!-- FAQ Accordions -->
-	<FaqAccordions showHeader={false} />
+		</section>
+	</main>
+	<Footer />
 	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-</BaseLayout>
+</V5Layout>

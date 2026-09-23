@@ -1,0 +1,321 @@
+---
+import { Image } from "astro:assets";
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import Nav from "@/components/v5/Nav.astro";
+import Footer from "@/components/v5/Footer.astro";
+import V5Button from "@/components/v5/V5Button";
+import DashVend from "@/data/Parking/dashvend-devices.png";
+import DashStock from "@/data/Parking/dash-stock.png";
+import DashRutas from "@/data/Parking/dash-rutas.png";
+import { liftIcons, padLift } from "@/components/v5/liftIcons";
+
+const telSignals = [
+	{ label: "Operación", value: "Telemetría vending 24/7" },
+	{ label: "Software", value: "Máquinas expendedoras en un panel" },
+	{ label: "Inventario", value: "Control de stock por máquina" },
+];
+
+const whyCards = [
+	{
+		title: "Menos tiempo en terreno",
+		body: "La telemetría vending prioriza reposición y fallas. El equipo sale con una ruta, no a revisar máquinas que todavía tienen stock.",
+	},
+	{
+		title: "Menos quiebre de stock",
+		body: "El control de stock de máquinas vending avisa cuando un producto baja o se agota, antes de que la ubicación deje de vender.",
+	},
+	{
+		title: "Decisiones con datos",
+		body: "El software para máquinas expendedoras muestra qué ubicación, horario y producto realmente pagan la operación.",
+	},
+];
+
+const title = "Telemetría vending | Software para máquinas expendedoras y control de stock";
+const description =
+	"Telemetría vending de Inbyte: software para máquinas expendedoras con control de stock, ventas, fallas y rutas de reposición en tiempo real. Dashboards BI en Chile.";
+
+const faqs = [
+	{
+		question: "¿Qué es la telemetría vending?",
+		answer:
+			"La telemetría vending conecta cada máquina expendedora a un software en la nube. Así ves ventas, stock, fallas y disponibilidad en tiempo real, sin esperar la visita a terreno.",
+	},
+	{
+		question: "¿Inbyte es un software para máquinas expendedoras?",
+		answer:
+			"Sí. Inbyte es software para máquinas expendedoras que une telemetría vending, pagos electrónicos y dashboards BI. Controlas la red desde el computador o el celular.",
+	},
+	{
+		question: "¿Cómo funciona el control de stock de máquinas vending?",
+		answer:
+			"El control de stock de máquinas vending muestra inventario por máquina y producto, marca stock bajo o agotado y avisa para reponer antes de perder ventas.",
+	},
+	{
+		question: "¿La telemetría reemplaza las visitas a terreno?",
+		answer:
+			"No las elimina, pero las prioriza. El software indica qué máquina necesita reposición, soporte o revisión, y arma rutas solo donde hay trabajo real.",
+	},
+	{
+		question: "¿Sirve para pocas máquinas expendedoras?",
+		answer:
+			"Sí. Una flota chica también gana con telemetría vending: menos visitas innecesarias, mejor control de stock y ventas claras por ubicación.",
+	},
+];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqs.map((faq) => ({
+		"@type": "Question",
+		name: faq.question,
+		acceptedAnswer: { "@type": "Answer", text: faq.answer },
+	})),
+};
+
+const softwareSchema = {
+	"@context": "https://schema.org",
+	"@type": "SoftwareApplication",
+	name: "Inbyte Telemetría Vending",
+	applicationCategory: "BusinessApplication",
+	operatingSystem: "Web, iOS, Android",
+	description,
+	offers: {
+		"@type": "Offer",
+		availability: "https://schema.org/InStock",
+		areaServed: "CL",
+	},
+	featureList: [
+		"Telemetría vending",
+		"Software para máquinas expendedoras",
+		"Control de stock de máquinas vending",
+		"Rutas de reposición",
+		"Dashboards BI",
+	],
+};
+---
+
+<V5Layout title={title} description={description}>
+	<Nav />
+	<main id="contenido" class="v5-tel">
+		<section class="v5-tel__hero v5-band v5-band--dark">
+			<div class="v5-container">
+				<p class="v5-kicker">Software para máquinas expendedoras</p>
+				<h1>Telemetría vending</h1>
+				<p>
+					Software para máquinas expendedoras que conecta tu red a datos en tiempo real: ventas, fallas y
+					<strong>control de stock de máquinas vending</strong> desde un solo dashboard.
+				</p>
+				<div class="v5-hero__ctas v5-hero__ctas--center">
+					<V5Button client:visible href="/contact/">Ver telemetría</V5Button>
+					<V5Button client:visible variant="outline" href="/vending/">Ver vending</V5Button>
+				</div>
+				<ul class="v5-tel__keys">
+					<li>Telemetría vending</li>
+					<li>Software para máquinas expendedoras</li>
+					<li>Control de stock máquinas vending</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="v5-section v5-section--tight v5-band v5-band--light">
+			<div class="v5-container">
+				<div class="v5-signals">
+					{
+						telSignals.map((signal, index) => (
+							<div class:list={["v5-card", "v5-lift", "v5-lift--signal", index === 0 && "v5-lift--lead"]}>
+								<span class="v5-lift__mark" aria-hidden="true">{padLift(index)}</span>
+								<div class="v5-lift__icon" aria-hidden="true" set:html={liftIcons[index % liftIcons.length]} />
+								<p class="v5-card__label">{signal.label}</p>
+								<p>{signal.value}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--dark" id="software" aria-labelledby="software-title">
+			<div class="v5-container">
+				<div class="v5-tel__feature">
+					<figure class="v5-tel__shot">
+						<Image
+							src={DashVend}
+							alt="Software para máquinas expendedoras Inbyte: dashboard de telemetría vending con ventas, ingresos y productos en laptop y celular"
+							widths={[720, 1080, 1440]}
+							sizes="(min-width: 900px) 560px, 92vw"
+							loading="eager"
+						/>
+					</figure>
+					<div class="v5-tel__copy">
+						<p class="v5-eyebrow">Dashboard de ventas</p>
+						<h2 class="v5-h2" id="software-title">Software para máquinas expendedoras</h2>
+						<p>
+							El software de telemetría vending concentra la operación en laptop y celular: ventas totales, ingresos,
+							tickets y el ranking de productos por máquina.
+						</p>
+						<p>
+							Ves qué máquina está en línea, qué SKU empuja la caja y en qué horario se mueve cada ubicación. Dejas de
+							adivinar y operas con evidencia.
+						</p>
+						<ul class="v5-page-list">
+							<li>Ventas totales, ingresos y productos vendidos al minuto</li>
+							<li>Gráfico de ventas recientes y participación por máquina</li>
+							<li>Productos más vendidos: Coca-Cola, snacks, agua y más</li>
+							<li>Estado de la red: máquinas en línea y fuera de línea</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--light" id="stock" aria-labelledby="stock-title">
+			<div class="v5-container">
+				<div class="v5-tel__feature v5-tel__feature--reverse">
+					<figure class="v5-tel__shot">
+						<Image
+							src={DashStock}
+							alt="Control de stock de máquinas vending: inventario por máquina y producto, stock bajo y agotados en el software Inbyte"
+							widths={[720, 1080, 1440]}
+							sizes="(min-width: 900px) 560px, 92vw"
+							loading="lazy"
+						/>
+					</figure>
+					<div class="v5-tel__copy">
+						<p class="v5-eyebrow">Inventario en tiempo real</p>
+						<h2 class="v5-h2" id="stock-title">Control de stock de máquinas vending</h2>
+						<p>
+							El control de stock de máquinas vending muestra inventario por máquina y producto: cuánto queda, cuál es
+							la capacidad y qué está bajo o agotado.
+						</p>
+						<p>
+							Buscas un SKU, filtras la flota y recibes alertas antes de que la máquina se quede vacía. Menos visitas
+							ciegas, menos quiebre, más venta continua.
+						</p>
+						<ul class="v5-page-list">
+							<li>Stock actual versus capacidad en cada espiral o bandeja</li>
+							<li>Alertas de stock bajo y productos agotados</li>
+							<li>Estados claros: disponible, bajo o sin datos</li>
+							<li>Vista móvil del inventario para el operador en ruta</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--dark" id="rutas" aria-labelledby="rutas-title">
+			<div class="v5-container">
+				<div class="v5-tel__feature">
+					<figure class="v5-tel__shot">
+						<Image
+							src={DashRutas}
+							alt="Telemetría vending Inbyte: rutas de reposición de máquinas expendedoras con mapa, paradas y stock bajo"
+							widths={[720, 1080, 1440]}
+							sizes="(min-width: 900px) 560px, 92vw"
+							loading="lazy"
+						/>
+					</figure>
+					<div class="v5-tel__copy">
+						<p class="v5-eyebrow">Reposición inteligente</p>
+						<h2 class="v5-h2" id="rutas-title">Rutas armadas con telemetría vending</h2>
+						<p>
+							Cuando el software para máquinas expendedoras sabe el stock real, la ruta deja de ser una ronda fija.
+							Visitas solo las máquinas que necesitan reposición o soporte.
+						</p>
+						<p>
+							El mapa muestra rutas activas, paradas completadas, stock bajo en el trayecto y la hora estimada de la
+							próxima máquina. El celular lleva el mismo plan al terreno.
+						</p>
+						<ul class="v5-page-list">
+							<li>Rutas activas, máquinas en ruta y paradas completadas</li>
+							<li>Alertas de stock bajo integradas a cada parada</li>
+							<li>Mapa operativo con orden de visita y llegada estimada</li>
+							<li>Menos kilómetros, menos combustible, más máquinas atendidas</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--light">
+			<div class="v5-container">
+				<div class="v5-head v5-head--center">
+					<h2 class="v5-h2">Por qué usar telemetría vending de Inbyte</h2>
+					<p class="v5-sub">
+						Un software para máquinas expendedoras pensado para operadores que necesitan control de stock, ventas y
+						rutas en la misma herramienta.
+					</p>
+				</div>
+				<div class="v5-page-grid">
+					{
+						whyCards.map((card, index) => (
+							<article class:list={["v5-card", "v5-lift", index === 0 && "v5-lift--lead"]}>
+								<span class="v5-lift__mark" aria-hidden="true">{padLift(index)}</span>
+								<div class="v5-lift__icon" aria-hidden="true" set:html={liftIcons[index % liftIcons.length]} />
+								<span class="v5-lift__index">{padLift(index)}</span>
+								<h3>{card.title}</h3>
+								<p>{card.body}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--dark">
+			<div class="v5-container">
+				<div class="v5-head v5-head--center">
+					<h2 class="v5-h2">Preguntas frecuentes</h2>
+					<p class="v5-sub">Respuestas sobre telemetría vending, software y control de stock.</p>
+				</div>
+				<div class="v5-page-grid v5-page-grid--two v5-tel__faqs">
+					{
+						faqs.map((faq, index) => (
+							<article class="v5-card v5-lift">
+								<span class="v5-lift__mark" aria-hidden="true">{padLift(index)}</span>
+								<div class="v5-lift__icon" aria-hidden="true" set:html={liftIcons[4]} />
+								<span class="v5-lift__index">{padLift(index)}</span>
+								<h3>{faq.question}</h3>
+								<p>{faq.answer}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-section--tight v5-band v5-band--light">
+			<div class="v5-container">
+				<div class="v5-resources">
+					<p class="v5-card__label">Más recursos</p>
+					<ul>
+						<li>
+							<a href="/blog/telemetria-dashboards-bi-vending/">Telemetría y dashboards BI para vending</a>
+						</li>
+						<li>
+							<a href="/vending/">Pagos electrónicos para máquinas vending</a>
+						</li>
+						<li>
+							<a href="/pos-mdb-vending/">POS MDB para máquinas expendedoras</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="v5-section v5-band v5-band--dark">
+			<div class="v5-container">
+				<div class="v5-cta v5-tel__cta">
+					<h2>Activa telemetría vending en tu red</h2>
+					<p>
+						Revisamos tu flota, el software para máquinas expendedoras que necesitas y el control de stock de cada
+						ubicación.
+					</p>
+					<V5Button client:visible href="/contact/">Hablar con Inbyte</V5Button>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+	<script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+</V5Layout>

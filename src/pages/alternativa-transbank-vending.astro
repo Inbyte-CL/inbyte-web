@@ -1,0 +1,65 @@
+---
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import V5Landing from "@/components/v5/V5Landing.astro";
+import DashboardImage from "@/data/Parking/Dashboard.png";
+
+const sections = [
+	{
+		title: "Si buscas Transbank para autoservicio o vending",
+		body: "Muchas búsquedas por Transbank en autoservicio nacen de una pregunta práctica: cómo aceptar pago con tarjeta en un punto desatendido. Inbyte aborda esa necesidad desde la integración completa de la máquina, no solo desde el procesamiento del pago.",
+		items: [
+			"Revisión de máquina, protocolo MDB, energía y conectividad.",
+			"Integración de pago digital en flujo de venta desatendido.",
+			"Datos de operación para controlar ventas, disponibilidad y rendimiento.",
+		],
+	},
+	{
+		title: "Inbyte no es solo un botón de pago",
+		body: "En vending y autoservicio, el desafío no termina cuando el pago se aprueba. También hay que asegurar que la máquina entregue, registre, reporte y siga disponible.",
+		items: [
+			"Telemetría para detectar problemas antes de perder ventas.",
+			"Dashboards BI para analizar ubicaciones y productos.",
+			"Soporte técnico para continuidad operacional.",
+		],
+	},
+	{
+		title: "Cuándo Inbyte tiene sentido",
+		body: "Inbyte es especialmente útil si quieres transformar máquinas expendedoras o puntos de autoservicio en canales digitales con pago, datos y control operacional.",
+		items: [
+			"Operadores de vending que quieren aceptar tarjeta y NFC.",
+			"Empresas con máquinas en ubicaciones de alto tránsito.",
+			"Negocios que necesitan visibilidad de ventas y fallas.",
+		],
+	},
+];
+
+const faqs = [
+	{
+		question: "¿Inbyte reemplaza a Transbank?",
+		answer: "No necesariamente. Inbyte se enfoca en integrar pagos, máquina, conectividad, telemetría y datos operativos. La configuración de adquirencia depende del caso comercial y técnico.",
+	},
+	{
+		question: "¿Por qué buscar una alternativa para vending?",
+		answer: "Porque una máquina expendedora requiere más que aceptar tarjeta: necesita compatibilidad técnica, flujo MDB, soporte, conectividad y reportes de operación.",
+	},
+	{
+		question: "¿Inbyte sirve para autoservicio?",
+		answer: "Sí. Inbyte trabaja con pagos digitales y datos para vending, parking y puntos de autoservicio donde no hay caja manual.",
+	},
+];
+---
+
+<V5Layout
+	title="Alternativa a Transbank para vending y autoservicio | Inbyte"
+	description="Inbyte integra pagos, POS MDB, telemetría y dashboards para vending y autoservicio. Una alternativa para quienes buscan pago con tarjeta en máquinas expendedoras."
+>
+	<V5Landing
+		eyebrow="Alternativa Transbank autoservicio"
+		heading="Alternativa a Transbank para vending y autoservicio"
+		intro="Si buscas aceptar pagos con tarjeta en máquinas expendedoras o puntos desatendidos, Inbyte puede ayudarte con una integración orientada a operación, datos y continuidad."
+		image={DashboardImage}
+		imageAlt="Dashboard de operación para vending y autoservicio"
+		sections={sections}
+		faqs={faqs}
+	/>
+</V5Layout>

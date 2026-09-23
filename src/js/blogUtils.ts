@@ -13,22 +13,6 @@ import { locales } from "@/config/siteSettings.json";
  * @param lang: string (optional) - language to filter by (matching a locale in i18nUtils.ts)
  * @returns all blog posts, filtered for drafts, sorted by date, future posts removed, locale removed from slug, and filtered by language if passed
  *
- * ## Examples
- *
- * ### If not using i18n features
- * ```ts
- * const posts = await getAllPosts();
- * ```
- *
- * ### If using i18n features
- * ```ts
- * const posts = await getAllPosts("en");
- * ```
- * or
- * ```ts
- * const currentLocale = getLocaleFromUrl(Astro.url);
- * const posts = await getAllPosts(currentLocale);
- * ```
  */
 export async function getAllPosts(
 	lang?: (typeof locales)[number],

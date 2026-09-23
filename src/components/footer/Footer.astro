@@ -1,17 +1,13 @@
 ---
-// components
 import FooterLink from "@/components/footer/FooterLink.astro";
 import SiteLogo from "@/components/site-logo/SiteLogo.astro";
 import FooterContactForm from "@/components/forms/FooterContactForm.astro";
 
-// utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
 
-// data
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
-
 const today = new Date();
 
 interface FooterLinkItem {
@@ -22,8 +18,12 @@ interface FooterLinkItem {
 
 const navigationLinks: FooterLinkItem[] = [
 	{ label: "Inicio", href: "/", newTab: false },
-	{ label: "Parking", href: "/parking/", newTab: false },
 	{ label: "Vending", href: "/vending/", newTab: false },
+	{ label: "POS MDB", href: "/pos-mdb-vending/", newTab: false },
+	{ label: "Pago con tarjeta", href: "/maquinas-expendedoras-pago-tarjeta/", newTab: false },
+	{ label: "Telemetría vending", href: "/telemetria-vending/", newTab: false },
+	{ label: "Autoservicio", href: "/autoservicio-vending/", newTab: false },
+	{ label: "Parking", href: "/parking/", newTab: false },
 	{ label: "Blog", href: "/blog/", newTab: false },
 	{ label: "Contacto", href: "/contact/", newTab: false },
 	{ label: "Política de Privacidad", href: "/privacy/", newTab: false },
@@ -35,15 +35,12 @@ const navigationLinks: FooterLinkItem[] = [
 		<div class="flex w-full flex-col justify-between gap-x-4 gap-y-10 md:flex-row md:gap-10">
 			<div class="flex flex-1 max-w-3xl flex-col items-start">
 				<SiteLogo />
-				<h3 class="mt-8 mb-6 text-xl font-medium">
-					Contacto
-				</h3>
+				<h3 class="mt-8 mb-6 text-xl font-medium">Contacto</h3>
 				<div class="w-full">
 					<FooterContactForm />
 				</div>
 			</div>
 			<div class="flex flex-col gap-x-32 gap-y-10 sm:flex-row md:mt-28">
-				<!-- Navegación -->
 				<div class="flex flex-col gap-1">
 					<h3 class="mb-4 font-medium">Navegación</h3>
 					{
@@ -57,7 +54,6 @@ const navigationLinks: FooterLinkItem[] = [
 			</div>
 		</div>
 
-		<!-- Bottom Bar -->
 		<div class="pt-20">
 			<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
 				<p class="opacity-60">

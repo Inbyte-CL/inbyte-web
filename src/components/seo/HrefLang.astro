@@ -18,7 +18,7 @@ const siteOrigin = Astro.site?.origin || "https://www.inbyte.cl";
 {
 		[defaultLocale].map((lang) => (
 			<>
-				<link rel="alternate" hreflang={lang} href={siteOrigin + localizedPaths[lang]} />
+				<link rel="alternate" hreflang="es-CL" href={siteOrigin + localizedPaths[lang]} />
 				{lang === defaultLocale && (
 					<link
 						rel="alternate"

@@ -1,0 +1,80 @@
+---
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import V5Landing from "@/components/v5/V5Landing.astro";
+import VendingImage from "@/data/Parking/vending.png";
+
+const sections = [
+	{
+		title: "Pago con tarjeta en máquinas expendedoras",
+		body: "Si tus máquinas solo aceptan efectivo, cada usuario sin monedas es una venta perdida. Inbyte integra pagos con tarjeta, contactless y billeteras digitales para operaciones de vending en Chile.",
+		items: [
+			"Tarjetas de débito y crédito según la configuración del adquirente.",
+			"Pagos NFC con teléfono o reloj compatible.",
+			"Experiencia de compra rápida, sin cambio y sin cajero.",
+		],
+	},
+	{
+		title: "Más que aceptar pagos",
+		body: "El pago es solo el inicio. Una integración bien diseñada permite revisar ventas por máquina, detectar fallas y tomar mejores decisiones de reposición.",
+		items: [
+			"Control de ventas por ubicación y horario.",
+			"Alertas operativas para reducir máquinas fuera de servicio.",
+			"Datos listos para dashboard BI y reportes comerciales.",
+		],
+	},
+	{
+		title: "Para operadores de vending",
+		body: "La solución está pensada para dueños y operadores que necesitan escalar sin depender de visitas innecesarias ni conciliaciones manuales eternas.",
+		items: [
+			"Diagnóstico técnico antes de instalar.",
+			"Integración con máquinas compatibles con MDB.",
+			"Soporte para continuidad operacional.",
+		],
+	},
+];
+
+const faqs = [
+	{
+		question: "¿Cómo poner pago con tarjeta a una máquina expendedora?",
+		answer: "Primero se revisa compatibilidad, protocolo MDB, energía y conectividad. Luego se instala el POS, se configura el flujo de venta y se prueban transacciones reales.",
+	},
+	{
+		question: "¿Necesito internet en cada máquina?",
+		answer: "Sí. Los pagos electrónicos requieren conectividad estable. Inbyte evalúa la mejor alternativa según ubicación y señal disponible.",
+	},
+	{
+		question: "¿También puedo ver reportes?",
+		answer: "Sí. Inbyte puede complementar el pago con telemetría y dashboards para controlar ventas, stock, horarios y rendimiento por ubicación.",
+	},
+];
+---
+
+<V5Layout
+	title="Máquinas expendedoras con pago con tarjeta | Vending Chile"
+	description="Agrega pago con tarjeta, contactless y billeteras digitales a máquinas expendedoras. POS MDB, telemetría y dashboards para vending en Chile."
+>
+	<V5Landing
+		eyebrow="Pago con tarjeta vending"
+		heading="Máquinas expendedoras con pago con tarjeta"
+		intro="Moderniza tu flota vending para aceptar pagos electrónicos y operar con información comercial en tiempo real."
+		image={VendingImage}
+		imageAlt="Máquina expendedora con pago electrónico"
+		sections={sections}
+		faqs={faqs}
+		signals={[
+			{ label: "Conversión", value: "Menos fricción al comprar" },
+			{ label: "Experiencia", value: "Pago rápido sin efectivo" },
+			{ label: "Operación", value: "Ventas visibles por ubicación" },
+		]}
+		visualTitle="Cada máquina como un punto de venta digital"
+		visualBody="El pago con tarjeta permite vender cuando el usuario no lleva efectivo, mientras la operación gana trazabilidad para conciliar, medir y escalar."
+		primaryLabel="Cotizar pago con tarjeta"
+		secondaryLabel="Ver POS MDB"
+		secondaryHref="/pos-mdb-vending/"
+		resources={[
+			{ href: "/blog/futuro-pagos-electronicos-vending-chile/", label: "Pagos electrónicos para vending en Chile" },
+			{ href: "/blog/seguridad-pagos-electronicos-vending/", label: "Seguridad en pagos electrónicos para vending" },
+			{ href: "/pos-mdb-vending/", label: "POS MDB para máquinas expendedoras" },
+		]}
+	/>
+</V5Layout>

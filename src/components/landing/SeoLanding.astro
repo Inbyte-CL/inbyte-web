@@ -1,0 +1,328 @@
+---
+import { Image } from "astro:assets";
+import Button from "@/components/button/Button.astro";
+import { Icon } from "astro-icon/components";
+import CircleCheck from "@tabler/icons/filled/circle-check.svg";
+
+interface SectionItem {
+	title: string;
+	body: string;
+	items?: string[];
+}
+
+interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+interface SignalItem {
+	label: string;
+	value: string;
+}
+
+interface Props {
+	eyebrow: string;
+	heading: string;
+	intro: string;
+	image?: ImageMetadata;
+	imageAlt?: string;
+	sections: SectionItem[];
+	faqs?: FaqItem[];
+	signals?: SignalItem[];
+	visualTitle?: string;
+	visualBody?: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
+}
+
+const {
+	eyebrow,
+	heading,
+	intro,
+	image,
+	imageAlt = heading,
+	sections,
+	faqs = [],
+	signals = [
+		{ label: "Tecnología", value: "POS MDB, NFC y telemetría" },
+		{ label: "Operación", value: "Vending y autoservicio" },
+		{ label: "Mercado", value: "Chile" },
+	],
+	visualTitle = "Una operación conectada de punta a punta",
+	visualBody = "Inbyte une pago, máquina, datos y soporte en un flujo ordenado para que cada punto de venta funcione con menos fricción y más visibilidad.",
+	primaryHref = "/contact/",
+	primaryLabel = "Hablar con Inbyte",
+	secondaryHref = "/vending/",
+	secondaryLabel = "Ver vending",
+} = Astro.props as Props;
+
+const leadSection = sections[0];
+const detailSections = sections.slice(1);
+
+const faqSchema =
+	faqs.length > 0
+		? {
+				"@context": "https://schema.org",
+				"@type": "FAQPage",
+				mainEntity: faqs.map((faq) => ({
+					"@type": "Question",
+					name: faq.question,
+					acceptedAnswer: {
+						"@type": "Answer",
+						text: faq.answer,
+					},
+				})),
+			}
+		: null;
+---
+
+<section id="service-hero" class="-mt-23 overflow-hidden pt-23">
+	<div class="site-container relative pt-20 pb-10 md:pb-16">
+		<div class="mx-auto max-w-5xl text-center">
+			<p
+				class="mb-5 text-sm font-medium uppercase tracking-normal text-primary"
+				data-aos="fade-up"
+				data-aos-trigger="#service-hero"
+			>
+				{eyebrow}
+			</p>
+			<h1
+				class="font-heading mx-auto max-w-5xl text-4xl tracking-normal sm:text-5xl md:text-6xl lg:text-8xl"
+				data-aos="fade-up"
+				data-aos-trigger="#service-hero"
+				data-aos-delay=".08"
+			>
+				{heading}
+			</h1>
+			<p
+				class="mx-auto mt-8 max-w-3xl px-2 text-base leading-relaxed opacity-80 sm:text-lg md:text-xl"
+				data-aos="fade-up"
+				data-aos-trigger="#service-hero"
+				data-aos-delay=".16"
+			>
+				{intro}
+			</p>
+			<div
+				class="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:flex-row"
+				data-aos="fade-up"
+				data-aos-trigger="#service-hero"
+				data-aos-delay=".24"
+			>
+				<Button href={primaryHref} class="w-full sm:w-auto sm:min-w-[200px]" arrow="right">
+					{primaryLabel}
+				</Button>
+				<Button href={secondaryHref} variant="secondary" class="w-full sm:w-auto sm:min-w-[180px]">
+					{secondaryLabel}
+				</Button>
+			</div>
+		</div>
+
+		{
+			image && (
+				<div
+					class="mx-auto mt-12 max-w-4xl"
+					data-aos="fade-up"
+					data-aos-trigger="#service-hero"
+					data-aos-delay=".32"
+				>
+					<div class="tilt-card overflow-hidden rounded-3xl border border-border/30 bg-base-200/30 dark:bg-base-900/30">
+						<Image
+							class="aspect-[16/9] w-full object-cover"
+							src={image}
+							alt={imageAlt}
+							widths={[640, 960, 1280]}
+							sizes="(min-width: 1024px) 900px, 92vw"
+							loading="eager"
+						/>
+					</div>
+				</div>
+			)
+		}
+	</div>
+</section>
+
+<section class="overflow-hidden border-y border-border/40 bg-base-200/30 py-8 dark:bg-base-900/30">
+	<div class="site-container">
+		<div class="grid gap-4 md:grid-cols-3">
+			{
+				signals.map((signal, index) => (
+					<div class="rounded-3xl bg-background/70 p-6 dark:bg-base-950/40" data-aos="fade-up" data-aos-delay={index * 0.08}>
+						<p class="mb-2 text-sm font-medium uppercase tracking-normal text-primary">{signal.label}</p>
+						<p class="text-lg font-medium leading-snug">{signal.value}</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+{
+	leadSection && (
+		<section id="service-lead" class="overflow-hidden py-16 md:py-24">
+			<div class="site-container">
+				<div class="mx-auto grid max-w-5xl gap-10 md:grid-cols-[.95fr_1.05fr] md:items-center">
+					<div data-aos="fade-right" data-aos-trigger="#service-lead">
+						<p class="mb-4 text-sm font-medium uppercase tracking-normal text-primary">Solución</p>
+						<h2 class="h2 mb-6">{leadSection.title}</h2>
+						<p class="text-muted-foreground text-lg leading-relaxed">{leadSection.body}</p>
+					</div>
+					<div
+						class="grid gap-4"
+						data-aos="fade-left"
+						data-aos-trigger="#service-lead"
+						data-aos-delay=".12"
+					>
+						{leadSection.items?.map((item) => (
+							<div class="rounded-3xl bg-primary-200/30 p-5 dark:bg-primary-900/40">
+								<div class="flex gap-3">
+									<CircleCheck class="mt-1 size-5 flex-shrink-0 text-primary" />
+									<p class="text-muted-foreground leading-relaxed">{item}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+<section id="service-cards" class="overflow-hidden bg-base-200/30 py-16 dark:bg-base-900/30 md:py-24">
+	<div class="site-container">
+		<div class="mx-auto max-w-6xl">
+			<div class="mb-12 text-center" data-aos="fade-up" data-aos-trigger="#service-cards">
+				<h2 class="h2 mb-5">Cómo mejora tu operación</h2>
+				<p class="text-muted-foreground mx-auto max-w-3xl">
+					Ordenamos la implementación para que el pago, la máquina y los datos trabajen juntos desde el primer día.
+				</p>
+			</div>
+			<div class="grid gap-6 md:grid-cols-2">
+				{
+					detailSections.map((section, index) => (
+						<article
+							class:list={[
+								"tilt-card bg-gradient-radial-dark rounded-5xl border-border/30 relative overflow-hidden border p-8 will-change-transform",
+								index === detailSections.length - 1 && detailSections.length % 2 === 1 && "md:col-span-2",
+							]}
+							data-aos="fade-up"
+							data-aos-trigger="#service-cards"
+							data-aos-delay={(index + 1) * 0.1}
+						>
+							<div class="relative z-10">
+								<div class="mb-4 flex items-center gap-3">
+									<Icon name={index % 2 === 0 ? "tabler/devices" : "tabler/layout"} class="size-6 flex-shrink-0 text-primary" />
+									<h3 class="text-xl font-semibold">{section.title}</h3>
+								</div>
+								<p class="text-muted-foreground mb-6 leading-relaxed">{section.body}</p>
+								{section.items && (
+									<ul class="grid gap-3">
+										{section.items.map((item) => (
+											<li class="flex gap-3 text-sm text-muted-foreground">
+												<CircleCheck class="mt-0.5 size-4 flex-shrink-0 text-primary" />
+												<span>{item}</span>
+											</li>
+										))}
+									</ul>
+								)}
+							</div>
+							<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-32 bg-gradient-to-br from-transparent via-transparent opacity-50 blur-lg" />
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="service-visual" class="overflow-hidden py-16 md:py-24">
+	<div class="site-container">
+		<div class="mx-auto grid max-w-5xl gap-10 md:grid-cols-2 md:items-center">
+			{
+				image && (
+					<div class="order-2 md:order-1" data-aos="fade-right" data-aos-trigger="#service-visual">
+						<div class="tilt-card overflow-hidden rounded-3xl border border-border/30 bg-base-200/30 dark:bg-base-900/30">
+							<Image
+								class="aspect-[4/3] w-full object-cover"
+								src={image}
+								alt={imageAlt}
+								widths={[480, 720, 960]}
+								sizes="(min-width: 768px) 480px, 92vw"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				)
+			}
+			<div class="order-1 md:order-2" data-aos="fade-left" data-aos-trigger="#service-visual" data-aos-delay=".12">
+				<p class="mb-4 text-sm font-medium uppercase tracking-normal text-primary">Control</p>
+				<h2 class="h2 mb-6">{visualTitle}</h2>
+				<p class="text-muted-foreground mb-8 text-lg leading-relaxed">{visualBody}</p>
+				<ul class="grid gap-3.5">
+					<li class="inline-flex gap-3">
+						<CircleCheck class="mt-0.5 size-5 flex-shrink-0 text-primary" />
+						<span>Revisión técnica antes de implementar</span>
+					</li>
+					<li class="inline-flex gap-3">
+						<CircleCheck class="mt-0.5 size-5 flex-shrink-0 text-primary" />
+						<span>Pruebas de venta y continuidad operacional</span>
+					</li>
+					<li class="inline-flex gap-3">
+						<CircleCheck class="mt-0.5 size-5 flex-shrink-0 text-primary" />
+						<span>Datos listos para reportes y decisiones</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+{
+	faqs.length > 0 && (
+		<section class="overflow-hidden bg-base-200/30 py-16 dark:bg-base-900/30 md:py-24">
+			<div class="site-container">
+				<div class="mx-auto max-w-6xl">
+					<div class="mb-12 text-center" data-aos="fade-up">
+						<h2 class="h2 mb-5">Preguntas frecuentes</h2>
+						<p class="text-muted-foreground mx-auto max-w-3xl">
+							Respuestas rápidas para evaluar si la solución calza con tu flota actual.
+						</p>
+					</div>
+					<div class="grid gap-6 md:grid-cols-3">
+						{faqs.map((faq, index) => (
+							<div class="rounded-3xl border border-border/40 bg-background/70 p-6 dark:bg-base-950/40" data-aos="fade-up" data-aos-delay={index * 0.08}>
+								<h3 class="mb-3 text-lg font-semibold">{faq.question}</h3>
+								<p class="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+			{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+		</section>
+	)
+}
+
+<section id="service-cta" class="overflow-hidden py-24">
+	<div class="site-container">
+		<div class="bg-gradient-radial-dark rounded-6xl py-14" data-aos="fade-up" data-aos-trigger="#service-cta">
+			<div class="mx-auto px-4 text-center md:max-w-3xl">
+				<h2 class="h2 mb-6">Moderniza tu operación con Inbyte</h2>
+				<p class="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg leading-relaxed">
+					Revisamos tu infraestructura, compatibilidad, conectividad y objetivos comerciales para proponer una implementación ordenada.
+				</p>
+				<Button href="/contact/" class="w-full sm:w-auto sm:min-w-[220px]" arrow="right">
+					Agendar evaluación
+				</Button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import initTiltCards from "@/js/tiltCard";
+
+	initTiltCards();
+	document.addEventListener("astro:after-swap", initTiltCards);
+</script>

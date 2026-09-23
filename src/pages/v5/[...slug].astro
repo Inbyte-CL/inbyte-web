@@ -1,0 +1,5 @@
+---
+const slug = Astro.params.slug ?? "";
+const dest = `/${slug.replace(/\/+$/, "")}/`;
+return Astro.redirect(dest, 301);
+---

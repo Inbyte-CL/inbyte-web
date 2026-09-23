@@ -1,0 +1,123 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HeroCenterDashboardV4 from "@/components/v4/HeroCenterDashboardV4.astro";
+import FeatureSideImage from "@/components/feature/FeatureSideImage.astro";
+import QueHacemos from "@/components/feature/QueHacemos.astro";
+import Button from "@/components/button/Button.astro";
+import { Image } from "astro:assets";
+import DashVend from "@/data/Parking/dashvend-devices.png";
+
+import { getAllPosts } from "@/js/blogUtils";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+const latestPosts = (await getAllPosts(currLocale)).slice(0, 5);
+
+const seoLinks = [
+	{
+		title: "POS MDB para vending",
+		href: "/pos-mdb-vending/",
+		text: "Integra pagos con tarjeta, NFC y billeteras digitales en máquinas expendedoras compatibles.",
+	},
+	{
+		title: "Pago con tarjeta en expendedoras",
+		href: "/maquinas-expendedoras-pago-tarjeta/",
+		text: "Moderniza máquinas que hoy dependen de efectivo y transforma cada equipo en un punto de venta digital.",
+	},
+	{
+		title: "Telemetría vending",
+		href: "/telemetria-vending/",
+		text: "Controla ventas, disponibilidad, ubicaciones y rendimiento con dashboards BI personalizados.",
+	},
+	{
+		title: "Autoservicio vending",
+		href: "/autoservicio-vending/",
+		text: "Diseña experiencias de compra desatendida para vending, parking y puntos de alto tráfico.",
+	},
+];
+---
+
+<BaseLayout
+	title={`${siteData.title} · v4`}
+	description={siteData.description}
+	noindex={true}
+>
+	<HeroCenterDashboardV4 />
+	<FeatureSideImage />
+
+	<section class="overflow-hidden pt-8 pb-12">
+		<div class="site-container">
+			<div class="w-full max-w-6xl mx-auto">
+				<div class="mb-12 text-center">
+					<h2 class="h2 mb-6">Pagos y datos para operar mejor</h2>
+					<p class="mx-auto max-w-2xl text-lg opacity-80">
+						Inbyte integra POS MDB, pagos electrónicos, telemetría y dashboards BI para que operadores de
+						vending y autoservicio controlen ventas, disponibilidad y rentabilidad en tiempo real.
+					</p>
+				</div>
+				<div class="mx-auto max-w-max">
+					<Image
+						class="tilt-card rounded-3xl"
+						src={DashVend}
+						alt="Dashboard BI de INBYTE para ventas y telemetría de vending"
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="site-container py-16 md:py-24">
+		<div class="mb-10 max-w-3xl">
+			<p class="mb-4 text-sm font-medium uppercase tracking-widest text-primary-500">Soluciones para vending</p>
+			<h2 class="h2">Moderniza tus máquinas y controla tu operación</h2>
+			<p class="mt-5 text-lg opacity-80">
+				Encuentra soluciones para aceptar pagos con tarjeta, integrar POS MDB, sumar telemetría y operar
+				puntos de autoservicio con más control y menos fricción.
+			</p>
+		</div>
+		<div class="grid gap-6 md:grid-cols-2">
+			{
+				seoLinks.map((item) => (
+					<a class="border-t border-foreground/10 pt-6 transition-opacity hover:opacity-75" href={item.href}>
+						<h3 class="mb-3 text-2xl font-medium">{item.title}</h3>
+						<p class="opacity-80">{item.text}</p>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<QueHacemos />
+
+	{
+		latestPosts.length > 0 && (
+			<section class="site-container py-16 md:py-24">
+				<div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+					<div class="max-w-3xl">
+						<p class="mb-4 text-sm font-medium uppercase tracking-widest text-primary-500">Blog</p>
+						<h2 class="h2">Ideas para modernizar tu operación</h2>
+						<p class="mt-5 text-lg opacity-80">
+							Guías sobre pagos electrónicos, telemetría, autoservicio y tendencias de vending en Chile.
+						</p>
+					</div>
+					<Button href="/blog/" variant="secondary" class="w-full sm:w-auto">
+						Ver todos los artículos
+					</Button>
+				</div>
+				<div class="grid gap-4 border-t border-foreground/10 pt-8">
+					{latestPosts.map((post) => (
+						<a
+							href={`/blog/${post.id}/`}
+							class="group flex flex-col gap-2 border-b border-foreground/10 py-5 transition-opacity hover:opacity-75 md:flex-row md:items-center md:justify-between"
+						>
+							<span class="text-xl font-medium md:text-2xl">{post.data.title}</span>
+							<span class="text-sm opacity-60 group-hover:opacity-100">Leer artículo</span>
+						</a>
+					))}
+				</div>
+			</section>
+		)
+	}
+</BaseLayout>

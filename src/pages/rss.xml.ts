@@ -27,8 +27,7 @@ export async function GET(context) {
 		title: siteData.title,
 		// `<description>` field in output xml
 		description: siteData.description,
-		// Pull in your project "site" from the endpoint context
-		// https://docs.astro.build/en/reference/api-reference/#contextsite
+		// Pull in the configured site URL from the endpoint context.
 		site: context.site,
 		// media is needed for blog posts. recommended to add atom support
 		xmlns: {

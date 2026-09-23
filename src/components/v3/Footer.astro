@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import Logo from "@/assets/images/Inbyte-Logo.png";
+---
+
+<footer class="v3-footer">
+	<div class="v3-container">
+		<div class="v3-footer__grid">
+			<div class="v3-footer__brand">
+				<a class="v3-nav__brand" href="/v3/" aria-label="INBYTE">
+					<Image src={Logo} alt="INBYTE" height={24} />
+				</a>
+				<p class="v3-body">
+					POS MDB, pagos electrónicos, telemetría y dashboards BI para máquinas expendedoras y
+					autoservicio en Chile.
+				</p>
+			</div>
+
+			<div class="v3-footer__col">
+				<h4>Soluciones</h4>
+				<a href="/vending">Vending</a>
+				<a href="/parking">Parking</a>
+				<a href="/pos-mdb-vending">POS MDB</a>
+				<a href="/telemetria-vending">Telemetría</a>
+			</div>
+
+			<div class="v3-footer__col">
+				<h4>Recursos</h4>
+				<a href="/blog">Blog</a>
+				<a href="/faq">FAQ</a>
+				<a href="/autoservicio-vending">Autoservicio</a>
+				<a href="/alternativa-transbank-vending">Alternativa Transbank</a>
+			</div>
+
+			<div class="v3-footer__col">
+				<h4>Empresa</h4>
+				<a href="/contact">Contacto</a>
+				<a href="/privacy-policy">Privacidad</a>
+				<a href="/">Sitio actual</a>
+				<a href="/v2/">Prototipo v2</a>
+			</div>
+		</div>
+
+		<div class="v3-footer__bottom">
+			<span>© {new Date().getFullYear()} INBYTE · Prototipo /v3 (noindex)</span>
+		</div>
+	</div>
+</footer>

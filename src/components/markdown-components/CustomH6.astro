@@ -1,12 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-// utils
-import { getLocalizedPathname } from "@/js/translationUtils";
-import { getLocaleFromUrl } from "@/js/localeUtils";
 import type { HTMLAttributes } from "astro/types";
-
-const currLocale = getLocaleFromUrl(Astro.url);
 
 interface Props extends HTMLAttributes<"h6"> {
 	id: string;
@@ -14,15 +9,14 @@ interface Props extends HTMLAttributes<"h6"> {
 
 const { id, ...rest } = Astro.props;
 
-const domain = Astro.url.origin + getLocalizedPathname(currLocale, Astro.url); // pulls from astro.config.mjs
-// console.log(domain + "#" + id);
+const domain = Astro.url.origin + Astro.url.pathname;
 ---
 
 <h6 id={id} {...rest} class="group flex flex-wrap items-center gap-2">
 	<span><slot /></span>
 	<button
 		class="tooltip-trigger not-content after:bg-base-900 after:text-base-100 after:border-border hover:text-foreground/70 hidden rounded-md font-sans text-sm opacity-0 transition-opacity group-hover:opacity-100 after:border md:inline"
-		data-tooltip="Copy link"
+		data-tooltip="Copiar enlace"
 		data-clipboard-text={domain + "#" + id}
 	>
 		<Icon name="tabler/link" class="size-6 transition-colors" />
@@ -62,16 +56,13 @@ const domain = Astro.url.origin + getLocalizedPathname(currLocale, Astro.url); /
 			copyLinkButtons.forEach((copyLinkButton) => {
 				copyLinkButton.addEventListener("click", () => {
 					const toCopy = copyLinkButton.getAttribute("data-clipboard-text") || window.location.href;
-					// copy the link to the clipboard
 					navigator.clipboard.writeText(toCopy);
 
-					// get the tooltip and svg elements
-					// change the tooltip and data-tooltip attribute to show success
 					if (copyLinkButton instanceof HTMLElement) {
-						copyLinkButton.setAttribute("data-tooltip", "copied!");
+						copyLinkButton.setAttribute("data-tooltip", "Copiado");
 
 						setTimeout(() => {
-							copyLinkButton.setAttribute("data-tooltip", "copy link");
+							copyLinkButton.setAttribute("data-tooltip", "Copiar enlace");
 						}, 3000);
 					}
 				});

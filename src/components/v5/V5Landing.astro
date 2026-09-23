@@ -1,0 +1,268 @@
+---
+import { Image } from "astro:assets";
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import V5Button from "./V5Button";
+import { liftIcons, padLift } from "./liftIcons";
+
+interface SectionItem {
+	title: string;
+	body: string;
+	items?: string[];
+}
+
+interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+interface SignalItem {
+	label: string;
+	value: string;
+}
+
+interface ResourceItem {
+	href: string;
+	label: string;
+}
+
+interface Props {
+	eyebrow: string;
+	heading: string;
+	intro: string;
+	image?: ImageMetadata;
+	imageAlt?: string;
+	sections: SectionItem[];
+	faqs?: FaqItem[];
+	signals?: SignalItem[];
+	visualTitle?: string;
+	visualBody?: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
+	resources?: ResourceItem[];
+	pageClass?: string;
+	heroImage?: boolean;
+}
+
+const {
+	eyebrow,
+	heading,
+	intro,
+	image,
+	imageAlt = heading,
+	sections,
+	faqs = [],
+	signals = [
+		{ label: "Tecnología", value: "POS MDB, NFC y telemetría" },
+		{ label: "Operación", value: "Vending y autoservicio" },
+		{ label: "Mercado", value: "Chile" },
+	],
+	visualTitle = "Una operación conectada de punta a punta",
+	visualBody = "Inbyte une pago, máquina, datos y soporte en un flujo ordenado para que cada punto de venta funcione con menos fricción y más visibilidad.",
+	primaryHref = "/contact/",
+	primaryLabel = "Hablar con Inbyte",
+	secondaryHref = "/vending/",
+	secondaryLabel = "Ver vending",
+	resources = [],
+	pageClass = "",
+	heroImage = true,
+} = Astro.props as Props;
+
+const leadSection = sections[0];
+const detailSections = sections.slice(1);
+
+const faqSchema =
+	faqs.length > 0
+		? {
+				"@context": "https://schema.org",
+				"@type": "FAQPage",
+				mainEntity: faqs.map((faq) => ({
+					"@type": "Question",
+					name: faq.question,
+					acceptedAnswer: {
+						"@type": "Answer",
+						text: faq.answer,
+					},
+				})),
+			}
+		: null;
+---
+
+<Nav />
+
+<main id="contenido" class={pageClass || undefined}>
+	<section class="v5-page-hero v5-page-hero--center v5-band v5-band--dark">
+		<div class="v5-container">
+			<p class="v5-kicker">{eyebrow}</p>
+			<h1 class="v5-display v5-display--page">{heading}</h1>
+			<p class="v5-lead v5-lead--wide">{intro}</p>
+			<div class="v5-hero__ctas v5-hero__ctas--center">
+				<V5Button client:visible href={primaryHref}>{primaryLabel}</V5Button>
+				<V5Button client:visible variant="outline" href={secondaryHref}>{secondaryLabel}</V5Button>
+			</div>
+			{
+				image && heroImage && (
+					<div class="v5-page-visual">
+						<Image src={image} alt={imageAlt} />
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="v5-section v5-section--tight v5-band v5-band--light">
+		<div class="v5-container">
+			<div class="v5-signals">
+				{
+					signals.map((signal, index) => (
+						<div class:list={["v5-card", "v5-lift", "v5-lift--signal", index === 0 && "v5-lift--lead"]}>
+							<span class="v5-lift__mark" aria-hidden="true">{padLift(index)}</span>
+							<div class="v5-lift__icon" aria-hidden="true" set:html={liftIcons[index % liftIcons.length]} />
+							<p class="v5-card__label">{signal.label}</p>
+							<p>{signal.value}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	{
+		leadSection && (
+			<section class="v5-section v5-band v5-band--dark">
+				<div class="v5-container">
+					<div class="v5-copy-split">
+						<div>
+							<p class="v5-eyebrow">Solución</p>
+							<h2 class="v5-h2">{leadSection.title}</h2>
+							<p class="v5-sub">{leadSection.body}</p>
+						</div>
+						<div class="v5-note-stack">
+							{leadSection.items?.map((item) => (
+								<div class="v5-note">
+									<p>{item}</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	<section class="v5-section v5-band v5-band--light">
+		<div class="v5-container">
+			<div class="v5-head v5-head--center">
+				<h2 class="v5-h2">Cómo mejora tu operación</h2>
+				<p class="v5-sub">
+					Ordenamos la implementación para que el pago, la máquina y los datos trabajen juntos desde el primer día.
+				</p>
+			</div>
+			<div class="v5-page-grid v5-page-grid--two">
+				{
+					detailSections.map((section, index) => (
+						<article class:list={["v5-card", "v5-lift", index === 0 && "v5-lift--lead"]}>
+							<span class="v5-lift__mark" aria-hidden="true">{padLift(index)}</span>
+							<div class="v5-lift__icon" aria-hidden="true" set:html={liftIcons[index % liftIcons.length]} />
+							<span class="v5-lift__index">{padLift(index)}</span>
+							<h3>{section.title}</h3>
+							<p>{section.body}</p>
+							{section.items && (
+								<ul class="v5-page-list">
+									{section.items.map((item) => (
+										<li>{item}</li>
+									))}
+								</ul>
+							)}
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="v5-section v5-band v5-band--dark">
+		<div class="v5-container">
+			<div class="v5-copy-split">
+				{
+					image && (
+						<div class="v5-page-visual">
+							<Image src={image} alt={imageAlt} />
+						</div>
+					)
+				}
+				<div>
+					<p class="v5-eyebrow">Control</p>
+					<h2 class="v5-h2">{visualTitle}</h2>
+					<p class="v5-sub">{visualBody}</p>
+					<ul class="v5-page-list">
+						<li>Revisión técnica antes de implementar</li>
+						<li>Pruebas de venta y continuidad operacional</li>
+						<li>Datos listos para reportes y decisiones</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{
+		faqs.length > 0 && (
+			<section class="v5-section v5-band v5-band--light">
+				<div class="v5-container">
+					<div class="v5-head v5-head--center">
+						<h2 class="v5-h2">Preguntas frecuentes</h2>
+						<p class="v5-sub">Respuestas rápidas para evaluar si la solución calza con tu flota actual.</p>
+					</div>
+					<div class="v5-page-grid">
+						{faqs.map((faq, index) => (
+							<article class="v5-card v5-lift">
+								<span class="v5-lift__mark" aria-hidden="true">{padLift(index)}</span>
+								<div class="v5-lift__icon" aria-hidden="true" set:html={liftIcons[4]} />
+								<span class="v5-lift__index">{padLift(index)}</span>
+								<h3>{faq.question}</h3>
+								<p>{faq.answer}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	{
+		resources.length > 0 && (
+			<section class="v5-section v5-section--tight v5-band v5-band--light">
+				<div class="v5-container">
+					<div class="v5-resources">
+						<p class="v5-card__label">Más recursos</p>
+						<ul>
+							{resources.map((resource) => (
+								<li>
+									<a href={resource.href}>{resource.label}</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	<section class="v5-section v5-band v5-band--dark">
+		<div class="v5-container">
+			<div class="v5-cta">
+				<h2>Moderniza tu operación con Inbyte</h2>
+				<p>
+					Revisamos tu infraestructura, compatibilidad, conectividad y objetivos comerciales para proponer una implementación ordenada.
+				</p>
+				<V5Button client:visible href="/contact/">Agendar evaluación</V5Button>
+			</div>
+		</div>
+	</section>
+</main>
+
+<Footer />
+
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}

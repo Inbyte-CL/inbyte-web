@@ -1,0 +1,80 @@
+---
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import V5Landing from "@/components/v5/V5Landing.astro";
+import DashboardImage from "@images/headers/Dashboard.gif";
+
+const sections = [
+	{
+		title: "Autoservicio para vending y retail desatendido",
+		body: "El autoservicio funciona cuando el usuario puede comprar rápido, pagar sin fricción y recibir una experiencia confiable. Inbyte integra pagos, datos y soporte para ese flujo completo.",
+		items: [
+			"Pagos digitales para máquinas expendedoras y puntos desatendidos.",
+			"Integración con hardware existente cuando es técnicamente viable.",
+			"Datos operativos para entender demanda y disponibilidad.",
+		],
+	},
+	{
+		title: "Menos fricción, más conversión",
+		body: "Cada paso extra reduce la compra. Un flujo de autoservicio debe ser simple: elegir producto, pagar y retirar. Por eso la integración técnica importa tanto como el terminal de pago.",
+		items: [
+			"Pagos contactless para compras rápidas.",
+			"Pruebas reales antes de operar masivamente.",
+			"Soporte para continuidad del servicio.",
+		],
+	},
+	{
+		title: "Casos donde Inbyte aporta valor",
+		body: "Vending corporativo, universidades, edificios, estacionamientos, espacios de alto tránsito y operaciones donde se necesita vender sin depender de caja manual.",
+		items: [
+			"Modernización de máquinas existentes.",
+			"Control de red con dashboards.",
+			"Escalamiento por etapas según prioridad comercial.",
+		],
+	},
+];
+
+const faqs = [
+	{
+		question: "¿Qué es autoservicio en vending?",
+		answer: "Es una operación donde el usuario compra sin asistencia humana directa, usando una máquina expendedora o punto desatendido con pago digital y flujo automatizado.",
+	},
+	{
+		question: "¿Inbyte instala solo el POS?",
+		answer: "Inbyte puede integrar el pago con una estrategia más completa: conectividad, telemetría, dashboards y soporte operacional.",
+	},
+	{
+		question: "¿Sirve para estacionamientos también?",
+		answer: "Sí. La misma lógica de autoservicio aplica a parking, tótems de pago y puntos donde el usuario necesita pagar sin caja manual.",
+	},
+];
+---
+
+<V5Layout
+	title="Autoservicio vending en Chile | Pagos digitales para expendedoras"
+	description="Soluciones de autoservicio para vending, máquinas expendedoras y parking: POS, pagos digitales, telemetría, dashboards y soporte operacional."
+>
+	<V5Landing
+		eyebrow="Autoservicio vending"
+		heading="Autoservicio para máquinas expendedoras"
+		intro="Diseña una experiencia de compra desatendida con pagos digitales, integración técnica confiable y datos para operar mejor."
+		image={DashboardImage}
+		imageAlt="Dashboard para autoservicio y vending"
+		sections={sections}
+		faqs={faqs}
+		signals={[
+			{ label: "Flujo", value: "Elegir, pagar y retirar" },
+			{ label: "Canales", value: "Vending, parking y puntos desatendidos" },
+			{ label: "Soporte", value: "Operación con continuidad" },
+		]}
+		visualTitle="Autoservicio simple para el usuario, robusto para operar"
+		visualBody="Inbyte diseña el flujo completo para que el punto desatendido cobre, entregue, registre y reporte sin depender de una caja manual."
+		primaryLabel="Crear autoservicio"
+		secondaryLabel="Ver parking"
+		secondaryHref="/parking/"
+		resources={[
+			{ href: "/blog/autoservicio-dominando-retail-transporte/", label: "Autoservicio en retail, transporte y parking en Chile" },
+			{ href: "/blog/futuro-pagos-electronicos-vending-chile/", label: "Pagos electrónicos para vending en Chile" },
+			{ href: "/alternativa-transbank-vending/", label: "Alternativa a Transbank para vending" },
+		]}
+	/>
+</V5Layout>

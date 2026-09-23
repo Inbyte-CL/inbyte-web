@@ -8,7 +8,6 @@ const blogCollection = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			// reference the authors collection https://docs.astro.build/en/guides/content-collections/#defining-collection-references
 			authors: z.array(reference("authors")),
 			// Transform string to Date object
 			pubDate: z
@@ -42,44 +41,7 @@ const authorsCollection = defineCollection({
 		}),
 });
 
-// other pages
-const pagesCollection = defineCollection({
-	loader: glob({ pattern: "**/[^_]*{md,mdx}", base: "./src/data/otherPages" }),
-	schema: () =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// mappingKey allows you to match entries across languages for SEO purposes
-			mappingKey: z.string().optional(),
-			draft: z.boolean().optional(),
-		}),
-});
-
-// careers/job postings
-const careersCollection = defineCollection({
-	loader: glob({ pattern: "**/[^_]*{md,mdx}", base: "./src/data/careers" }),
-	schema: () =>
-		z.object({
-			title: z.string(),
-			category: z.string(),
-			location: z.string(),
-			type: z.enum(["Full-time", "Part-time", "Contract", "Remote"]),
-			description: z.string(),
-			requirements: z.array(z.string()),
-			applicationUrl: z.string().url(),
-			publishDate: z
-				.string()
-				.or(z.date())
-				.transform((val) => new Date(val)),
-			// mappingKey allows you to match entries across languages for SEO purposes
-			mappingKey: z.string().optional(),
-			draft: z.boolean().optional().default(false),
-		}),
-});
-
 export const collections = {
 	blog: blogCollection,
 	authors: authorsCollection,
-	otherPages: pagesCollection,
-	careers: careersCollection,
 };

@@ -1,0 +1,156 @@
+---
+import { Image } from "astro:assets";
+import Logo from "@/assets/images/inbyte-logo-circle.png";
+import V5Button from "@/components/v5/V5Button";
+
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isCurrent = (href: string) => path === href.replace(/\/+$/, "");
+const inGroup = (items: { href: string }[]) => items.some((item) => isCurrent(item.href));
+
+const servicios = [
+	{ text: "Vending", href: "/vending/" },
+	{ text: "Parking", href: "/parking/" },
+	{ text: "POS MDB", href: "/pos-mdb-vending/" },
+	{ text: "Pago con tarjeta", href: "/maquinas-expendedoras-pago-tarjeta/" },
+	{ text: "Autoservicio", href: "/autoservicio-vending/" },
+];
+
+const serviciosMenu = servicios.filter((link) => link.href !== "/vending/");
+
+const alternativas = [{ text: "Alternativa a Transbank", href: "/alternativa-transbank-vending/" }];
+---
+
+<div class="v5-nav-wrap">
+	<header class="v5-nav">
+		<a class="v5-nav__brand" href="/" aria-label="INBYTE">
+			<Image src={Logo} alt="INBYTE" height={36} width={36} />
+		</a>
+		<nav class="v5-nav__links" aria-label="Principal">
+			<a class={isCurrent("/") ? "is-current" : undefined} href="/">Inicio</a>
+			<a class={isCurrent("/vending") ? "is-current" : undefined} href="/vending/">Vending</a>
+			<a class={isCurrent("/telemetria-vending") ? "is-current" : undefined} href="/telemetria-vending/">
+				Telemetría
+			</a>
+			<div class:list={["v5-nav__drop", inGroup(serviciosMenu) && "is-current"]} data-v5-drop>
+				<button type="button" aria-expanded="false" aria-haspopup="true">Servicios</button>
+				<div class="v5-nav__menu">
+					<div class="v5-nav__menu-inner">
+						{
+							servicios.map((link) => (
+								<a class={isCurrent(link.href) ? "is-current" : undefined} href={link.href}>
+									{link.text}
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</div>
+			<div class:list={["v5-nav__drop", inGroup(alternativas) && "is-current"]} data-v5-drop>
+				<button type="button" aria-expanded="false" aria-haspopup="true">Alternativas</button>
+				<div class="v5-nav__menu">
+					<div class="v5-nav__menu-inner">
+						{
+							alternativas.map((link) => (
+								<a class={isCurrent(link.href) ? "is-current" : undefined} href={link.href}>
+									{link.text}
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</div>
+			<a class={isCurrent("/blog") ? "is-current" : undefined} href="/blog/">Blog</a>
+			<a class={isCurrent("/faq") ? "is-current" : undefined} href="/faq/">Preguntas frecuentes</a>
+		</nav>
+		<div class="v5-nav__actions">
+			<V5Button client:load href="/contact/">Contacto</V5Button>
+			<button
+				class="v5-nav__toggle"
+				type="button"
+				aria-label="Abrir menú"
+				aria-expanded="false"
+				aria-controls="v5-mobile-nav"
+				data-v5-nav-toggle
+			>
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M4 7h16M4 12h16M4 17h16"></path>
+				</svg>
+			</button>
+		</div>
+	</header>
+	<div class="v5-nav__mobile" id="v5-mobile-nav" data-v5-mobile-nav>
+		<a class={isCurrent("/") ? "is-current" : undefined} href="/">Inicio</a>
+		<a class={isCurrent("/vending") ? "is-current" : undefined} href="/vending/">Vending</a>
+		<a class={isCurrent("/telemetria-vending") ? "is-current" : undefined} href="/telemetria-vending/">
+			Telemetría
+		</a>
+		<p class="v5-nav__group">Servicios</p>
+		{
+			serviciosMenu.map((link) => (
+				<a class={isCurrent(link.href) ? "is-current" : undefined} href={link.href}>
+					{link.text}
+				</a>
+			))
+		}
+		<p class="v5-nav__group">Alternativas</p>
+		{
+			alternativas.map((link) => (
+				<a class={isCurrent(link.href) ? "is-current" : undefined} href={link.href}>
+					{link.text}
+				</a>
+			))
+		}
+		<a class={isCurrent("/blog") ? "is-current" : undefined} href="/blog/">Blog</a>
+		<a class={isCurrent("/faq") ? "is-current" : undefined} href="/faq/">Preguntas frecuentes</a>
+		<V5Button client:visible href="/contact/">Contacto</V5Button>
+	</div>
+</div>
+
+<script>
+	const toggle = document.querySelector("[data-v5-nav-toggle]");
+	const mobile = document.querySelector("[data-v5-mobile-nav]");
+	toggle?.addEventListener("click", () => {
+		const open = mobile?.classList.toggle("is-open");
+		toggle.setAttribute("aria-expanded", open ? "true" : "false");
+	});
+
+	const nav = document.querySelector(".v5-nav");
+	const drops = document.querySelectorAll("[data-v5-drop]");
+	let closeTimer = 0;
+
+	const setOpen = (drop, open) => {
+		drop.classList.toggle("is-open", open);
+		drop.querySelector("button")?.setAttribute("aria-expanded", open ? "true" : "false");
+	};
+
+	const openDrop = (drop) => {
+		window.clearTimeout(closeTimer);
+		drops.forEach((other) => setOpen(other, other === drop));
+	};
+
+	const scheduleClose = () => {
+		window.clearTimeout(closeTimer);
+		closeTimer = window.setTimeout(() => {
+			if (nav?.matches(":hover")) return;
+			drops.forEach((drop) => setOpen(drop, false));
+		}, 180);
+	};
+
+	drops.forEach((drop) => {
+		const button = drop.querySelector("button");
+		drop.addEventListener("mouseenter", () => openDrop(drop));
+		drop.addEventListener("mouseleave", scheduleClose);
+		button?.addEventListener("click", (event) => {
+			event.stopPropagation();
+			const shouldOpen = !drop.classList.contains("is-open");
+			drops.forEach((other) => setOpen(other, other === drop && shouldOpen));
+		});
+	});
+
+	nav?.addEventListener("mouseleave", scheduleClose);
+
+	document.addEventListener("click", (event) => {
+		if (event.target instanceof Element && event.target.closest(".v5-nav")) return;
+		drops.forEach((drop) => setOpen(drop, false));
+	});
+</script>

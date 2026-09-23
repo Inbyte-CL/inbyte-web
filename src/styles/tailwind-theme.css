@@ -4,8 +4,8 @@
  * These are in a separate file so it can be imported into <style> tags in .astro components
  */
 @theme {
-	/* cosmic themes theme config */
-	/* primary colors. Can generate with https://uicolors.app/create, then convert to oklch with https://oklch.com/ */
+	/* Inbyte theme config */
+	/* primary colors */
 	/* Base color: #05cd84 - Green emerald/teal */
 	--color-primary-50: oklch(97.5% 0.025 160);
 	--color-primary-100: oklch(95% 0.05 160);
@@ -45,13 +45,13 @@
 	--color-blueGray-950: oklch(17% 0.0102 253.97);
 
 	/* other theme tailwind utilities */
-	--tracking-2xl: -0.48px;
-	--tracking-3xl: -0.64px;
-	--tracking-4xl: -2px;
-	--tracking-5xl: -0.96px;
-	--tracking-6xl: -1.44px;
-	--tracking-7xl: -1.86px;
-	--tracking-8xl: -3.6px;
+	--tracking-2xl: 0;
+	--tracking-3xl: 0;
+	--tracking-4xl: 0;
+	--tracking-5xl: 0;
+	--tracking-6xl: 0;
+	--tracking-7xl: 0;
+	--tracking-8xl: 0;
 
 	--radius-5xl: calc(var(--radius) + 1.275rem);
 
@@ -65,7 +65,7 @@
 		"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono",
 		"Courier New", "monospace";
 
-	/* starwind and cosmic themes animations */
+	/* interface animations */
 	--animate-accordion-down: accordion-down 0.3s ease-out;
 	--animate-accordion-up: accordion-up 0.3s ease-out;
 	--animate-marquee: marquee 70s linear infinite;

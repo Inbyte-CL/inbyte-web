@@ -1,5 +1,7 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import Nav from "@/components/v5/Nav.astro";
+import Footer from "@/components/v5/Footer.astro";
 
 const lastUpdated = "26 de abril de 2026";
 
@@ -63,118 +65,63 @@ const policySections = [
 ];
 ---
 
-<BaseLayout
+<V5Layout
 	title="Política de Privacidad - Inbyte"
 	description="Política de privacidad de Inbyte para sus aplicaciones y servicios digitales."
 >
-	<section id="privacy-hero" class="-mt-23 overflow-hidden pt-23">
-		<div class="relative pt-20 pb-10 md:pt-28 md:pb-16">
-			<div class="site-container relative mx-auto px-4">
-				<div class="mx-auto max-w-4xl text-center">
-					<p
-						class="text-primary mb-5 text-sm font-semibold tracking-[0.28em] uppercase"
-						data-aos="fade-up"
-						data-aos-trigger="#privacy-hero"
-					>
-						Inbyte
+	<Nav />
+	<main id="contenido">
+		<section class="v5-page-hero v5-page-hero--center v5-band v5-band--dark">
+			<div class="v5-container">
+				<p class="v5-kicker">Inbyte</p>
+				<h1 class="v5-display v5-display--page">Política de Privacidad</h1>
+				<p class="v5-lead v5-lead--wide">
+					Esta política aplica a esta aplicación y a otras aplicaciones desarrolladas por nosotros.
+				</p>
+				<p class="v5-sub">Última actualización: {lastUpdated}</p>
+			</div>
+		</section>
+		<section class="v5-section v5-band v5-band--light">
+			<div class="v5-container">
+				<div class="v5-form-card v5-legal">
+					<p class="v5-sub">
+						Respetamos tu privacidad y no recopilamos información personal identificable directamente.
 					</p>
-					<h1
-						class="font-heading xl:text-10xl mx-auto mb-6 text-5xl tracking-tighter md:text-7xl lg:text-8xl"
-						data-aos="fade-up"
-						data-aos-trigger="#privacy-hero"
-						data-aos-delay=".1"
-					>
-						Política de Privacidad
-					</h1>
-					<p
-						class="text-muted-foreground mx-auto max-w-2xl text-base leading-relaxed md:text-lg"
-						data-aos="fade-up"
-						data-aos-trigger="#privacy-hero"
-						data-aos-delay=".2"
-					>
-						Esta política aplica a esta aplicación y a otras aplicaciones desarrolladas por nosotros.
+					<p class="v5-sub">
+						Sin embargo, utilizamos servicios de terceros que pueden recopilar datos de forma automática.
 					</p>
-					<p
-						class="mt-6 text-sm opacity-70"
-						data-aos="fade-up"
-						data-aos-trigger="#privacy-hero"
-						data-aos-delay=".3"
-					>
-						Última actualización: {lastUpdated}
-					</p>
+					{
+						policySections.map((section) => (
+							<article>
+								<h2 class="v5-h2">{section.title}</h2>
+								{section.body.map((paragraph) => (
+									<p class="v5-sub">{paragraph}</p>
+								))}
+								{section.items && (
+									<ul class="v5-page-list">
+										{section.items.map((item) => (
+											<li>{item}</li>
+										))}
+									</ul>
+								)}
+								{section.link && (
+									<p class="v5-sub">
+										<a href={section.link.href} target="_blank" rel="noopener noreferrer">
+											{section.link.label}
+										</a>
+									</p>
+								)}
+								{section.email && (
+									<p class="v5-sub">
+										<a href={`mailto:${section.email}`}>{section.email}</a>
+									</p>
+								)}
+							</article>
+						))
+					}
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<section id="privacy-content" class="pb-20 md:pb-28">
-		<div class="site-container">
-			<div
-				class="bg-gradient-radial-dark border-border/30 rounded-5xl relative mx-auto max-w-4xl overflow-hidden border p-6 md:p-10 lg:p-12"
-				data-aos="fade-up"
-				data-aos-trigger="#privacy-content"
-			>
-				<div class="relative z-10">
-					<div class="border-border/30 mb-10 rounded-4xl border bg-white/70 p-6 shadow-sm">
-						<p class="text-muted-foreground mb-4 leading-relaxed">
-							Respetamos tu privacidad y no recopilamos información personal identificable directamente.
-						</p>
-						<p class="text-muted-foreground leading-relaxed">
-							Sin embargo, utilizamos servicios de terceros que pueden recopilar datos de forma automática.
-						</p>
-					</div>
-
-					<div class="flex flex-col gap-6">
-						{
-							policySections.map((section) => (
-								<article class="border-border/30 rounded-4xl border bg-white/80 p-6 shadow-sm md:p-8">
-									<h2 class="mb-4 text-2xl font-semibold tracking-tight md:text-3xl">
-										{section.title}
-									</h2>
-									<div class="text-muted-foreground flex flex-col gap-3 leading-relaxed">
-										{section.body.map((paragraph) => <p>{paragraph}</p>)}
-										{section.items && (
-											<ul class="mt-1 flex flex-col gap-2">
-												{section.items.map((item) => (
-													<li class="flex gap-3">
-														<span class="bg-primary mt-2 size-1.5 shrink-0 rounded-full" />
-														<span>{item}</span>
-													</li>
-												))}
-											</ul>
-										)}
-										{section.link && (
-											<p>
-												<a
-													class="text-primary font-medium underline decoration-current/30 underline-offset-4 transition hover:decoration-current"
-													href={section.link.href}
-													target="_blank"
-													rel="noopener noreferrer"
-												>
-													{section.link.label}
-												</a>
-											</p>
-										)}
-										{section.email && (
-											<p>
-												<a
-													class="text-primary font-medium underline decoration-current/30 underline-offset-4 transition hover:decoration-current"
-													href={`mailto:${section.email}`}
-												>
-													{section.email}
-												</a>
-											</p>
-										)}
-									</div>
-								</article>
-							))
-						}
-					</div>
-				</div>
-
-				<div class="to-primary dark:to-blueGray-500 absolute right-0 bottom-0 size-56 bg-gradient-to-br from-transparent via-transparent opacity-50 blur-lg" />
-				<div class="from-primary/20 absolute top-0 left-0 size-40 bg-gradient-to-br to-transparent opacity-40 blur-2xl" />
-			</div>
-		</div>
-	</section>
-</BaseLayout>
+		</section>
+	</main>
+	<Footer />
+</V5Layout>

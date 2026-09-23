@@ -93,7 +93,18 @@ export const POST: APIRoute = async ({ request }) => {
 		}
 
 		// Validar campos requeridos
-		const { nombre, email, telefono, compania, cantidad_maquinas, tipo_maquinas, mensaje } = data;
+		const {
+			nombre,
+			email,
+			telefono,
+			compania,
+			cantidad_maquinas,
+			tipo_maquinas,
+			mensaje,
+			rut_empresa,
+			proveedor_actual,
+			venta_mensual_aproximada,
+		} = data;
 
 		if (!nombre || !email || !telefono || !compania || !cantidad_maquinas || !tipo_maquinas || !mensaje) {
 			return new Response(
@@ -105,6 +116,15 @@ export const POST: APIRoute = async ({ request }) => {
 			);
 		}
 
+		const rutEmpresa = typeof rut_empresa === "string" && rut_empresa.trim() ? rut_empresa.trim() : "No informado";
+		const proveedorActual = typeof proveedor_actual === "string" && proveedor_actual.trim()
+			? proveedor_actual.trim()
+			: "No informado";
+		const ventaMensualAproximada =
+			typeof venta_mensual_aproximada === "string" && venta_mensual_aproximada.trim()
+				? venta_mensual_aproximada.trim()
+				: "No informado";
+
 		// Formatear el mensaje del email (texto plano)
 		const emailBody = `
 Nuevo contacto desde el formulario de Inbyte
@@ -114,6 +134,9 @@ Información del contacto:
 - Correo electrónico: ${email}
 - Teléfono: ${telefono}
 - Compañía: ${compania}
+- RUT empresa: ${rutEmpresa}
+- Proveedor actual: ${proveedorActual}
+- Venta mensual aproximada por máquina: ${ventaMensualAproximada}
 - Cantidad de máquinas: ${cantidad_maquinas}
 - Tipo de máquinas: ${tipo_maquinas}
 
@@ -157,6 +180,9 @@ Este mensaje fue enviado desde el formulario de contacto de Inbyte.
                                         <p style="margin: 5px 0; color: #555555;"><strong>Correo electrónico:</strong> <a href="mailto:${email}" style="color: #4fe09b; text-decoration: none;">${email}</a></p>
                                         <p style="margin: 5px 0; color: #555555;"><strong>Teléfono:</strong> ${telefono}</p>
                                         <p style="margin: 5px 0; color: #555555;"><strong>Compañía:</strong> ${compania}</p>
+                                        <p style="margin: 5px 0; color: #555555;"><strong>RUT empresa:</strong> ${rutEmpresa}</p>
+                                        <p style="margin: 5px 0; color: #555555;"><strong>Proveedor actual:</strong> ${proveedorActual}</p>
+                                        <p style="margin: 5px 0; color: #555555;"><strong>Venta mensual aproximada por máquina:</strong> ${ventaMensualAproximada}</p>
                                         <p style="margin: 5px 0; color: #555555;"><strong>Cantidad de máquinas:</strong> ${cantidad_maquinas}</p>
                                         <p style="margin: 5px 0; color: #555555;"><strong>Tipo de máquinas:</strong> ${tipo_maquinas}</p>
                                     </td>

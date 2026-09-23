@@ -1,0 +1,28 @@
+---
+export const prerender = false;
+
+const slug = Astro.params.slug ?? "";
+const pathname = `/${slug}`;
+
+if (pathname === "/sign-in" || pathname.startsWith("/sign-in/")) {
+	return Astro.redirect("/contact/", 301);
+}
+
+if (pathname === "/sign-up" || pathname.startsWith("/sign-up/")) {
+	return Astro.redirect("/contact/", 301);
+}
+
+if (pathname === "/careers" || pathname.startsWith("/careers/")) {
+	return Astro.redirect("/contact/", 301);
+}
+
+if (pathname === "/categories" || pathname.startsWith("/categories/")) {
+	return Astro.redirect("/blog/", 301);
+}
+
+if (pathname === "/privacy-policy" || pathname.startsWith("/privacy-policy/")) {
+	return Astro.redirect("/privacy/", 301);
+}
+
+return Astro.redirect(pathname.endsWith("/") ? pathname : `${pathname}/`, 301);
+---

@@ -16,6 +16,7 @@ export interface Props {
 	postFrontmatter?: CollectionEntry<"blog">["data"];
 	authors?: CollectionEntry<"authors">[];
 	noindex?: boolean;
+	dark?: boolean;
 }
 
 const {
@@ -26,18 +27,21 @@ const {
 	authors,
 	postFrontmatter,
 	noindex = false,
+	dark = false,
 } = Astro.props as Props;
 ---
 
 <!-- Theme setup - MUST be first to prevent flash of wrong theme -->
-<!-- Always force light theme -->
-<script is:inline>
-	(function() {
-		// Always remove dark class and force light theme
-		if (document.documentElement) {
+<script is:inline define:vars={{ dark }}>
+	(function () {
+		if (!document.documentElement) return;
+		if (dark) {
+			document.documentElement.classList.add("dark");
+			localStorage.setItem("colorTheme", "dark");
+		} else {
 			document.documentElement.classList.remove("dark");
+			localStorage.setItem("colorTheme", "light");
 		}
-		localStorage.setItem("colorTheme", "light");
 	})();
 </script>
 
@@ -60,18 +64,19 @@ const {
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Theme change setup. Always force light theme -->
-<script is:inline>
+<!-- Theme change setup -->
+<script is:inline define:vars={{ dark }}>
 	function initTheme() {
-		// Always force light theme
-		document.documentElement.classList.remove("dark");
-		localStorage.setItem("colorTheme", "light");
+		if (dark || location.pathname.includes("/v5")) {
+			document.documentElement.classList.add("dark");
+			localStorage.setItem("colorTheme", "dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+			localStorage.setItem("colorTheme", "light");
+		}
 	}
 
-	// runs on initial page load
 	initTheme();
-
-	// runs on view transitions navigation
 	document.addEventListener("astro:after-swap", initTheme);
 </script>
 

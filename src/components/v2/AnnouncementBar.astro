@@ -1,0 +1,26 @@
+---
+---
+
+<div class="v2-announce" data-v2-announce>
+	<span>
+		Nueva versión de prueba · POS MDB, telemetría y dashboards BI para vending y parking en Chile.{" "}
+		<a href="/contact">Habla con nosotros</a>
+	</span>
+	<button class="v2-announce__close" type="button" aria-label="Cerrar anuncio" data-v2-announce-close>
+		<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+			<path d="M18 6 6 18M6 6l12 12"></path>
+		</svg>
+	</button>
+</div>
+
+<script>
+	const bar = document.querySelector("[data-v2-announce]");
+	const close = document.querySelector("[data-v2-announce-close]");
+	if (sessionStorage.getItem("v2-announce-dismissed") === "1") {
+		bar?.setAttribute("hidden", "");
+	}
+	close?.addEventListener("click", () => {
+		bar?.setAttribute("hidden", "");
+		sessionStorage.setItem("v2-announce-dismissed", "1");
+	});
+</script>

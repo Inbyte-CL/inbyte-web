@@ -1,0 +1,290 @@
+---
+import { Image } from "astro:assets";
+import V3Layout from "@/layouts/v3/V3Layout.astro";
+import Nav from "@/components/v3/Nav.astro";
+import Footer from "@/components/v3/Footer.astro";
+
+import DashVend from "@/data/Parking/dashvend-devices.png";
+import POSImage from "@/assets/images/headers/POS.png";
+import VendingImage from "@/data/Parking/vending.png";
+
+const cards = [
+	{
+		label: "Pagos",
+		title: "POS MDB",
+		text: "Integra tarjeta, NFC y billeteras digitales en máquinas expendedoras compatibles.",
+		href: "/pos-mdb-vending/",
+		cta: "Ver",
+	},
+	{
+		label: "Datos",
+		title: "Telemetría",
+		text: "Controla ventas, disponibilidad y rendimiento con dashboards BI a medida.",
+		href: "/telemetria-vending/",
+		cta: "Ver",
+	},
+	{
+		label: "Operación",
+		title: "Autoservicio",
+		text: "Experiencias desatendidas para vending, parking y puntos de alto tráfico.",
+		href: "/autoservicio-vending/",
+		cta: "Ver",
+	},
+];
+
+const features = [
+	{
+		title: "Pagos sin fricción",
+		text: "POS de última generación para tarjeta, NFC y billeteras digitales en vending y parking.",
+	},
+	{
+		title: "Telemetría completa",
+		text: "Monitorea ventas, stock, alertas y rendimiento por ubicación desde un solo panel.",
+	},
+	{
+		title: "Inteligencia de negocio",
+		text: "Dashboards BI personalizados para optimizar rutas, mix de productos y rentabilidad.",
+	},
+	{
+		title: "Parking autoservicio",
+		text: "Cobro electrónico en tótems y cajas para reducir filas y controlar flujos.",
+	},
+];
+---
+
+<V3Layout
+	title="INBYTE v3 · Pagos y telemetría para vending y parking"
+	description="Prototipo local del home Inbyte con lenguaje visual OpenServ light. POS MDB, pagos electrónicos y dashboards BI."
+>
+	<Nav />
+
+	<main>
+		<!-- Segment 1: Hero -->
+		<section class="v3-segment" data-v3-segment>
+			<div class="v3-segment__body">
+				<div class="v3-hero">
+					<svg
+						class="v3-sparkle v3-sparkle--1"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						aria-hidden="true"
+					>
+						<path d="M12 0L13.8 10.2L24 12L13.8 13.8L12 24L10.2 13.8L0 12L10.2 10.2L12 0Z"
+						></path>
+					</svg>
+					<svg
+						class="v3-sparkle v3-sparkle--2"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						aria-hidden="true"
+					>
+						<path d="M12 0L13.8 10.2L24 12L13.8 13.8L12 24L10.2 13.8L0 12L10.2 10.2L12 0Z"
+						></path>
+					</svg>
+					<svg
+						class="v3-sparkle v3-sparkle--3"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						aria-hidden="true"
+					>
+						<path d="M12 0L13.8 10.2L24 12L13.8 13.8L12 24L10.2 13.8L0 12L10.2 10.2L12 0Z"
+						></path>
+					</svg>
+					<svg
+						class="v3-sparkle v3-sparkle--4"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						aria-hidden="true"
+					>
+						<path d="M12 0L13.8 10.2L24 12L13.8 13.8L12 24L10.2 13.8L0 12L10.2 10.2L12 0Z"
+						></path>
+					</svg>
+
+					<div class="v3-container">
+						<div class="v3-hero__inner">
+							<p class="v3-caption">Pagos · Telemetría · BI</p>
+							<h1 class="v3-display">Pagos electrónicos para vending y parking en Chile</h1>
+							<p class="v3-body">
+								Integramos POS MDB, pagos contactless, telemetría y dashboards BI para que operes
+								máquinas y puntos de autoservicio con control total.
+							</p>
+							<div class="v3-hero__ctas">
+								<a class="v3-btn v3-btn--primary" href="/vending"
+									>Ver Vending <span aria-hidden="true">↗</span></a
+								>
+								<a class="v3-btn v3-btn--ghost" href="/parking">Ver Parking</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="v3-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+		</section>
+
+		<!-- Segment 2: Cards -->
+		<section class="v3-segment" data-v3-segment>
+			<div class="v3-segment__body">
+				<div class="v3-container">
+					<div class="v3-editorial">
+						<h2 class="v3-heading-lg">Cobrar. Medir. Optimizar.</h2>
+						<p class="v3-body">Tres capas para modernizar tu red sin fricción operativa.</p>
+					</div>
+					<div class="v3-cards">
+						{
+							cards.map((card) => (
+								<article class="v3-card">
+									<p class="v3-caption">{card.label}</p>
+									<h3>{card.title}</h3>
+									<p>{card.text}</p>
+									<div class="v3-card__foot">
+										<a class="v3-btn v3-btn--primary" href={card.href}>
+											{card.cta} <span aria-hidden="true">↗</span>
+										</a>
+										<a
+											class="v3-btn v3-btn--expand"
+											href={card.href}
+											aria-label={`Más sobre ${card.title}`}
+										>
+											+
+										</a>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</div>
+			<div class="v3-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+		</section>
+
+		<!-- Segment 3: Klap + product -->
+		<section class="v3-segment v3-segment--fog" data-v3-segment>
+			<div class="v3-segment__body">
+				<div class="v3-container">
+					<div class="v3-editorial">
+						<h2 class="v3-heading-lg">Inbyte + Klap</h2>
+						<p class="v3-body">
+							Pagos electrónicos para autoservicio: tecnología Inbyte con infraestructura Klap.
+						</p>
+					</div>
+					<div class="v3-highlight">
+						<article class="v3-highlight__card">
+							<div class="v3-highlight__media">
+								<Image
+									src={POSImage}
+									alt="POS para pagos electrónicos de autoservicio"
+									widths={[640, 960]}
+									sizes="(max-width: 900px) 100vw, 560px"
+								/>
+							</div>
+							<div class="v3-highlight__body">
+								<p class="v3-caption">Hardware</p>
+								<h3 class="v3-heading-sm">POS MDB listo para tu flota</h3>
+								<p class="v3-body">
+									Pagos rápidos, seguros y compatibles con máquinas vending y estacionamientos.
+								</p>
+								<a class="v3-btn v3-btn--primary" href="/pos-mdb-vending">
+									Ver POS MDB <span aria-hidden="true">↗</span>
+								</a>
+							</div>
+						</article>
+
+						<article class="v3-highlight__card">
+							<div class="v3-highlight__media">
+								<Image
+									src={DashVend}
+									alt="Dashboard BI de INBYTE para ventas y telemetría"
+									widths={[640, 960]}
+									sizes="(max-width: 900px) 100vw, 560px"
+								/>
+							</div>
+							<div class="v3-highlight__body">
+								<p class="v3-caption">Datos</p>
+								<h3 class="v3-heading-sm">Pagos y datos para operar mejor</h3>
+								<p class="v3-body">
+									Ventas, disponibilidad y rentabilidad en tiempo real desde un solo panel.
+								</p>
+								<a class="v3-btn v3-btn--primary" href="/telemetria-vending">
+									Ver telemetría <span aria-hidden="true">↗</span>
+								</a>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+			<div class="v3-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+		</section>
+
+		<!-- Segment 4: Features -->
+		<section class="v3-segment" data-v3-segment>
+			<div class="v3-segment__body">
+				<div class="v3-container">
+					<div class="v3-editorial">
+						<h2 class="v3-heading-lg">Qué hacemos</h2>
+						<p class="v3-body">
+							Del cobro en máquina al panel de control: el stack para vending y autoservicio.
+						</p>
+					</div>
+					<div class="v3-features">
+						{
+							features.map((feature) => (
+								<article class="v3-feature">
+									<h3>{feature.title}</h3>
+									<p>{feature.text}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</div>
+			<div class="v3-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+		</section>
+
+		<!-- Segment 5: Vending + CTA -->
+		<section class="v3-segment" data-v3-segment>
+			<div class="v3-segment__body">
+				<div class="v3-container">
+					<article class="v3-highlight__card v3-highlight--wide" style="margin-bottom: 32px;">
+						<div class="v3-highlight__media">
+							<Image
+								src={VendingImage}
+								alt="Máquina expendedora con pagos electrónicos INBYTE"
+								widths={[640, 1000]}
+								sizes="(max-width: 900px) 100vw, 560px"
+							/>
+						</div>
+						<div class="v3-highlight__body">
+							<p class="v3-caption">Vending</p>
+							<h3 class="v3-heading-sm">Moderniza tus máquinas y controla tu operación</h3>
+							<p class="v3-body">
+								Acepta pagos con tarjeta, integra POS MDB y opera con más control y menos fricción.
+							</p>
+							<a class="v3-btn v3-btn--primary" href="/vending">
+								Explorar vending <span aria-hidden="true">↗</span>
+							</a>
+						</div>
+					</article>
+
+					<div class="v3-cta">
+						<h2 class="v3-heading-lg">¿Listo para digitalizar tu red?</h2>
+						<p class="v3-body">
+							Cuéntanos cómo operas hoy y te proponemos la integración de pagos y datos.
+						</p>
+						<div class="v3-hero__ctas">
+							<a class="v3-btn v3-btn--primary" href="/contact"
+								>Contactar <span aria-hidden="true">↗</span></a
+							>
+							<a class="v3-btn v3-btn--ghost" href="/">Volver al sitio actual</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="v3-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+		</section>
+
+		<!-- Footer (no full-viewport snap) -->
+		<div class="v3-footer-wrap">
+			<Footer />
+		</div>
+	</main>
+</V3Layout>

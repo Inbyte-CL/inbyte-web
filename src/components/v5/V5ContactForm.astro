@@ -1,0 +1,142 @@
+---
+import V5Button from "./V5Button";
+---
+
+<form class="v5-form" id="v5-contact-form">
+	<div class="v5-form__grid">
+		<label>
+			<span class="v5-sr">Nombre *</span>
+			<input name="nombre" type="text" placeholder="Nombre *" required autocomplete="name" />
+		</label>
+		<label>
+			<span class="v5-sr">Correo electrónico *</span>
+			<input name="email" type="email" placeholder="Correo electrónico *" required autocomplete="email" />
+		</label>
+	</div>
+	<div class="v5-form__grid">
+		<label>
+			<span class="v5-sr">Teléfono *</span>
+			<input name="telefono" type="tel" placeholder="Teléfono *" required autocomplete="tel" />
+		</label>
+		<label>
+			<span class="v5-sr">Compañía *</span>
+			<input name="compania" type="text" placeholder="Compañía *" required autocomplete="organization" />
+		</label>
+	</div>
+	<div class="v5-form__grid">
+		<label>
+			<span class="v5-sr">RUT empresa</span>
+			<input name="rut_empresa" type="text" placeholder="RUT empresa" />
+		</label>
+		<label>
+			<span class="v5-sr">Proveedor actual</span>
+			<input name="proveedor_actual" type="text" placeholder="Proveedor actual" />
+		</label>
+	</div>
+	<label>
+		<span class="v5-sr">Venta mensual aproximada por máquina</span>
+		<input
+			name="venta_mensual_aproximada"
+			type="text"
+			inputmode="numeric"
+			placeholder="Venta mensual aproximada por máquina"
+		/>
+	</label>
+	<div class="v5-form__grid">
+		<label>
+			<span class="v5-sr">Cantidad de máquinas *</span>
+			<select name="cantidad_maquinas" required>
+				<option value="">Cantidad de máquinas *</option>
+				<option value="1">1</option>
+				<option value="2-10">2-10</option>
+				<option value="10-25">10-25</option>
+				<option value="25-50">25-50</option>
+				<option value="+50">+50</option>
+			</select>
+		</label>
+		<label>
+			<span class="v5-sr">Tipo de máquinas *</span>
+			<select name="tipo_maquinas" required>
+				<option value="">Tipo de máquinas *</option>
+				<option value="parking">Parking</option>
+				<option value="snacks">Máquina expendedora Snacks</option>
+				<option value="bebidas">Máquina expendedora Bebidas</option>
+				<option value="algodones">Máquina expendedora Algodones</option>
+				<option value="otro">Otro</option>
+			</select>
+		</label>
+	</div>
+	<label>
+		<span class="v5-sr">Mensaje *</span>
+		<textarea name="mensaje" rows="8" placeholder="Mensaje *" required></textarea>
+	</label>
+	<div class="v5-form__actions">
+		<V5Button client:visible type="submit" className="v5-form__submit">Enviar</V5Button>
+	</div>
+</form>
+
+<script>
+	function handleFormSubmit() {
+		const form = document.querySelector("#v5-contact-form") as HTMLFormElement | null;
+		const submitButton = form?.querySelector("button[type='submit']") as HTMLButtonElement | null;
+		if (!form) return;
+
+		form.addEventListener("submit", async (event) => {
+			event.preventDefault();
+			if (submitButton) {
+				submitButton.disabled = true;
+				submitButton.textContent = "Enviando...";
+			}
+
+			try {
+				const formValues: Record<string, string> = {};
+				form.querySelectorAll("input, textarea, select").forEach((field) => {
+					const element = field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+					if (element.name && element.value) formValues[element.name] = element.value;
+				});
+
+				const requiredFields = [
+					"nombre",
+					"email",
+					"telefono",
+					"compania",
+					"cantidad_maquinas",
+					"tipo_maquinas",
+					"mensaje",
+				];
+				const missingFields = requiredFields.filter(
+					(field) => !formValues[field] || formValues[field].trim() === "",
+				);
+				if (missingFields.length > 0) {
+					alert(`Por favor completa todos los campos requeridos. Faltan: ${missingFields.join(", ")}`);
+					return;
+				}
+
+				const response = await fetch("/api/contact", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(formValues),
+				});
+				if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+				const result = await response.json();
+
+				if (result.success) {
+					alert("¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.");
+					form.reset();
+				} else {
+					alert(`Error: ${result.error || "No se pudo enviar el mensaje. Por favor intenta nuevamente."}`);
+				}
+			} catch {
+				alert("Error al enviar el mensaje. Por favor intenta nuevamente.");
+			} finally {
+				if (submitButton) {
+					submitButton.disabled = false;
+					submitButton.textContent = "Enviar";
+				}
+			}
+		});
+	}
+
+	handleFormSubmit();
+	document.addEventListener("astro:after-swap", handleFormSubmit);
+</script>

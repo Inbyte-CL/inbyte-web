@@ -22,7 +22,7 @@ const {
 	email = false,
 	url,
 	title,
-	linktext = "Check out this great post!",
+	linktext = "Lee este artículo de Inbyte",
 	class: className,
 	...rest
 } = Astro.props as Props;
@@ -37,10 +37,10 @@ let validtext = linktext.replace(/ /g, "%20");
 			href={`https://twitter.com/intent/tweet?url=${url}&text=${validtext}`}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label="Share on Twitter"
+			aria-label="Compartir en Twitter"
 			{...rest}
 		>
-			<div class="sr-only">share on</div>
+			<div class="sr-only">Compartir en</div>
 			Twitter
 		</a>
 	)
@@ -52,10 +52,10 @@ let validtext = linktext.replace(/ /g, "%20");
 			href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label="Share on Facebook"
+			aria-label="Compartir en Facebook"
 			{...rest}
 		>
-			<div class="sr-only">share on</div>
+			<div class="sr-only">Compartir en</div>
 			Facebook
 		</a>
 	)
@@ -67,10 +67,10 @@ let validtext = linktext.replace(/ /g, "%20");
 			href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label="Share on Linkedin"
+			aria-label="Compartir en Linkedin"
 			{...rest}
 		>
-			<div class="sr-only">share on</div>
+			<div class="sr-only">Compartir en</div>
 			Linkedin
 		</a>
 	)
@@ -82,10 +82,10 @@ let validtext = linktext.replace(/ /g, "%20");
 			href={`https://pinterest.com/pin/create/button/?url=${url}&media=&description=${validtext}`}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label="Share on Pinterest"
+			aria-label="Compartir en Pinterest"
 			{...rest}
 		>
-			<div class="sr-only">share on</div>
+			<div class="sr-only">Compartir en</div>
 			Pinterest
 		</a>
 	)
@@ -97,10 +97,10 @@ let validtext = linktext.replace(/ /g, "%20");
 			href={`https://wa.me/?text=${validtext} ${url}`}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label="Share on Whatsapp"
+			aria-label="Compartir en Whatsapp"
 			{...rest}
 		>
-			<div class="sr-only">share on</div>
+			<div class="sr-only">Compartir en</div>
 			Whatsapp
 		</a>
 	)
@@ -112,10 +112,10 @@ let validtext = linktext.replace(/ /g, "%20");
 			href={`mailto:?subject=${validtext} "${title}"&body=${url}`}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label="Share through email"
+			aria-label="Compartir por email"
 			{...rest}
 		>
-			<div class="sr-only">share by</div>
+			<div class="sr-only">Compartir por</div>
 			Email
 		</a>
 	)

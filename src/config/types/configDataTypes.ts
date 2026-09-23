@@ -49,24 +49,6 @@ export interface FaqItem {
 }
 
 // --------------------------------------------------------
-// testimonial data types
-export interface TestimonialItem {
-	avatar: ImageMetadata; // an imported image
-	name: string;
-	title: string;
-	testimonial: string;
-}
-
-// --------------------------------------------------------
-// team data types
-export interface teamMember {
-	image: ImageMetadata; // an imported image
-	name: string;
-	title: string;
-	bio: string;
-}
-
-// --------------------------------------------------------
 // site settings types
 export interface SiteSettingsProps {
 	useViewTransitions?: boolean;

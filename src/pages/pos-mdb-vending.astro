@@ -1,0 +1,82 @@
+---
+import V5Layout from "@/layouts/v5/V5Layout.astro";
+import V5Landing from "@/components/v5/V5Landing.astro";
+import POSImage from "@/data/Parking/pos-mdb-cutout.png";
+
+const sections = [
+	{
+		title: "Qué es un POS MDB para vending",
+		body: "MDB es el protocolo más usado para conectar periféricos de pago en máquinas expendedoras. Un POS MDB permite aceptar tarjetas, pagos sin contacto y billeteras digitales sin reemplazar toda la máquina.",
+		items: [
+			"Inbyte revisa compatibilidad MDB, cableado, energía y conectividad antes de implementar.",
+			"La integración puede adaptarse a máquinas de snacks, bebidas, café y otros formatos de autoservicio.",
+			"Cada transacción puede conectarse con reportes, telemetría y dashboards BI.",
+		],
+	},
+	{
+		title: "Por qué modernizar máquinas expendedoras",
+		body: "Los usuarios compran menos cuando dependen de efectivo exacto. Un sistema de pago electrónico reduce fricción, acelera la compra y permite operar con datos reales por ubicación.",
+		items: [
+			"Pagos con tarjeta física, NFC, Apple Pay, Google Pay y billeteras compatibles.",
+			"Menos manejo de monedas y menor carga operativa en rutas.",
+			"Mejor lectura de ventas, horarios, productos y disponibilidad.",
+		],
+	},
+	{
+		title: "Implementación con Inbyte",
+		body: "No vendemos solo un terminal. Integramos hardware, conectividad, soporte y datos para que la máquina expendedora funcione como un punto de venta moderno.",
+		items: [
+			"Diagnóstico de flota y compatibilidad técnica.",
+			"Instalación de POS y pruebas de venta reales.",
+			"Dashboard para seguimiento comercial y operacional.",
+		],
+	},
+];
+
+const faqs = [
+	{
+		question: "¿Sirve para cualquier máquina expendedora?",
+		answer: "Depende de la compatibilidad MDB y del estado eléctrico de la máquina. Inbyte revisa cada modelo antes de proponer la integración.",
+	},
+	{
+		question: "¿Puedo mantener mi máquina actual?",
+		answer: "En muchos casos sí. El objetivo es modernizar la máquina existente con un sistema de pago electrónico y datos operativos.",
+	},
+	{
+		question: "¿El POS MDB entrega información de ventas?",
+		answer: "Si la integración se diseña correctamente, las ventas pueden alimentar reportes y dashboards para controlar productos, horarios y ubicaciones.",
+	},
+];
+---
+
+<V5Layout
+	title="POS MDB para vending en Chile | Pago con tarjeta en máquinas expendedoras"
+	description="Integramos POS MDB para máquinas expendedoras: pagos con tarjeta, contactless, billeteras digitales, telemetría y dashboards para operadores de vending en Chile."
+>
+	<V5Landing
+		pageClass="v5-posmdb"
+		heroImage={false}
+		eyebrow="POS MDB vending"
+		heading="POS MDB para máquinas expendedoras"
+		intro="Convierte máquinas vending tradicionales en puntos de venta digitales con pago con tarjeta, NFC, billeteras digitales, telemetría y dashboards de control."
+		image={POSImage}
+		imageAlt="POS para pagos electrónicos en máquinas vending"
+		sections={sections}
+		faqs={faqs}
+		signals={[
+			{ label: "Compatibilidad", value: "Máquinas con protocolo MDB" },
+			{ label: "Medios de pago", value: "Tarjeta, NFC y billeteras digitales" },
+			{ label: "Datos", value: "Ventas conectadas a reportes BI" },
+		]}
+		visualTitle="El POS como parte de la operación, no como accesorio"
+		visualBody="La integración MDB correcta conecta aprobación de pago, despacho, registro de venta y seguimiento operativo para reducir errores y acelerar la compra."
+		primaryLabel="Evaluar compatibilidad"
+		secondaryLabel="Ver solución vending"
+		secondaryHref="/vending/"
+		resources={[
+			{ href: "/blog/futuro-pagos-electronicos-vending-chile/", label: "Pagos electrónicos para vending en Chile" },
+			{ href: "/blog/seguridad-pagos-electronicos-vending/", label: "Seguridad en pagos electrónicos para vending" },
+			{ href: "/maquinas-expendedoras-pago-tarjeta/", label: "Máquinas expendedoras con pago con tarjeta" },
+		]}
+	/>
+</V5Layout>

@@ -1,0 +1,163 @@
+---
+import { getLocalizedRoute } from "@/js/translationUtils";
+import Button from "@/components/button/Button.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { useTranslations } from "@/js/translationUtils";
+import WebThreads from "@/components/v4/WebThreads";
+
+interface Props {
+	mode?: "light" | "dark";
+}
+
+const { mode = "light" } = Astro.props as Props;
+const isDark = mode === "dark";
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section
+	id="hero-center-dashboard"
+	class:list={["v4-hero-threads", "-mt-23", "overflow-hidden", "pt-23", isDark && "v4-hero-threads--dark"]}
+>
+	<div class="v4-hero-threads__canvas" aria-hidden="true">
+		{
+			isDark ? (
+				<WebThreads
+					client:load
+					color1="#05cd84"
+					color2="#9ee0c8"
+					color3="#ffffff"
+					backgroundColor="#0b0d0c"
+					lightMode={false}
+					speed={0.14}
+					threadCount={6}
+					frequency={5.0}
+					spread={0.11}
+					taper={0.85}
+					position={0.5}
+					fanMode="center"
+					glow={0.02}
+					falloff={0.6}
+					thickness={0.5}
+					brightness={0.75}
+					opacity={1}
+					mirror={true}
+					shimmer={true}
+					grain={true}
+					grainIntensity={0.05}
+					mouseInteraction={true}
+					mouseStrength={0.35}
+				/>
+			) : (
+				<WebThreads
+					client:load
+					color1="#7dceb0"
+					color2="#00a165"
+					color3="#ffffff"
+					backgroundColor="#ffffff"
+					lightMode={true}
+					speed={0.14}
+					threadCount={6}
+					frequency={5.0}
+					spread={0.11}
+					taper={0.85}
+					position={0.5}
+					fanMode="center"
+					glow={0.018}
+					falloff={0.65}
+					thickness={0.5}
+					brightness={1.15}
+					opacity={1}
+					mirror={true}
+					shimmer={true}
+					grain={true}
+					grainIntensity={0.04}
+					mouseInteraction={true}
+					mouseStrength={0.35}
+				/>
+			)
+		}
+	</div>
+	<div class="v4-hero-threads__veil" aria-hidden="true"></div>
+	<div class="relative pt-20 pb-8">
+		<div class="site-container relative z-10 mx-auto px-4">
+			<div class="flex flex-col items-center">
+				<div class="relative z-10 mb-4 text-center">
+					<div data-aos="fade-up" data-aos-trigger="#hero-center-dashboard">
+						<h1
+							class="font-heading xl:text-10xl mx-auto mb-8 max-w-4xl text-7xl tracking-tighter lg:text-8xl"
+						>
+							{t("hero_text")}
+						</h1>
+					</div>
+					<p
+						class="mx-auto mb-10 max-w-md text-lg opacity-80"
+						data-aos="fade-up"
+						data-aos-trigger="#hero-center-dashboard"
+						data-aos-delay=".15"
+					>
+						{t("hero_description")}
+					</p>
+					<div
+						class="mx-auto flex items-center justify-center gap-4"
+						data-aos="fade-up"
+						data-aos-trigger="#hero-center-dashboard"
+						data-aos-delay=".3"
+					>
+						<Button href={getLocalizedRoute(currLocale, "/vending")} class="w-32">Vending</Button>
+						<Button variant="outline" href={getLocalizedRoute(currLocale, "/parking")} class="w-32"
+							>Parking</Button
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.v4-hero-threads {
+		position: relative;
+	}
+
+	.v4-hero-threads__canvas {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.v4-hero-threads__canvas :global(.web-threads-container) {
+		pointer-events: auto;
+	}
+
+	.v4-hero-threads__veil {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+		background:
+			radial-gradient(ellipse 60% 48% at 50% 42%, rgba(255, 255, 255, 0.12), transparent 70%),
+			linear-gradient(
+				180deg,
+				rgba(255, 255, 255, 0.06) 0%,
+				transparent 42%,
+				rgba(255, 255, 255, 0.28) 100%
+			);
+	}
+
+	.v4-hero-threads--dark .v4-hero-threads__veil {
+		background:
+			radial-gradient(ellipse 55% 45% at 50% 40%, rgba(5, 205, 132, 0.08), transparent 70%),
+			linear-gradient(
+				180deg,
+				rgba(11, 13, 12, 0.35) 0%,
+				transparent 45%,
+				rgba(11, 13, 12, 0.65) 100%
+			);
+	}
+
+	.v4-hero-threads--dark .v4-hero-threads__canvas {
+		background: #0b0d0c;
+	}
+</style>

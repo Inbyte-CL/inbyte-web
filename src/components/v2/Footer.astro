@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import Logo from "@/assets/images/Inbyte-Logo.png";
+---
+
+<footer class="v2-footer">
+	<div class="v2-container">
+		<div class="v2-footer__grid">
+			<div class="v2-footer__brand">
+				<a class="v2-nav__brand" href="/v2/" aria-label="INBYTE">
+					<Image src={Logo} alt="INBYTE" height={28} />
+				</a>
+				<p class="v2-body-sm">
+					POS MDB, pagos electrónicos, telemetría y dashboards BI para máquinas expendedoras y
+					autoservicio en Chile.
+				</p>
+			</div>
+
+			<div class="v2-footer__col">
+				<h4>Soluciones</h4>
+				<a href="/vending">Vending</a>
+				<a href="/parking">Parking</a>
+				<a href="/pos-mdb-vending">POS MDB</a>
+				<a href="/telemetria-vending">Telemetría</a>
+			</div>
+
+			<div class="v2-footer__col">
+				<h4>Recursos</h4>
+				<a href="/blog">Blog</a>
+				<a href="/faq">FAQ</a>
+				<a href="/autoservicio-vending">Autoservicio</a>
+				<a href="/alternativa-transbank-vending">Alternativa Transbank</a>
+			</div>
+
+			<div class="v2-footer__col">
+				<h4>Empresa</h4>
+				<a href="/contact">Contacto</a>
+				<a href="/privacy-policy">Privacidad</a>
+				<a href="/">Sitio actual</a>
+			</div>
+		</div>
+
+		<div class="v2-footer__bottom">
+			<span>© {new Date().getFullYear()} INBYTE · Prototipo /v2 (noindex)</span>
+			<div class="v2-social">
+				<a href="https://www.linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+						<path
+							d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.64 4.75 6.07V23h-4v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.5V23h-4V8.5z"
+						></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>

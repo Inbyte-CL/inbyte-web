@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import Logo from "@/assets/images/Inbyte-Logo.png";
+---
+
+<footer class="v5-footer v5-band v5-band--dark">
+	<div class="v5-container">
+		<div class="v5-footer__grid">
+			<div class="v5-footer__brand">
+				<a class="v5-nav__brand" href="/" aria-label="INBYTE">
+					<Image src={Logo} alt="INBYTE" height={22} />
+				</a>
+				<p>POS MDB, pagos electrónicos y telemetría para vending y parking en Chile.</p>
+			</div>
+			<div class="v5-footer__col">
+				<p class="v5-footer__label">Soluciones</p>
+				<a href="/vending/">Vending</a>
+				<a href="/parking/">Parking</a>
+				<a href="/pos-mdb-vending/">POS MDB</a>
+				<a href="/telemetria-vending/">Telemetría vending</a>
+			</div>
+			<div class="v5-footer__col">
+				<p class="v5-footer__label">Recursos</p>
+				<a href="/maquinas-expendedoras-pago-tarjeta/">Pago con tarjeta</a>
+				<a href="/autoservicio-vending/">Autoservicio</a>
+				<a href="/alternativa-transbank-vending/">Alternativa a Transbank</a>
+				<a href="/blog/">Blog</a>
+				<a href="/faq/">Preguntas frecuentes</a>
+			</div>
+			<div class="v5-footer__col">
+				<p class="v5-footer__label">Empresa</p>
+				<a href="/contact/">Contacto</a>
+				<a href="/privacy/">Privacidad</a>
+			</div>
+		</div>
+		<div class="v5-footer__bottom">© {new Date().getFullYear()} INBYTE</div>
+	</div>
+</footer>

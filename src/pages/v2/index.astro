@@ -1,0 +1,361 @@
+---
+import { Image } from "astro:assets";
+import V2Layout from "@/layouts/v2/V2Layout.astro";
+import AnnouncementBar from "@/components/v2/AnnouncementBar.astro";
+import Nav from "@/components/v2/Nav.astro";
+import Footer from "@/components/v2/Footer.astro";
+
+import DashVend from "@/data/Parking/dashvend-devices.png";
+import POSImage from "@/assets/images/headers/POS.png";
+import VendingImage from "@/data/Parking/vending.png";
+import DashPark from "@/data/Parking/dashpark.png";
+
+const stats = [
+	{
+		value: "MDB",
+		label: "Integración nativa con máquinas expendedoras compatibles",
+		icon: "chip",
+	},
+	{
+		value: "24/7",
+		label: "Visibilidad de ventas, stock y estado operativo en tiempo real",
+		icon: "pulse",
+	},
+	{
+		value: "BI",
+		label: "Dashboards personalizados por operador y ubicación",
+		icon: "chart",
+	},
+];
+
+const features = [
+	{
+		title: "Pagos sin fricción",
+		text: "POS de última generación para tarjeta, NFC y billeteras digitales en vending y parking.",
+	},
+	{
+		title: "Telemetría completa",
+		text: "Monitorea ventas, stock, alertas y rendimiento por ubicación desde un solo panel.",
+		beta: false,
+	},
+	{
+		title: "Inteligencia de negocio",
+		text: "Dashboards BI a medida para optimizar rutas, mix de productos y rentabilidad.",
+	},
+	{
+		title: "Parking autoservicio",
+		text: "Cobro electrónico en tótems y cajas para reducir filas y control total de flujos.",
+	},
+	{
+		title: "Integraciones",
+		text: "Conectamos tu operación con ERP, CRM y plataformas financieras según tu necesidad.",
+	},
+	{
+		title: "Mayor disponibilidad",
+		text: "Menos fallas, menos máquinas sin stock y reposición más eficiente.",
+	},
+];
+
+const solutions = [
+	{
+		title: "POS MDB para vending",
+		href: "/pos-mdb-vending/",
+		text: "Integra pagos con tarjeta, NFC y billeteras digitales en máquinas expendedoras compatibles.",
+	},
+	{
+		title: "Pago con tarjeta en expendedoras",
+		href: "/maquinas-expendedoras-pago-tarjeta/",
+		text: "Moderniza máquinas que hoy dependen de efectivo y transforma cada equipo en un punto de venta digital.",
+	},
+	{
+		title: "Telemetría vending",
+		href: "/telemetria-vending/",
+		text: "Controla ventas, disponibilidad, ubicaciones y rendimiento con dashboards BI personalizados.",
+	},
+	{
+		title: "Autoservicio vending",
+		href: "/autoservicio-vending/",
+		text: "Diseña experiencias de compra desatendida para vending, parking y puntos de alto tráfico.",
+	},
+];
+---
+
+<V2Layout
+	title="INBYTE v2 · Pagos y telemetría para vending y parking"
+	description="Prototipo local del home Inbyte con lenguaje visual tipo control room. POS MDB, pagos electrónicos y dashboards BI."
+>
+	<AnnouncementBar />
+	<Nav />
+
+	<main>
+		<!-- Hero -->
+		<section class="v2-hero v2-grid">
+			<div class="v2-container">
+				<div class="v2-hero__grid">
+					<div class="v2-hero__copy">
+						<p class="v2-eyebrow v2-reveal">Pagos · Telemetría · BI</p>
+						<h1 class="v2-display v2-reveal v2-reveal--delay-1">
+							Pagos electrónicos para vending y parking en Chile
+						</h1>
+						<p class="v2-body v2-reveal v2-reveal--delay-2">
+							Integramos POS MDB, pagos contactless, telemetría y dashboards BI para que operes
+							máquinas y puntos de autoservicio con control total.
+						</p>
+						<div class="v2-hero__ctas v2-reveal v2-reveal--delay-3">
+							<a class="v2-btn v2-btn--primary" href="/vending">Ver Vending</a>
+							<a class="v2-btn v2-btn--secondary" href="/parking">Ver Parking</a>
+						</div>
+						<div class="v2-hero__meta v2-reveal v2-reveal--delay-3">
+							<span class="v2-stars" aria-hidden="true">
+								{
+									Array.from({ length: 5 }).map(() => (
+										<svg viewBox="0 0 24 24" fill="currentColor">
+											<path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.2 22 12 18.56 5.8 22 7 14.14l-5-4.87 7.1-1.01L12 2z" />
+										</svg>
+									))
+								}
+							</span>
+							<span class="v2-body-sm">Operadores de vending y parking en Chile</span>
+						</div>
+					</div>
+
+					<div class="v2-hero__preview v2-preview-glow v2-reveal v2-reveal--delay-2">
+						<Image
+							src={DashVend}
+							alt="Dashboard BI de INBYTE para ventas y telemetría de vending"
+							widths={[640, 960, 1200]}
+							sizes="(max-width: 960px) 100vw, 560px"
+							loading="eager"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- How it works / stats -->
+		<section class="v2-section">
+			<div class="v2-container">
+				<div class="v2-section__head">
+					<p class="v2-eyebrow">Cómo funciona</p>
+					<h2 class="v2-heading">Una capa de pagos y datos para toda tu red</h2>
+					<p class="v2-body">
+						Conectamos el hardware de cobro con telemetría y paneles BI para que cada máquina
+						reporte, cobre y se optimice sin fricción.
+					</p>
+				</div>
+				<div class="v2-stats">
+					{
+						stats.map((stat) => (
+							<article class="v2-stat">
+								<svg
+									class="v2-stat__icon"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.75"
+									aria-hidden="true"
+								>
+									{stat.icon === "chip" && (
+										<>
+											<rect x="4" y="4" width="16" height="16" rx="2" />
+											<path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3" />
+										</>
+									)}
+									{stat.icon === "pulse" && <path d="M3 12h4l2-5 4 10 2-5h6" />}
+									{stat.icon === "chart" && (
+										<>
+											<path d="M4 19V5M4 19h16" />
+											<path d="M8 16v-5M12 16V8M16 16v-3" />
+										</>
+									)}
+								</svg>
+								<p class="v2-stat__value">{stat.value}</p>
+								<p class="v2-body-sm">{stat.label}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Features -->
+		<section class="v2-section v2-grid">
+			<div class="v2-container">
+				<div class="v2-section__head">
+					<p class="v2-eyebrow">Qué hacemos</p>
+					<h2 class="v2-heading">Soluciones para modernizar tu operación</h2>
+					<p class="v2-body">
+						Del cobro en máquina al panel de control: todo el stack que necesitas para vending y
+						autoservicio.
+					</p>
+				</div>
+				<div class="v2-features">
+					{
+						features.map((feature) => (
+							<article class="v2-feature">
+								<svg
+									class="v2-feature__icon"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.75"
+									aria-hidden="true"
+								>
+									<circle cx="12" cy="12" r="8" />
+									<path d="M12 8v4l2.5 2.5" />
+								</svg>
+								<h3>
+									{feature.title}
+									{feature.beta && <span class="v2-beta">Beta</span>}
+								</h3>
+								<p>{feature.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- POS + Klap -->
+		<section class="v2-section">
+			<div class="v2-container">
+				<div class="v2-split">
+					<div>
+						<p class="v2-eyebrow">Pagos</p>
+						<h2 class="v2-heading">Inbyte + Klap: pagos electrónicos para autoservicio</h2>
+						<p class="v2-body" style="margin-top: 16px;">
+							Combinamos la tecnología Inbyte con la infraestructura de Klap para ofrecer cobro
+							rápido, confiable y escalable en vending, parking y puntos de alto tráfico.
+						</p>
+						<ul class="v2-split__list">
+							<li>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Pagos electrónicos rápidos y sin fricción
+							</li>
+							<li>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Compatible con máquinas vending y estacionamientos
+							</li>
+							<li>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Mejor experiencia de usuario y control operativo
+							</li>
+						</ul>
+						<div class="v2-hero__ctas" style="margin-top: 24px;">
+							<a class="v2-btn v2-btn--primary" href="/contact">Contactar ventas</a>
+							<a class="v2-btn v2-btn--secondary" href="/pos-mdb-vending">Ver POS MDB</a>
+						</div>
+					</div>
+					<div class="v2-split__media">
+						<Image
+							src={POSImage}
+							alt="POS para pagos electrónicos de autoservicio"
+							widths={[480, 800, 1000]}
+							sizes="(max-width: 960px) 100vw, 560px"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Dashboard data -->
+		<section class="v2-section">
+			<div class="v2-container">
+				<div class="v2-split v2-split--reverse">
+					<div>
+						<p class="v2-eyebrow">Datos</p>
+						<h2 class="v2-heading">Pagos y datos para operar mejor</h2>
+						<p class="v2-body" style="margin-top: 16px;">
+							Inbyte integra POS MDB, pagos electrónicos, telemetría y dashboards BI para que
+							operadores de vending y autoservicio controlen ventas, disponibilidad y rentabilidad
+							en tiempo real.
+						</p>
+						<div class="v2-hero__ctas" style="margin-top: 24px;">
+							<a class="v2-btn v2-btn--primary" href="/telemetria-vending">Ver telemetría</a>
+							<a class="v2-btn v2-btn--secondary" href="/vending">Casos vending</a>
+						</div>
+					</div>
+					<div class="v2-split__media">
+						<Image
+							src={DashPark}
+							alt="Dashboard de operación y telemetría INBYTE"
+							widths={[480, 800, 1000]}
+							sizes="(max-width: 960px) 100vw, 560px"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Product visual: vending machine -->
+		<section class="v2-section">
+			<div class="v2-container">
+				<div class="v2-split">
+					<div>
+						<p class="v2-eyebrow">Vending</p>
+						<h2 class="v2-heading">Moderniza tus máquinas y controla tu operación</h2>
+						<p class="v2-body" style="margin-top: 16px;">
+							Acepta pagos con tarjeta, integra POS MDB, suma telemetría y opera puntos de
+							autoservicio con más control y menos fricción.
+						</p>
+					</div>
+					<div class="v2-split__media">
+						<Image
+							src={VendingImage}
+							alt="Máquina expendedora con pagos electrónicos INBYTE"
+							widths={[480, 800, 1000]}
+							sizes="(max-width: 960px) 100vw, 560px"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Solutions -->
+		<section class="v2-section">
+			<div class="v2-container">
+				<div class="v2-section__head">
+					<p class="v2-eyebrow">Soluciones</p>
+					<h2 class="v2-heading">Explora por caso de uso</h2>
+				</div>
+				<div class="v2-solutions">
+					{
+						solutions.map((item) => (
+							<a class="v2-solution" href={item.href}>
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="v2-section" style="padding-top: 0;">
+			<div class="v2-container">
+				<div class="v2-cta">
+					<div>
+						<p class="v2-eyebrow" style="margin-bottom: 8px;">Siguiente paso</p>
+						<h2 class="v2-heading-sm">¿Listo para digitalizar tu red?</h2>
+						<p class="v2-body-sm" style="margin-top: 8px;">
+							Cuéntanos cómo operas hoy y te proponemos la integración de pagos y datos.
+						</p>
+					</div>
+					<div class="v2-hero__ctas">
+						<a class="v2-btn v2-btn--primary" href="/contact">Contactar</a>
+						<a class="v2-btn v2-btn--secondary" href="/">Volver al sitio actual</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</V2Layout>

@@ -26,6 +26,7 @@ interface Props {
 	authorsData?: CollectionEntry<"authors">[];
 	postFrontmatter?: CollectionEntry<"blog">["data"];
 	noindex?: boolean; // you need to opt-in to no indexing, as it hides the page from search engines
+	dark?: boolean;
 }
 
 const {
@@ -36,31 +37,19 @@ const {
 	authorsData,
 	postFrontmatter,
 	noindex = false,
+	dark = false,
 } = Astro.props as Props;
 
 const currLocale = getLocaleFromUrl(Astro.url);
 
-const noindexPathPrefixes = [
-	"/fr/",
-	"/examples/",
-	"/sign-in",
-	"/sign-up",
-	"/overview",
-	"/careers",
-	"/categories",
-	"/about",
-];
-
 const pathname = Astro.url.pathname;
-const shouldNoindex =
-	noindex ||
-	noindexPathPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(prefix));
+const shouldNoindex = noindex || pathname === "/404" || pathname === "/404/";
 ---
 
 <!doctype html>
 <html
 	lang={currLocale}
-	class:list={[siteSettings.useAnimations && "use-animations"]}
+	class:list={[siteSettings.useAnimations && "use-animations", dark && "dark"]}
 	transition:animate="fade"
 >
 	<head>
@@ -72,6 +61,7 @@ const shouldNoindex =
 			authors={authorsData ? authorsData : undefined}
 			postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
 			noindex={shouldNoindex}
+			dark={dark}
 		/>
 	</head>
 	<body id="body">
