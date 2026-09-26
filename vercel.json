@@ -20,6 +20,19 @@
       ]
     },
     {
+      "source": "/oscar.vcf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/vcard; charset=utf-8"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"Oscar-Tapia.vcf\""
+        }
+      ]
+    },
+    {
       "source": "/sitemap-(.*).xml",
       "headers": [
         {
@@ -227,6 +240,11 @@
     {
       "source": "/carlos",
       "destination": "https://www.inbyte.cl/carlos/",
+      "permanent": true
+    },
+    {
+      "source": "/oscar",
+      "destination": "https://www.inbyte.cl/oscar/",
       "permanent": true
     },
     {
