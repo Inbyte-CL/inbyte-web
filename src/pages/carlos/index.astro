@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import V5Layout from "@/layouts/v5/V5Layout.astro";
+import V5HeroThreads from "@/components/v5/V5HeroThreads";
 import Logo from "@/assets/images/inbyte-logo-circle.png";
 
 export const prerender = true;
@@ -16,12 +17,19 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 >
 	<main id="contenido" class="v5-vcard">
 		<article class="v5-vcard__card">
-			<div class="v5-vcard__brand">
-				<Image src={Logo} alt="Inbyte" width={112} height={112} />
+			<div class="v5-vcard__hero">
+				<div class="v5-vcard__lights" aria-hidden="true">
+					<V5HeroThreads client:load compact />
+				</div>
+				<div class="v5-vcard__veil" aria-hidden="true"></div>
+				<div class="v5-vcard__identity">
+					<div class="v5-vcard__brand">
+						<Image src={Logo} alt="Inbyte" width={112} height={112} />
+					</div>
+					<h1 class="v5-vcard__name">Carlos Morales</h1>
+					<p class="v5-vcard__role">Director comercial y tecnológico</p>
+				</div>
 			</div>
-
-			<h1 class="v5-vcard__name">Carlos Morales</h1>
-			<p class="v5-vcard__role">Director comercial y tecnológico</p>
 
 			<ul class="v5-vcard__details">
 				<li>
@@ -108,14 +116,50 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 
 	.v5-vcard__card {
 		width: min(100%, 400px);
-		padding: 36px 24px 24px;
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		overflow: hidden;
+		padding: 0 24px 24px;
+		border: 1px solid var(--v5-line);
 		border-radius: 32px;
-		background:
-			radial-gradient(ellipse 80% 60% at 50% 0%, rgba(5, 205, 132, 0.1), transparent 55%),
-			#ffffff;
-		color: #0a0c0b;
+		background: var(--v5-surface);
+		color: var(--v5-ink);
 		text-align: center;
+	}
+
+	.v5-vcard__hero {
+		position: relative;
+		overflow: hidden;
+		margin: 0 -24px;
+		padding: 36px 24px 28px;
+	}
+
+	.v5-vcard__lights,
+	.v5-vcard__veil {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.v5-vcard__lights {
+		z-index: 0;
+		top: -35%;
+		bottom: -10%;
+		left: -55%;
+		right: -55%;
+	}
+
+	.v5-vcard__lights :global(.web-threads-container) {
+		width: 100%;
+		height: 100%;
+	}
+
+	.v5-vcard__veil {
+		z-index: 1;
+		background: radial-gradient(ellipse 70% 48% at 50% 58%, rgba(5, 205, 132, 0.12), transparent 62%);
+	}
+
+	.v5-vcard__identity {
+		position: relative;
+		z-index: 2;
 	}
 
 	.v5-vcard__brand {
@@ -137,19 +181,19 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 		font-weight: 500;
 		letter-spacing: -0.04em;
 		line-height: 1.05;
-		color: #141816;
+		color: var(--v5-ink);
 	}
 
 	.v5-vcard__role {
 		margin: 10px 0 0;
-		color: #5b6661;
+		color: var(--v5-mute);
 		font-size: 1rem;
 		line-height: 1.4;
 	}
 
 	.v5-vcard__details {
 		list-style: none;
-		margin: 28px 0 0;
+		margin: 8px 0 0;
 		padding: 0;
 		display: grid;
 		gap: 8px;
@@ -163,7 +207,7 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 		min-height: 48px;
 		padding: 0 12px;
 		border-radius: 16px;
-		color: #141816;
+		color: var(--v5-ink);
 		font-size: 0.98rem;
 		font-weight: 500;
 		touch-action: manipulation;
@@ -181,7 +225,7 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 		flex: 0 0 28px;
 		width: 28px;
 		height: 28px;
-		color: #05cd84;
+		color: var(--v5-signal);
 	}
 
 	.v5-vcard__icon svg {
@@ -202,21 +246,6 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 		touch-action: manipulation;
 	}
 
-	.v5-vcard__card :global(.v5-btn--outline) {
-		border-color: rgba(10, 16, 14, 0.12);
-		background: #f4f7f5;
-		color: #141816;
-	}
-
-	.v5-vcard__card :global(.v5-btn--outline:hover) {
-		border-color: rgba(5, 205, 132, 0.45);
-		background: rgba(5, 205, 132, 0.1);
-	}
-
-	.v5-vcard__card :global(.v5-btn--primary) {
-		color: #04140e;
-	}
-
 	.v5-vcard__card :global(.v5-btn--primary .v5-vcard__icon) {
 		color: #04140e;
 	}
@@ -231,12 +260,17 @@ const linkedin = "https://www.linkedin.com/in/carlosmoralescaama%C3%B1o/";
 			height: 88px;
 		}
 
-		.v5-vcard__card {
+		.v5-vcard__hero {
 			padding-top: 28px;
+			padding-bottom: 20px;
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.v5-vcard__lights {
+			display: none;
+		}
+
 		.v5-vcard__details a,
 		.v5-vcard__cta {
 			transition: none;
