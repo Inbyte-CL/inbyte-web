@@ -7,6 +7,19 @@
   "regions": ["iad1"],
   "headers": [
     {
+      "source": "/carlos.vcf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/vcard; charset=utf-8"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"Carlos-Morales.vcf\""
+        }
+      ]
+    },
+    {
       "source": "/sitemap-(.*).xml",
       "headers": [
         {
@@ -209,6 +222,11 @@
     {
       "source": "/privacy-policy",
       "destination": "https://www.inbyte.cl/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/carlos",
+      "destination": "https://www.inbyte.cl/carlos/",
       "permanent": true
     },
     {
